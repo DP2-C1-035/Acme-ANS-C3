@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <projectDescription>
-	<name>Hello-World-25.1.0</name>
 	<comment></comment>
 	<projects>
 	</projects>
@@ -36,9 +35,9 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>acme-framework-25.5.0</name>
+			<name>acme-framework</name>
 			<type>2</type>
-			<locationURI>WORKSPACE_LOC/Frameworks/Acme-Framework-25.5.0/target/classes</locationURI>
+			<locationURI>WORKSPACE_LOC/Frameworks/Acme-Framework-25.6.0/target/classes</locationURI>
 		</link>
 	</linkedResources>
 </projectDescription>
