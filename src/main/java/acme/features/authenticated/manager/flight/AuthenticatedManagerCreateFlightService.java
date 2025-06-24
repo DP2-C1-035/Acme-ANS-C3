@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager;
+package acme.features.authenticated.manager.flight;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -7,10 +7,11 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flight.Flight;
+import acme.features.authenticated.manager.AuthenticatedManagerRepository;
 import acme.realms.manager.Manager;
 
 @GuiService
-public class AuthenticatedManagerCreateService extends AbstractGuiService<Manager, Flight> {
+public class AuthenticatedManagerCreateFlightService extends AbstractGuiService<Manager, Flight> {
 
 	@Autowired
 	private AuthenticatedManagerRepository repository;
