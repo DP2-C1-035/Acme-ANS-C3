@@ -2,5 +2,15 @@
 
 You can find our project planning dashboard on GitHub to track tasks, view their current status, and follow our project schedule. This dashboard provides an overview of our progress and ensures transparency throughout the development process.  
 
+D01:
+
 **Planning Dashboard:** [Link to the GitHub Planning Board](https://github.com/orgs/DP2-C1-035/projects/1) 
+
+D02:
  
+**Planning Dashboard:** [Link to the GitHub Planning Board](https://github.com/orgs/DP2-C1-035/projects/2)
+
+D03:
+
+
+D04:
