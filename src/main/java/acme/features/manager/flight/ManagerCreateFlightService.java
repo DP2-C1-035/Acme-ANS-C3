@@ -1,7 +1,6 @@
 
 package acme.features.manager.flight;
 
-import java.util.Arrays;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -35,7 +34,7 @@ public class ManagerCreateFlightService extends AbstractGuiService<Manager, Flig
 	@Override
 	public void validate(final Flight flight) {
 		if (flight.getCost() != null) {
-			boolean validCurrency = ManagerCreateFlightService.isValidCurrency(flight.getCost().getCurrency());
+			boolean validCurrency = this.isValidCurrency(flight.getCost().getCurrency());
 			super.state(validCurrency, "cost", "acme.validation.currency.message");
 		}
 	}
@@ -75,8 +74,8 @@ public class ManagerCreateFlightService extends AbstractGuiService<Manager, Flig
 		super.getResponse().addData(dataset);
 	}
 
-	public static boolean isValidCurrency(final String currency) {
-		List<String> currencies = Arrays.asList("USD", "EUR", "JPY", "GBP", "CHF", "CAD", "AUD", "CNY", "MXN", "BRL", "RUB", "INR", "KRW", "ZAR", "SAR", "ARS", "COP", "CLP", "TRY", "EGP");
+	private boolean isValidCurrency(final String currency) {
+		List<String> currencies = List.of("USD", "EUR", "JPY", "GBP", "CHF", "CAD", "AUD", "CNY", "MXN", "BRL", "RUB", "INR", "KRW", "ZAR", "SAR", "ARS", "COP", "CLP", "TRY", "EGP");
 		return currencies.contains(currency.toUpperCase());
 	}
 
