@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager;
+package acme.features.manager;
 
 import java.util.Collection;
 
@@ -10,7 +10,7 @@ import acme.client.repositories.AbstractRepository;
 import acme.entities.flight.Flight;
 
 @Repository
-public interface AuthenticatedManagerRepository extends AbstractRepository {
+public interface ManagerRepository extends AbstractRepository {
 
 	@Query("SELECT f from Flight f where f.manager.id = :managerId")
 	Collection<Flight> findFlightsByManagerId(int managerId);

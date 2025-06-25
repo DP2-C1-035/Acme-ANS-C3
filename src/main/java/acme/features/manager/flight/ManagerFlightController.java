@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager.flight;
+package acme.features.manager.flight;
 
 import javax.annotation.PostConstruct;
 
@@ -11,15 +11,15 @@ import acme.entities.flight.Flight;
 import acme.realms.manager.Manager;
 
 @GuiController
-public class AuthenticatedManagerFlightController extends AbstractGuiController<Manager, Flight> {
+public class ManagerFlightController extends AbstractGuiController<Manager, Flight> {
 
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
-	private AuthenticatedManagerCreateFlightService	createService;
+	private ManagerCreateFlightService	createService;
 
 	@Autowired
-	private AuthenticatedManagerListFlightService	listService;
+	private ManagerListFlightService	listService;
 
 	// Constructors -----------------------------------------------------------
 

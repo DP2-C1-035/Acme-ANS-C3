@@ -1,5 +1,5 @@
 
-package acme.features.authenticated.manager.flight;
+package acme.features.manager.flight;
 
 import java.util.Collection;
 
@@ -9,14 +9,14 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flight.Flight;
-import acme.features.authenticated.manager.AuthenticatedManagerRepository;
+import acme.features.manager.ManagerRepository;
 import acme.realms.manager.Manager;
 
 @GuiService
-public class AuthenticatedManagerListFlightService extends AbstractGuiService<Manager, Flight> {
+public class ManagerListFlightService extends AbstractGuiService<Manager, Flight> {
 
 	@Autowired
-	private AuthenticatedManagerRepository repository;
+	private ManagerRepository repository;
 
 
 	@Override
