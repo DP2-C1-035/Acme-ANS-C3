@@ -31,7 +31,7 @@ public interface ManagerLegRepository extends AbstractRepository {
 	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.draftMode = false AND l.scheduledDeparture = (SELECT MIN(l2.scheduledDeparture) FROM Leg l2 WHERE l2.flight.id = :flightId AND l2.draftMode = false)")
 	Leg findFirstLegPublishedByFlightId(int flightId);
 
-	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.draftMode = false AND l.scheduledArrival = (SELECT MAX(l2.scheduledArrival) FROM Leg l2 WHERE l2.flight.id = :flightIdAND l2.draftMode = false)")
+	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.draftMode = false AND l.scheduledArrival = (SELECT MAX(l2.scheduledArrival) FROM Leg l2 WHERE l2.flight.id = :flightId AND l2.draftMode = false)")
 	Leg findLastLegPublishedByFlightId(int flightId);
 
 	@Query("SELECT a FROM Aircraft a")
