@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.flight_crew_member;
 
 import javax.persistence.Entity;
 import javax.persistence.Index;
@@ -15,6 +15,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.constraints.ValidFlightCrewMember;
 import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
@@ -22,8 +23,9 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidFlightCrewMember
 @Table(indexes = {
-	@Index(columnList = "working_for_id, availabilityStatus")
+	@Index(columnList = "airline_id, availabilityStatus")
 })
 public class FlightCrewMember extends AbstractRole {
 
@@ -60,9 +62,8 @@ public class FlightCrewMember extends AbstractRole {
 	private Integer				yearsOfExperience;
 
 	@Mandatory
-	@Automapped
 	@Valid
 	@ManyToOne(optional = false)
-	private Airline				workingFor;
+	private Airline				airline;
 
 }
