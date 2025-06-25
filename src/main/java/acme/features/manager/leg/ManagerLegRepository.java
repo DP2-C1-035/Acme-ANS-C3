@@ -9,6 +9,7 @@ import org.springframework.stereotype.Repository;
 
 import acme.client.repositories.AbstractRepository;
 import acme.entities.aircraft.Aircraft;
+import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
@@ -58,4 +59,6 @@ public interface ManagerLegRepository extends AbstractRepository {
 	@Query("SELECT l FROM Leg l WHERE l.flight.id = :flightId AND l.draftMode = false AND ((l.scheduledDeparture < :arrivalDate AND l.scheduledArrival > :departureDate))")
 	Collection<Leg> findLegsPublishedByArrivalDepartureDate(Date departureDate, Date arrivalDate, int flightId);
 
+	@Query("select a from Airline a where a.id = :id")
+	Airline findAirlineById(int id);
 }

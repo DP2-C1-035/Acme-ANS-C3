@@ -11,8 +11,9 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.aircraft.Aircraft;
-import acme.entities.aircraft.AircraftStatus;
+import acme.entities.airline.Airline;
 import acme.entities.airport.Airport;
+import acme.entities.flight.Flight;
 import acme.entities.leg.Leg;
 import acme.entities.leg.LegStatus;
 import acme.realms.manager.Manager;
@@ -26,35 +27,35 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 
 	@Override
 	public void authorise() {
-		boolean status;
+		boolean status = true;
+
+		boolean correctPlane = true;
+		boolean correctAirline = true;
+
 		int legId;
 		Leg leg;
+		Flight flight;
+
+		if (super.getRequest().hasData("plane")) {
+			int planeId = super.getRequest().getData("plane", int.class);
+			if (planeId != 0) {
+				Aircraft aircraft = this.repository.findAircraftById(planeId);
+				correctPlane = aircraft != null;
+			}
+		}
+
+		if (super.getRequest().hasData("airline")) {
+			int airlineId = super.getRequest().getData("airline", int.class);
+			if (airlineId != 0) {
+				Airline airline = this.repository.findAirlineById(airlineId);
+				correctAirline = airline != null;
+			}
+		}
 
 		legId = super.getRequest().getData("id", int.class);
 		leg = this.repository.findLegById(legId);
-		status = leg != null && super.getRequest().getPrincipal().hasRealm(leg.getFlight().getManager()) && leg.getFlight().isDraftMode() && leg.isDraftMode();
-
-		if (status) {
-			String method;
-			int aircraftId, departureAirportId, arrivalAirportId;
-			Aircraft aircraft;
-			Airport departureAirport, arrivalAirport;
-
-			method = super.getRequest().getMethod();
-
-			if (method.equals("GET"))
-				status = true;
-			else {
-
-				aircraftId = super.getRequest().getData("aircraft", int.class);
-				departureAirportId = super.getRequest().getData("departureAirport", int.class);
-				arrivalAirportId = super.getRequest().getData("arrivalAirport", int.class);
-				aircraft = this.repository.findAircraftById(aircraftId);
-				departureAirport = this.repository.findAirportById(departureAirportId);
-				arrivalAirport = this.repository.findAirportById(arrivalAirportId);
-				status = (aircraftId == 0 || aircraft != null && aircraft.getStatus().equals(AircraftStatus.ACTIVE)) && (arrivalAirportId == 0 || arrivalAirport != null) && (departureAirportId == 0 || departureAirport != null);
-			}
-		}
+		flight = leg.getFlight();
+		status = flight != null && leg.isDraftMode() && super.getRequest().getPrincipal().hasRealm(flight.getManager()) && correctPlane && correctAirline;
 		super.getResponse().setAuthorised(status);
 	}
 
@@ -90,7 +91,7 @@ public class ManagerLegUpdateService extends AbstractGuiService<Manager, Leg> {
 		departureAirportId = super.getRequest().getData("departureAirport", int.class);
 		departureAirport = this.repository.findAirportById(departureAirportId);
 
-		super.bindObject(leg, "flightNumber", "scheduledArrival", "scheduledDeparture");
+		super.bindObject(leg, "flightNumber", "scheduledArrival", "scheduledDeparture", "status");
 
 		leg.setAircraft(aircraft);
 		leg.setArrivalAirport(arrivalAirport);

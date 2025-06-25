@@ -22,7 +22,7 @@
 	<acme:input-select code="manager.leg.form.label.departureAirport" path="departureAirport" choices="${departureAirports}" readonly="${draftMode == false}"/>
 	<acme:input-select code="manager.leg.form.label.arrivalAirport" path="arrivalAirport" choices="${arrivalAirports}" readonly="${draftMode == false}"/>
 	<acme:input-select code="manager.leg.form.label.aircraft" path="aircraft" choices="${aircrafts}" readonly="${draftMode == false}"/>
-	<acme:input-select code="manager.leg.form.label.status" path="status" choices="${statuses}" readonly="true" />
+	<acme:input-select code="manager.leg.form.label.status" path="status" choices="${statuses}"/>
 	<acme:input-textbox code="manager.leg.form.label.duration" path="duration" readonly="true"/>
 <acme:input-checkbox code="manager.leg.form.label.draftMode" path="draftMode" readonly="true"/>
 
@@ -35,11 +35,6 @@
 		</jstl:when>
 		<jstl:when test="${_command == 'create'}">
 			<acme:submit code="manager.leg.form.button.create" action="/manager/leg/create?flightId=${flightId}"/>
-		</jstl:when>
-		<jstl:when test="${draftMode == false}">
-			<acme:submit code="manager.leg.form.button.landed" action="/manager/leg/landed"/>
-			<acme:submit code="manager.leg.form.button.delayed" action="/manager/leg/delayed"/>
-			<acme:submit code="manager.leg.form.button.cancelled" action="/manager/leg/cancelled"/>
-		</jstl:when>			
+		</jstl:when>		
 	</jstl:choose>		
 </acme:form>
