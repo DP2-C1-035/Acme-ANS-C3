@@ -1,6 +1,7 @@
 
 package acme.entities.leg;
 
+import java.time.Duration;
 import java.util.Date;
 
 import javax.persistence.Column;
@@ -10,6 +11,7 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.persistence.Transient;
 import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractEntity;
@@ -17,6 +19,7 @@ import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
+import acme.client.helpers.MomentHelper;
 import acme.entities.aircraft.Aircraft;
 import acme.entities.airport.Airport;
 import acme.entities.flight.Flight;
@@ -83,4 +86,21 @@ public class Leg extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Airport				arrivalAirport;
+
+
+	@Transient
+	public double getDuration() {
+		double duration;
+		if (this.scheduledArrival != null && this.scheduledDeparture != null) {
+			Duration aux = MomentHelper.computeDuration(this.scheduledDeparture, this.scheduledArrival);
+			duration = aux.toMinutes() / 60.0;
+		} else
+			duration = 0.0;
+		return duration;
+	}
+
+	@Transient
+	public String getLegLabel() {
+		return this.flightNumber + ": " + this.getDepartureAirport().getCity() + " " + this.getScheduledDeparture() + " - " + this.getArrivalAirport().getCity() + " " + this.getScheduledArrival();
+	}
 }
