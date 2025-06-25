@@ -25,7 +25,7 @@ import lombok.Setter;
 @Setter
 @ValidFlightCrewMember
 @Table(indexes = {
-	@Index(columnList = "airline_id, availabilityStatus")
+	@Index(columnList = "working_for_id, availabilityStatus")
 })
 public class FlightCrewMember extends AbstractRole {
 
@@ -64,6 +64,6 @@ public class FlightCrewMember extends AbstractRole {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private Airline				airline;
+	private Airline				workingFor;
 
 }
