@@ -20,9 +20,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
-//@Table(indexes = {
-//@Index(columnList = "assignmentStatus, flight_crew_member_id")
-//})
+
 public class FlightAssignment extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
