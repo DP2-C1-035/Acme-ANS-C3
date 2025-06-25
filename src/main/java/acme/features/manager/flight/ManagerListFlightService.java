@@ -9,14 +9,13 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flight.Flight;
-import acme.features.manager.ManagerRepository;
 import acme.realms.manager.Manager;
 
 @GuiService
 public class ManagerListFlightService extends AbstractGuiService<Manager, Flight> {
 
 	@Autowired
-	private ManagerRepository repository;
+	private ManagerFlightRepository repository;
 
 
 	@Override
