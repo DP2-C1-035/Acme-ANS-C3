@@ -1,5 +1,5 @@
 
-package acme.entities;
+package acme.entities.flight_assignment;
 
 import java.util.Date;
 
@@ -20,28 +20,46 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+//@Table(indexes = {
+//@Index(columnList = "assignmentStatus, flight_crew_member_id")
+//})
 public class FlightAssignment extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@Automapped
 	@Valid
-	public FlightCrewDuty		flightCrewDuty;
+	@Automapped
+	private FlightCrewDuty		flightCrewDuty;
 
 	@Mandatory
-	@Automapped
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	public Date					lastUpdate;
+	private Date				lastUpdate;
 
 	@Mandatory
+	@Valid
 	@Automapped
-	public AssignmentStatus		assignmentStatus;
+	private AssignmentStatus	assignmentStatus;
 
 	@Optional
+	@ValidString(min = 0, max = 255)
 	@Automapped
-	@ValidString(max = 255)
-	public String				remarks;
+	private String				remarks;
+
+	//@Mandatory
+	// HINT: @Valid by default.
+	//@Automapped
+	//private boolean				draftMode;
+
+	//@Mandatory
+	//@Valid
+	//@ManyToOne(optional = false)
+	//private FlightCrewMember	flightCrewMember;
+
+	//@Mandatory
+	//@Valid
+	//@ManyToOne(optional = false)
+	//private Leg					leg;
 
 }
