@@ -75,7 +75,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
 
-		super.bindObject(flightAssignment, "duty", "currentStatus", "remarks");
+		super.bindObject(flightAssignment, "flightCrewDuty", "remarks");
 		flightAssignment.setFlightCrewMember(flightCrewMember);
 		flightAssignment.setLeg(leg);
 		flightAssignment.setLastUpdate(MomentHelper.getCurrentMoment());
@@ -89,7 +89,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 				for (FlightAssignment fa : assignmentsOfLeg)
 					if (fa.getFlightCrewDuty() == FlightCrewDuty.PILOT && flightAssignment.getFlightCrewDuty() == FlightCrewDuty.PILOT
 						|| fa.getFlightCrewDuty() == FlightCrewDuty.CO_PILOT && flightAssignment.getFlightCrewDuty() == FlightCrewDuty.CO_PILOT) {
-						super.state(false, "duty", "flight-crew-member.flight-assignment.validation.duty.publish");
+						super.state(false, "flightCrewDuty", "flight-crew-member.flight-assignment.validation.duty.publish");
 						break;
 					}
 			}
@@ -107,7 +107,7 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 			if (!overlapping.isEmpty())
 				super.state(false, "leg", "flight-crew-member.flight-assignment.validation.overlapping-leg.publish");
 			if (flightAssignment.getAssignmentStatus() == AssignmentStatus.PENDING)
-				super.state(false, "currentStatus", "flight-crew-member.flight-assignment.validation.current-status.publish");
+				super.state(false, "assignmentStatus", "flight-crew-member.flight-assignment.validation.assignment-status.publish");
 		}
 	}
 
@@ -130,9 +130,10 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		legs = this.repository.findUncompletedLegs(MomentHelper.getCurrentMoment());
 
 		if (!legs.contains(flightAssignment.getLeg()))
-			legChoices = SelectChoices.from(legs, "LegLabel", null);
+			legChoices = SelectChoices.from(legs, "flightNumber", null);
+
 		else
-			legChoices = SelectChoices.from(legs, "LegLabel", flightAssignment.getLeg());
+			legChoices = SelectChoices.from(legs, "flightNumber", flightAssignment.getLeg());
 
 		dutyChoices = SelectChoices.from(FlightCrewDuty.class, flightAssignment.getFlightCrewDuty());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, flightAssignment.getAssignmentStatus());
@@ -141,9 +142,9 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 		dataset.put("member", flightCrewMember.getIdentity().getFullName());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
-		dataset.put("duty", dutyChoices.getSelected().getKey());
+		dataset.put("flightCrewDuty", dutyChoices.getSelected().getKey());
 		dataset.put("duties", dutyChoices);
-		dataset.put("currentStatus", statusChoices);
+		dataset.put("assignmentStatus", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}

@@ -83,4 +83,10 @@ public class Leg extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private Airport				arrivalAirport;
+
+
+	public String getFlightNumber() {
+		return this.flightNumber;
+	}
+
 }

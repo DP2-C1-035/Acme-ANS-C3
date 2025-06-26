@@ -92,9 +92,9 @@ public class FlightCrewMemberFlightAssignmentDeleteService extends AbstractGuiSe
 		dataset.put("member", flightCrewMember.getIdentity().getFullName());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
-		dataset.put("duty", dutyChoices.getSelected().getKey());
+		dataset.put("flightCrewDuty" + "", dutyChoices.getSelected().getKey());
 		dataset.put("duties", dutyChoices);
-		dataset.put("currentStatus", statusChoices);
+		dataset.put("assignmentStatus", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}

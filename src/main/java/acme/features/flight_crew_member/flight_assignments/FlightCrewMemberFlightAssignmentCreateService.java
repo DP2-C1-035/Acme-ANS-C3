@@ -61,7 +61,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		flightAssignment.setFlightCrewMember(flightCrewMember);
 		flightAssignment.setLastUpdate(MomentHelper.getCurrentMoment());
 		flightAssignment.setAssignmentStatus(AssignmentStatus.PENDING);
-		super.bindObject(flightAssignment, "duty", "remarks");
+		super.bindObject(flightAssignment, "flightCrewDuty", "remarks");
 	}
 
 	@Override
@@ -87,7 +87,7 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 		legs = this.repository.findUncompletedLegs(MomentHelper.getCurrentMoment());
 
-		legChoices = SelectChoices.from(legs, "LegLabel", null);
+		legChoices = SelectChoices.from(legs, "flightNumber", null);
 		dutyChoices = SelectChoices.from(FlightCrewDuty.class, null);
 		statusChoices = SelectChoices.from(AssignmentStatus.class, null);
 
@@ -95,9 +95,9 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		dataset.put("member", flightCrewMember.getIdentity().getFullName());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
-		dataset.put("duty", dutyChoices.getSelected().getKey());
+		dataset.put("flightCrewDuty", dutyChoices.getSelected().getKey());
 		dataset.put("duties", dutyChoices);
-		dataset.put("currentStatus", statusChoices);
+		dataset.put("assignmentStatus", statusChoices);
 
 		super.getResponse().addData(dataset);
 	}

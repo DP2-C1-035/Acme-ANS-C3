@@ -72,7 +72,7 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		flightAssignment.setLeg(leg);
 		flightAssignment.setLastUpdate(MomentHelper.getCurrentMoment());
 
-		super.bindObject(flightAssignment, "flightCrewDuty", "assignmentStatus", "remarks");
+		super.bindObject(flightAssignment, "flightCrewDuty", "remarks");
 
 	}
 
