@@ -5,3 +5,7 @@
 acme.validation.assistanceAgent.invalid-employee-code-format.message = The employee code pattern is incorrect or it is null.
 acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must consist of the initials of the first name and the first surname.
 acme.validation.assistanceAgent.unique-assistance-agent.message = There is already an existing employee with this code.
+
+# General Date Validation
+
+acme.validation.range.message = The date is not in a correct range.

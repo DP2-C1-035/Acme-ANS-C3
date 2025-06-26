@@ -11,11 +11,14 @@ import javax.validation.Payload;
 
 @Target(ElementType.TYPE)
 @Retention(RetentionPolicy.RUNTIME)
-@Constraint(validatedBy = AssistanceAgentValidator.class)
-public @interface ValidAssistanceAgent {
+@Constraint(validatedBy = ActivityLogValidator.class)
+
+public @interface ValidActivityLog {
+	// Standard validation properties -----------------------------------------
 
 	String message() default "";
 
 	Class<?>[] groups() default {};
 	Class<? extends Payload>[] payload() default {};
+
 }

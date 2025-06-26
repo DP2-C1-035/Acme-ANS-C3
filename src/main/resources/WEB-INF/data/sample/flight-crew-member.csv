@@ -1,6 +1,6 @@
-key,employee_code,phone_number,availability_status,salary,years_of_experience,language_skills,key:working_for,key:user_account
-flight-crew-member-01,AP123456,+1234567890,AVAILABLE,EUR 500000.00,5,Lo,airline-01,user-account-member-01
-flight-crew-member-02,DC654321,123456,ON_LEAVE,EUR 500000.00,5,English,airline-02,user-account-member-02
-flight-crew-member-03,SA122233,+1234567890,ON_VACATION,EUR 500000.00,5,洛伦·伊普森,airline-03,user-account-member-03
-flight-crew-member-04,LA112333,+1234567890,AVAILABLE,EUR 999999.99,5,English,airline-04,user-account-member-04
-flight-crew-member-05,NE000000,+0000000000,AVAILABLE,EUR 0.00,0,None,,user-account-member
+key,employee-code,phone-number,language-skills,availability-status,salary,years-of-experience,key:working-for,key:user-account
+flight-crew-member-01,DBA123456,+34123456789,español;ingles,AVAILABLE,EUR 50000,30,airline-00,user-account-member-01
+flight-crew-member-02,JCO856395,+34984789384,español;inglés:francés,AVAILABLE,EUR 45000,24,airline-00,user-account-member-02
+flight-crew-member-03,RGA046295,+34243902089,español;ingles:italiano,ON_LEAVE,EUR 47000,7,airline-00,user-account-member-03
+flight-crew-member-04,JRO873715,+34875348273,español;ingles:francés,ON_VACATION,EUR 48000,12,airline-00,user-account-member-04
+flight-crew-member-05,MRU876912,+34982643926,español;ingles:alemán,ON_VACATION,EUR 49000,0,airline-00,user-account-member-05

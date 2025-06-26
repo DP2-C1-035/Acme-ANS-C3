@@ -1,65 +1,57 @@
 
-package acme.entities.airline;
+package acme.realms.manager;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.Optional;
-import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
-import acme.constraints.ValidIataCode;
+import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Airline extends AbstractEntity {
+public class Manager extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(max = 50)
-	@Automapped
-	private String				name;
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
+	@Column(unique = true)
+	private String				identifierNumber;
 
 	@Mandatory
-	@ValidIataCode
+	@ValidNumber(min = 0, max = 120)
 	@Automapped
-	private String				iata;
-
-	@Mandatory
-	@ValidUrl
-	@Automapped
-	private String				website;
-
-	@Mandatory
-	@Valid
-	@Automapped
-	private AirlineType			type;
+	private Integer				yearsOfExperience;
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				foundationMoment;
+	private Date				dateOfBirth;
 
 	@Optional
-	@ValidEmail
+	@ValidUrl
 	@Automapped
-	private String				email;
+	private String				picture;
 
-	@Optional
-	@ValidString(pattern = "^\\+?\\d{6,15}$")
-	@Automapped
-	private String				phoneNumber;
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airline				airline;
 
 }

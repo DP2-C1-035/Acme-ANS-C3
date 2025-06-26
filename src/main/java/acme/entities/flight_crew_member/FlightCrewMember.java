@@ -1,11 +1,13 @@
 
-package acme.entities;
+package acme.entities.flight_crew_member;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.validation.Valid;
 
-import acme.client.components.basis.AbstractEntity;
+import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
@@ -13,47 +15,55 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidNumber;
 import acme.client.components.validation.ValidString;
+import acme.constraints.ValidFlightCrewMember;
 import acme.entities.airline.Airline;
+import lombok.Getter;
+import lombok.Setter;
 
 @Entity
-public class FlightCrewMember extends AbstractEntity {
+@Getter
+@Setter
+@ValidFlightCrewMember
+@Table(indexes = {
+	@Index(columnList = "working_for_id, availabilityStatus")
+})
+public class FlightCrewMember extends AbstractRole {
 
 	private static final long	serialVersionUID	= 1L;
 
 	@Mandatory
-	@ValidString(pattern = "[A-Z]{2-3}\\d{6}$")
+	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Automapped
 	private String				employeeCode;
 
 	@Mandatory
-	@Automapped
 	@ValidString(pattern = "^\\+?\\d{6,15}$")
+	@Automapped
 	private String				phoneNumber;
 
 	@Mandatory
+	@ValidString(min = 1, max = 255)
 	@Automapped
-	@ValidString(max = 255)
-	private String				languageSkills;
+	private String				languageSkills; //Set of languages ​​separated by ";"
 
 	@Mandatory
-	@Automapped
 	@Valid
+	@Automapped
 	private AvailabilityStatus	availabilityStatus;
 
 	@Mandatory
+	@ValidMoney(min = 0.0, max = 10000000.0)
 	@Automapped
-	@Valid
-	@ManyToOne(optional = false)
-	private Airline				workingFor;
-
-	@Mandatory
-	@Automapped
-	@ValidMoney
 	private Money				salary;
 
 	@Optional
+	@ValidNumber(min = 0, max = 120)
 	@Automapped
-	@ValidNumber
 	private Integer				yearsOfExperience;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airline				workingFor;
 
 }
