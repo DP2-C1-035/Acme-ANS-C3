@@ -3,7 +3,6 @@ package acme.entities.claim;
 
 import java.util.Date;
 
-import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
@@ -14,8 +13,8 @@ import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
-import acme.constraints.ValidRegistrationMoment;
 import acme.realms.assistanceAgents.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;
@@ -32,13 +31,13 @@ public class Claim extends AbstractEntity {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidRegistrationMoment
+	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date				registrationMoment;
 
 	@Mandatory
 	@ValidEmail
-	@Column(unique = true)
+	@Automapped
 	private String				passengerEmail;
 
 	@Mandatory
