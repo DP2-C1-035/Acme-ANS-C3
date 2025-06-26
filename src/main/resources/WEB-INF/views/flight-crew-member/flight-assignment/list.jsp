@@ -17,13 +17,14 @@
 
 <acme:list>
 	<acme:list-column code="flight-crew-member.flight-assignment.list.label.flight-number" path="leg.legLabel" width="60%"/>
-	<acme:list-column code="flight-crew-member.flight-assignment.list.label.duty" path="duty" width="10%"/>
-	<acme:list-column code="flight-crew-member.flight-assignment.list.label.current-status" path="currentStatus" width="10%"/>
+	<acme:list-column code="flight-crew-member.flight-assignment.list.label.flight-crew-duty" path="flightCrewDuty" width="10%"/>
+	<acme:list-column code="flight-crew-member.flight-assignment.list.label.assignment-status" path="assignmentStatus" width="10%"/>
 	<acme:list-column code="flight-crew-member.flight-assignment.list.label.last-update" path="lastUpdate" width="15%"/>
 	<acme:list-column code="flight-crew-member.flight-assignment.list.draft-mode" path="draftMode" width="15%"/>
 </acme:list>
 
 <jstl:if test="${_command == 'list-completed' or _command == 'list-uncompleted'}">
 	<acme:button code="flight-crew-member.flight-assignment.list.button.create" action="/flight-crew-member/flight-assignment/create"/>
-</jstl:if>		
+</jstl:if>
+		
 	
