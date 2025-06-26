@@ -1,12 +1,14 @@
 
-package acme.realms.assitanceAgents;
+package acme.realms.assistanceAgents;
 
 import java.util.Date;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+import javax.validation.Valid;
 
 import acme.client.components.basis.AbstractRole;
 import acme.client.components.datatypes.Money;
@@ -18,12 +20,13 @@ import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
 import acme.client.components.validation.ValidUrl;
 import acme.constraints.ValidAssistanceAgent;
+import acme.entities.airline.Airline;
 import lombok.Getter;
 import lombok.Setter;
 
+@Entity
 @Getter
 @Setter
-@Entity
 @ValidAssistanceAgent
 public class AssistanceAgent extends AbstractRole {
 
@@ -34,7 +37,6 @@ public class AssistanceAgent extends AbstractRole {
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
-	@ValidString(pattern = "^[A-Z]{2,3}\\d{6}$")
 	@Column(unique = true)
 	private String				employeeCode;
 
@@ -46,15 +48,15 @@ public class AssistanceAgent extends AbstractRole {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				startDate;
+	private Date				moment;
 
 	@Optional
 	@ValidString(max = 255)
 	@Automapped
-	private String				bio;
+	private String				briefBio;
 
 	@Optional
-	@ValidMoney(min = 0)
+	@ValidMoney
 	@Automapped
 	private Money				salary;
 
@@ -63,8 +65,9 @@ public class AssistanceAgent extends AbstractRole {
 	@Automapped
 	private String				photo;
 
-	//Relationships ----------------------------------
-
-	//private Airline				airline;
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Airline				airline;
 
 }

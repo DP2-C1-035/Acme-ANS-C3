@@ -1,5 +1,5 @@
 
-package acme.realms.assitanceAgents;
+package acme.realms.assistanceAgents;
 
 import org.springframework.data.jpa.repository.Query;
 
