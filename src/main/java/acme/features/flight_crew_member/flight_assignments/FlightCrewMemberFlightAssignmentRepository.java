@@ -50,4 +50,7 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	@Query("select fa from FlightAssignment fa where fa.flightCrewMember.id = :memberId and fa.draftMode = false and fa.leg.scheduledDeparture < :newArrival and fa.leg.scheduledArrival > :newDeparture")
 	Collection<FlightAssignment> findOverlappingPublishedFlightAssignments(int memberId, Date newDeparture, Date newArrival);
 
+	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :id")
+	Collection<FlightAssignment> findFlightAssignmentsByFlightCrewMemberId(int id);
+
 }

@@ -27,15 +27,24 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 	public void authorise() {
 		boolean status;
 		String method;
-		int legtId;
-		method = super.getRequest().getMethod();
-		if (method.equals("GET"))
-			status = true;
-		else {
-			legtId = super.getRequest().getData("leg", int.class);
-			Leg leg = this.repository.findLegById(legtId);
-			Collection<Leg> uncompletedLegs = this.repository.findUncompletedLegs(MomentHelper.getCurrentMoment());
-			status = legtId == 0 || uncompletedLegs.contains(leg);
+		int legId;
+
+		FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
+		Collection<FlightAssignment> assignments = this.repository.findFlightAssignmentsByFlightCrewMemberId(flightCrewMember.getId());
+		boolean isLeadAttendant = assignments.stream().anyMatch(fa -> fa.getFlightCrewDuty() == FlightCrewDuty.LEAD_ATTENDANT);
+
+		status = isLeadAttendant;
+
+		if (status) {
+			method = super.getRequest().getMethod();
+			if (method.equals("GET"))
+				status = true;
+			else {
+				legId = super.getRequest().getData("leg", int.class);
+				Leg leg = this.repository.findLegById(legId);
+				Collection<Leg> uncompletedLegs = this.repository.findUncompletedLegs(MomentHelper.getCurrentMoment());
+				status = legId == 0 || uncompletedLegs.contains(leg);
+			}
 		}
 
 		super.getResponse().setAuthorised(status);
