@@ -57,27 +57,32 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 		SelectChoices statusChoices;
 		Dataset dataset;
 		FlightCrewMember flightCrewMember;
+
 		flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
 
 		legs = this.repository.findUncompletedLegs(MomentHelper.getCurrentMoment());
+
 		if (!flightAssignment.isDraftMode()) {
 			legs = List.of(flightAssignment.getLeg());
-			legChoices = SelectChoices.from(legs, "LegLabel", flightAssignment.getLeg());
+			legChoices = SelectChoices.from(legs, "flightNumber", flightAssignment.getLeg());
 		} else if (!legs.contains(flightAssignment.getLeg()))
-			legChoices = SelectChoices.from(legs, "LegLabel", null);
+			legChoices = SelectChoices.from(legs, "flightNumber", null);
+
 		else
-			legChoices = SelectChoices.from(legs, "LegLabel", flightAssignment.getLeg());
+			legChoices = SelectChoices.from(legs, "flightNumber", flightAssignment.getLeg());
 
 		dataset = super.unbindObject(flightAssignment, "lastUpdate", "remarks", "draftMode");
 
 		dutyChoices = SelectChoices.from(FlightCrewDuty.class, flightAssignment.getFlightCrewDuty());
 		statusChoices = SelectChoices.from(AssignmentStatus.class, flightAssignment.getAssignmentStatus());
-		dataset.put("duty", dutyChoices.getSelected().getKey());
+
+		dataset.put("flightCrewDuty", dutyChoices.getSelected().getKey());
 		dataset.put("duties", dutyChoices);
-		dataset.put("currentStatus", statusChoices);
+		dataset.put("assignmentStatus", statusChoices);
 		dataset.put("member", flightCrewMember.getIdentity().getFullName());
 		dataset.put("leg", legChoices.getSelected().getKey());
 		dataset.put("legs", legChoices);
+
 		boolean legHasArrive = MomentHelper.isAfter(MomentHelper.getCurrentMoment(), flightAssignment.getLeg().getScheduledArrival());
 		dataset.put("legHasArrive", legHasArrive);
 
