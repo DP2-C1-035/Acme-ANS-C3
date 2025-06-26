@@ -6,6 +6,11 @@ acme.validation.assistanceAgent.invalid-employee-code-format.message = El patró
 acme.validation.assistanceAgent.invalid-employee-code.message = El código de empleado debe consistir de las iniciales del nombre y el primer apellido.
 acme.validation.assistanceAgent.unique-assistance-agent.message = Ya existe un empleado con este código.
 
+# Validación TrackingLog
+
+acme.validation.trackinglog.invalid-state.message = Estado de resolución incorrecto
+acme.validation.trackinglog.invalid-resolution.message = Resolución incorrecta
+
 # Validación general de fechas
 
 acme.validation.range.message = La fecha no está en un rango correcto.
