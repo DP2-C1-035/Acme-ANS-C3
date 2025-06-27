@@ -14,7 +14,7 @@ import acme.realms.manager.Manager;
 public class ManagerDashboardController extends AbstractGuiController<Manager, ManagerDashboard> {
 
 	@Autowired
-	private ManagerDashboardService showService;
+	private ManagerDashboardShowService showService;
 
 
 	@PostConstruct

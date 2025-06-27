@@ -12,7 +12,7 @@ import acme.forms.manager.ManagerDashboard;
 import acme.realms.manager.Manager;
 
 @GuiService
-public class ManagerDashboardService extends AbstractGuiService<Manager, ManagerDashboard> {
+public class ManagerDashboardShowService extends AbstractGuiService<Manager, ManagerDashboard> {
 
 	@Autowired
 	private ManagerDashboardRepository repository;
