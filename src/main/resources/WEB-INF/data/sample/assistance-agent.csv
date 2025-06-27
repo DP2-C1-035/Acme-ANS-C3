@@ -1,4 +1,4 @@
 key,employee-code,spoken-languages,moment,brief-bio,salary,photo,key:airline,key:user-account
-assistance-agent-01,JM526246,"spanish,english",2000/01/01 00:00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! U",EUR 35000.00,http://lorem.com/ipsum,airline-01,user-account-assistance-agent-01
-assistance-agent-02,JR149142,"german,english",2000/01/01 00:00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! U",EUR 35000.00,http://lorem.com/ipsum,airline-01,user-account-assistance-agent-02
-assistance-agent-03,PCR272440,"italian,english",2000/01/01 00:00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! U",EUR 35000.00,http://lorem.com/ipsum,airline-01,user-account-assistance-agent-03
+assistance-agent-01,AC240603,"Spanish,English",2000/01/01 00:00,"Living my best life as an assistance agent",EUR 3000.00,http://lorem.com/ipsum,airline-01,user-account-assistance-agent-01
+assistance-agent-02,AC271109,"Spanish,German,English",2000/01/01 00:00,"Experienced digital marketer",EUR 4200.00,http://lorem.com/ipsum,airline-01,user-account-assistance-agent-02
+assistance-agent-03,ECR171167,"Italian,Chinese,English",2000/01/01 00:00,"I am not the best at writing bios!",EUR 2000.00,http://lorem.com/ipsum,airline-01,user-account-assistance-agent-03
