@@ -103,4 +103,9 @@ public class Leg extends AbstractEntity {
 	public String getLegLabel() {
 		return this.flightNumber + ": " + this.getDepartureAirport().getCity() + " " + this.getScheduledDeparture() + " - " + this.getArrivalAirport().getCity() + " " + this.getScheduledArrival();
 	}
+
+	public String getFlightNumber() {
+		return this.flightNumber;
+	}
+
 }

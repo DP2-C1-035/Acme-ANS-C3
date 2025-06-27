@@ -1,5 +1,5 @@
 
-package acme.entities.claim;
+package acme.entities.tracking_logs;
 
 import java.util.Date;
 
@@ -12,48 +12,55 @@ import javax.validation.Valid;
 import acme.client.components.basis.AbstractEntity;
 import acme.client.components.mappings.Automapped;
 import acme.client.components.validation.Mandatory;
-import acme.client.components.validation.ValidEmail;
+import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
+import acme.client.components.validation.ValidScore;
 import acme.client.components.validation.ValidString;
-import acme.realms.assistanceAgents.AssistanceAgent;
+import acme.constraints.ValidTrackingLog;
+import acme.entities.claim.Claim;
 import lombok.Getter;
 import lombok.Setter;
 
 @Entity
 @Getter
 @Setter
-public class Claim extends AbstractEntity {
+@ValidTrackingLog
+public class TrackingLog extends AbstractEntity {
 
 	// Serialisation version --------------------------------------------------
 
-	private static final long	serialVersionUID	= 1L;
+	private static final long		serialVersionUID	= 1L;
 
 	// Attributes -------------------------------------------------------------
 
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
-	private Date				registrationMoment;
+	private Date					lastUpdateMoment;
 
 	@Mandatory
-	@ValidEmail
+	@ValidString(min = 1, max = 50)
 	@Automapped
-	private String				passengerEmail;
+	private String					step;
 
 	@Mandatory
-	@ValidString(min = 1, max = 255)
+	@ValidScore
 	@Automapped
-	private String				description;
-
-	@Mandatory
-	@Valid
-	@Automapped
-	private ClaimType			type;
+	private Double					resolutionPercentage;
 
 	@Mandatory
 	@Valid
 	@Automapped
-	Boolean						draftMode;
+	private TrackingLogIndicator	indicator;
+
+	@Optional
+	@ValidString(min = 0, max = 255)
+	@Automapped
+	private String					resolution;
+
+	@Mandatory
+	@Automapped
+	private boolean					draftMode;
 
 	// Derived attributes -----------------------------------------------------
 
@@ -62,6 +69,5 @@ public class Claim extends AbstractEntity {
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
-	private AssistanceAgent		assistanceAgent;
-
+	private Claim					claim;
 }

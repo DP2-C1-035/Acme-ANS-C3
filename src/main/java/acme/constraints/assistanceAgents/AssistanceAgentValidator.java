@@ -24,12 +24,17 @@ public class AssistanceAgentValidator extends AbstractValidator<ValidAssistanceA
 
 
 	@Override
+	protected void initialise(final ValidAssistanceAgent annotation) {
+		assert annotation != null;
+	}
+
+	@Override
 	public boolean isValid(final AssistanceAgent assistanceAgent, final ConstraintValidatorContext context) {
 		assert context != null;
 
 		boolean result;
 
-		if (assistanceAgent == null)
+		if (assistanceAgent == null || assistanceAgent.getEmployeeCode() == null || assistanceAgent.getIdentity().getFullName() == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
 			{
