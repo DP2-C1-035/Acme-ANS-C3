@@ -4,6 +4,8 @@ package acme.entities.claim;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.ManyToOne;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -15,6 +17,7 @@ import acme.client.components.validation.Mandatory;
 import acme.client.components.validation.ValidEmail;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidString;
+import acme.entities.leg.Leg;
 import acme.realms.assistanceAgents.AssistanceAgent;
 import lombok.Getter;
 import lombok.Setter;
@@ -46,14 +49,18 @@ public class Claim extends AbstractEntity {
 	private String				description;
 
 	@Mandatory
-	@Valid
+	@Enumerated(EnumType.STRING)
 	@Automapped
 	private ClaimType			type;
 
 	@Mandatory
-	@Valid
+	@Enumerated(EnumType.STRING)
 	@Automapped
-	Boolean						draftMode;
+	private ClaimStatus			indicator;
+
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
 
 	// Derived attributes -----------------------------------------------------
 
@@ -63,5 +70,10 @@ public class Claim extends AbstractEntity {
 	@Valid
 	@ManyToOne(optional = false)
 	private AssistanceAgent		assistanceAgent;
+
+	@Mandatory
+	@Valid
+	@ManyToOne(optional = false)
+	private Leg					leg;
 
 }

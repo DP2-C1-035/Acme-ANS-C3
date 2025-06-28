@@ -1,6 +1,6 @@
 key,name,iata,website,type,foundation-moment,email,phone-number
 airline-00,GST Airlines,BAX,http://gst.com/airline,LUXURY,2020/01/01 00:00,gst@gmail.com,123456789
-airline-01,A,ABC,http://gst.com/airline,LUXURY,2020/01/01 00:00,gst@gmail.com,123456789
+airline-01,A,ABC,http://gst.com/airline,LUXURY,2000/01/01 00:00,gst@gmail.com,123456789
 airline-02,AB,DEF,http://gst.com/airline,LUXURY,2020/01/01 00:00,gst@gmail.com,123456789
 airline-03,NombreMuyLargoConCuarentaYNueveCaracteres!!!!ABCD,GHI,http://gst.com/airline,LUXURY,2020/01/01 00:00,gst@gmail.com,123456789
 airline-04,NombreMuyLargoConCincuentaYNueveCaracteres!!!!ABCD,JKL,http://gst.com/airline,LUXURY,2020/01/01 00:00,gst@gmail.com,123456789
