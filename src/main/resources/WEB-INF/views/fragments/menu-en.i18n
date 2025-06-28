@@ -39,6 +39,7 @@ master.menu.consumer.favourite-link = Favourite link
 
 master.menu.customer = Customer
 master.menu.customer.list-my-bookings = My Bookings
+master.menu.customer.list-my-passengers = My Passengers
 
 # master.menu.manager ##########################################################
 master.menu.manager = Manager
