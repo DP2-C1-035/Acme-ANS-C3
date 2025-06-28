@@ -59,16 +59,16 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		flightId = super.getRequest().getData("flight", int.class);
 		flight = this.repository.findFlightById(flightId);
 
-		super.bindObject(booking, "locatorCode", "travelClass", "price", "lastNibble");
+		super.bindObject(booking, "locatorCode", "travelClass", "price", "creditCardNibble");
 		booking.setFlight(flight);
 	}
 
 	@Override
 	public void validate(final Booking booking) {
 		{
-			boolean isLastNibbleValid = booking.getCreditCardNibble() != null && !booking.getCreditCardNibble().trim().isEmpty();
+			boolean iscreditCardNibbleValid = booking.getCreditCardNibble() != null && !booking.getCreditCardNibble().trim().isEmpty();
 
-			super.state(isLastNibbleValid, "lastNibble", "acme.validation.booking.publish.lastNibble-null.message");
+			super.state(iscreditCardNibbleValid, "creditCardNibble", "acme.validation.booking.publish.creditCardNibble-null.message");
 		}
 		{
 			boolean passengersAssociated;
@@ -146,7 +146,7 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 		choices = SelectChoices.from(flights, "flightRoute", selectedFlight);
 
-		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "price", "lastNibble", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "price", "creditCardNibble", "draftMode");
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
 

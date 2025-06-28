@@ -19,7 +19,7 @@
 		<acme:input-textbox code="customer.booking.form.label.locatorCode" path="locatorCode"/>
 		<acme:input-textbox code="customer.booking.form.label.travelClass" path="travelClass" placeholder="customer.booking.form.placeholder.travelClass"/>
 		<acme:input-money code="customer.booking.form.label.price" path="price"/>
-		<acme:input-textbox code="customer.booking.form.label.lastNibble" path="lastNibble" placeholder="customer.booking.form.placeholder.lastNibble"/>
+		<acme:input-textbox code="customer.booking.form.label.creditCardNibble" path="creditCardNibble" placeholder="customer.booking.form.placeholder.creditCardNibble"/>
 		<acme:input-select code="customer.booking.form.label.flight" path="flight" choices="${flights}"/>
 		<jstl:if test="${_command != 'create'}">
 			<acme:input-textbox code="customer.booking.form.label.purchaseMoment" path="purchaseMoment" readonly="true"/>
