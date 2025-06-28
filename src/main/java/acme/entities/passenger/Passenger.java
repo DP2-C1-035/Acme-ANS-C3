@@ -50,4 +50,8 @@ public class Passenger extends AbstractEntity {
 	@ValidString(max = 50)
 	@Automapped
 	private String				specialNeeds;  // Optional field for special needs
+
+	@Mandatory
+	@Automapped
+	private boolean				draftMode;
 }
