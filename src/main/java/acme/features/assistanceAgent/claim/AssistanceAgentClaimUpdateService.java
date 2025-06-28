@@ -1,5 +1,5 @@
 
-package acme.features.assistanceAgent;
+package acme.features.assistanceAgent.claim;
 
 import java.util.Collection;
 
@@ -18,7 +18,7 @@ import acme.entities.tracking_log.TrackingLogIndicator;
 import acme.realms.assistanceAgents.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentClaimPublishService extends AbstractGuiService<AssistanceAgent, Claim> {
+public class AssistanceAgentClaimUpdateService extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -75,7 +75,6 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 
 	@Override
 	public void bind(final Claim object) {
-		assert object != null;
 		int legId;
 		Leg leg;
 
@@ -103,34 +102,24 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 			isLegPublished = claim.getLeg().isDraftMode() == false ? true : false;
 			super.state(isLegPublished, "leg", "assistanceAgent.claim.form.error.leg-not-published");
 		}
-		if (!super.getBuffer().getErrors().hasErrors("indicator"))
-			super.state(object.getIndicator() != ClaimStatus.PENDING, "indicator", "assistanceAgent.claim.form.error.indicator-must-not-be-pending");
 
 		{
 			Collection<TrackingLog> logs;
 			logs = this.repository.findTrackingLogsByClaimId(claim.getId());
-			boolean allLogsPending;
-			allLogsPending = logs.size() == 0 || logs.stream().allMatch(l -> l.getIndicator().equals(TrackingLogIndicator.PENDING)) ? true : false;
-			super.state(allLogsPending, "*", "assistanceAgent.claim.form.error.claim-published-with-pending-status");
-
 			TrackingLogIndicator trackingLogIndicator;
 			indicator = claim.getIndicator();
 			trackingLogIndicator = logs.stream().filter(t -> !t.getIndicator().equals(TrackingLogIndicator.PENDING)).findFirst().get().getIndicator();
-			super.state(indicator.toString().equals(trackingLogIndicator.toString()), "*", "assistanceAgent.claim.form.error.claim-published-with-status-different-to-logs");
+			super.state(indicator.toString().equals(trackingLogIndicator.toString()), "*", "assistanceAgent.claim.form.error.claim-updated-with-status-different-to-logs");
 		}
 	}
 
 	@Override
 	public void perform(final Claim object) {
-		assert object != null;
-		object.setDraftMode(false);
-
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final Claim object) {
-		assert object != null;
 		Dataset dataset;
 
 		Collection<Leg> legs;

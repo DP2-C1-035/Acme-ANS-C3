@@ -1,5 +1,5 @@
 
-package acme.features.assistanceAgent;
+package acme.features.assistanceAgent.claim;
 
 import java.util.Collection;
 
@@ -13,9 +13,7 @@ import acme.entities.claim.ClaimStatus;
 import acme.realms.assistanceAgents.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentClaimListPendingService extends AbstractGuiService<AssistanceAgent, Claim>
-
-{
+public class AssistanceAgentClaimListCompletedService extends AbstractGuiService<AssistanceAgent, Claim> {
 
 	// Internal state ---------------------------------------------------------
 
@@ -41,7 +39,7 @@ public class AssistanceAgentClaimListPendingService extends AbstractGuiService<A
 		int masterId;
 
 		masterId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		objects = this.repository.findClaimsPendingByMasterId(masterId, ClaimStatus.PENDING);
+		objects = this.repository.findClaimsCompletedByMasterId(masterId, ClaimStatus.PENDING);
 
 		super.getBuffer().addData(objects);
 	}
