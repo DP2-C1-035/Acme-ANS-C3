@@ -25,9 +25,8 @@ public class ActivityLogValidator extends AbstractValidator<ValidActivityLog, Ac
 		if (activityLog == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
-			boolean isLegLanded;
-			isLegLanded = activityLog.getFlightAssignment().getLeg().getStatus() == LegStatus.LANDED;
-			super.state(context, isLegLanded, "legStatus", "acme.validation.ActivityLog.statusLeg.message");
+			boolean isLegLanded = activityLog.getFlightAssignment().getLeg().getStatus() == LegStatus.LANDED;
+			super.state(context, isLegLanded, "registrationMoment", "acme.validation.ActivityLog.statusLeg.message");
 		}
 
 		result = !super.hasErrors(context);

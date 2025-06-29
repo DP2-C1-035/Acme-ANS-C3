@@ -47,7 +47,7 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 		flightAssignment = this.repository.findFlightAssignmentByActivityLogId(activityLogId);
 		activityLog.setFlightAssignment(flightAssignment);
 		activityLog.setRegistrationMoment(MomentHelper.getCurrentMoment());
-		super.bindObject(activityLog, "typeOfIncident", "description", "severityLevel");
+		super.bindObject(activityLog, "incidentType", "description", "severityLevel");
 	}
 
 	@Override
@@ -67,7 +67,7 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 	@Override
 	public void unbind(final ActivityLog activityLog) {
 		Dataset dataset;
-		dataset = super.unbindObject(activityLog, "draftMode", "typeOfIncident", "description", "severityLevel");
+		dataset = super.unbindObject(activityLog, "draftMode", "incidentType", "description", "severityLevel");
 		super.getResponse().addData(dataset);
 	}
 }

@@ -31,6 +31,7 @@ public class ActivityLog extends AbstractEntity {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
+	@Automapped
 	private Date				registrationMoment;
 
 	@Mandatory
@@ -52,7 +53,7 @@ public class ActivityLog extends AbstractEntity {
 	// HINT: @Valid by default.
 	@Automapped
 	private boolean				draftMode;
-	
+
 	@Mandatory
 	@Valid
 	@ManyToOne(optional = false)
