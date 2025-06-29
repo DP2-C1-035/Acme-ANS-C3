@@ -33,9 +33,10 @@
 			<acme:menu-suboption code="master.menu.administrator.populate-db-sample" action="/administrator/system/populate-sample"/>			
 			<acme:menu-separator/>
 			<acme:menu-suboption code="master.menu.administrator.shut-system-down" action="/administrator/system/shut-down"/>
-			<acme:menu-option code="master.menu.administrator.booking" access="hasRealm('Administrator')">
-			<acme:menu-suboption code="master.menu.administrator.list-bookings" action="/administrator/booking/list"/>
 		</acme:menu-option>
+		
+		<acme:menu-option code="master.menu.administrator.booking" access="hasRealm('Administrator')">
+			<acme:menu-suboption code="master.menu.administrator.list-bookings" action="/administrator/booking/list"/>
 		</acme:menu-option>
 
 		<acme:menu-option code="master.menu.provider" access="hasRealm('Provider')">
@@ -52,7 +53,7 @@
 		</acme:menu-option>
 		
 		<acme:menu-option code="master.menu.customer" access="hasRealm('Customer')">
-			<acme:menu-suboption code="master.menu.customer.list-my-passengers" action="/customer/passenger/list"/>
+		<acme:menu-suboption code="master.menu.customer.list-my-passengers" action="/customer/passenger/list"/>
 			<acme:menu-suboption code="master.menu.customer.list-my-bookings" action="/customer/booking/list"/>
  		</acme:menu-option>
 	</acme:menu-left>
@@ -65,7 +66,6 @@
 			<acme:menu-suboption code="master.menu.user-account.become-consumer" action="/authenticated/consumer/create" access="!hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.consumer-profile" action="/authenticated/consumer/update" access="hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-manager" action="/authenticated/manager/create" access="!hasRealm('Manager')"/>
-			<acme:menu-suboption code="master.menu.user-account.customer-profile" action="/authenticated/customer/update" access="hasRealm('Customer')"/>
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>
