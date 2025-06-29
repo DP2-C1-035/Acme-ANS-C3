@@ -27,7 +27,7 @@ public interface FlightCrewMemberDashboardRepository extends AbstractRepository 
 	@Query("select fa.flightCrewMember from FlightAssignment fa where fa.draftMode = false and fa.leg.id = :legId")
 	List<FlightCrewMember> findLastLegFlightCrewMembers(int legId);
 
-	@Query("select fa.leg.flightNumber from FlightAssignment fa where fa.flightCrewMember.id = :flightCrewMemberId and fa.currentStatus = :status")
+	@Query("select fa.leg.flightNumber from FlightAssignment fa where fa.flightCrewMember.id = :flightCrewMemberId and fa.assignmentStatus = :status")
 	List<String> findFlightAssignmentsByStatus(int flightCrewMemberId, AssignmentStatus status);
 
 	@Query("select count(fa) * 1.0 / count(distinct concat(function('YEAR',  fa.lastUpdate), '-', function('MONTH', fa.lastUpdate))) from FlightAssignment fa where fa.flightCrewMember.id = :flightCrewMemberId and fa.draftMode = false")
