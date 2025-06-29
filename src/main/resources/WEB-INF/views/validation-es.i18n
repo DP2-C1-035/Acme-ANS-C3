@@ -1,5 +1,8 @@
 # validation-es.i18n
 
+#Validación Administrador
+acme.validation.airline.duplicated-iata.message = Ya existe una aerolínea con ese código IATA
+
 # Validación AssistanceAgent
 
 acme.validation.assistanceAgent.invalid-employee-code-format.message = El patrón de códgio de empleado es incorrecto o el código es nulo.
