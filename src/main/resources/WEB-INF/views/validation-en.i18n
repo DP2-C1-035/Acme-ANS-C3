@@ -15,6 +15,10 @@ acme.validation.trackinglog.invalid-resolution.message = Incorrect resolution
 
 acme.validation.range.message = The date is not in a correct range.
 
+#Customer Validation
+acme.validation.customer.invalid-identifier.message = The customer's identifier number already exists.
+acme.validation.customer.invalid-identifierNumber.message = The identifier number does not start with the initial of the first name and the initial of the surname.
+
 #Booking Validation
 
 acme.validation.booking.duplicated-locatorCode.message = This locatorCode already exists.

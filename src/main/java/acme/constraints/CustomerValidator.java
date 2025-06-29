@@ -46,7 +46,9 @@ public class CustomerValidator extends AbstractValidator<ValidCustomer, Customer
 		if (customer == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");
 		else {
+
 			boolean uniqueCustomer = false;
+
 			Customer existingCustomer;
 
 			if (customer.getIdentifier() != null) {
