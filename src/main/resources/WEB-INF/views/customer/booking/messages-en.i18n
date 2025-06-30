@@ -11,7 +11,7 @@ customer.booking.form.label.purchaseMoment = Purchase Moment:
 customer.booking.form.label.draftMode = Draft Mode:
 
 customer.booking.form.placeholder.travelClass = ECONOMY or BUSINESS
-customer.booking.form.placeholder.creditCardNibble = 0000
+customer.booking.form.placeholder.creditCardNibble = 0
     
 customer.booking.form.button.passengers = Passengers
 customer.booking.form.button.update = Update

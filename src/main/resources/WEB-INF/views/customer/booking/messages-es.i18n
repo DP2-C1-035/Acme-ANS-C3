@@ -10,7 +10,7 @@ customer.booking.form.label.purchaseMoment = Fecha de reserva:
 customer.booking.form.label.draftMode = Modo borrador:
 
 customer.booking.form.placeholder.travelClass = ECONOMY o BUSINESS
-customer.booking.form.placeholder.creditCardNibble = 0000
+customer.booking.form.placeholder.creditCardNibble = 0
     
 customer.booking.form.button.passengers = Pasajeros
 customer.booking.form.button.update = Actualizar
