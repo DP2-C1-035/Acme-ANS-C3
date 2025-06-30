@@ -3,6 +3,12 @@
 #Validación Administrador
 acme.validation.airline.duplicated-iata.message = Ya existe una aerolínea con ese código IATA
 acme.validation.airport.duplicated-iataCode.message = El iataCode ya está en uso
+acme.validation.aircraft.airline-not-found.message = No se encontró la aerolínea.
+
+acme.validation.aircraft.duplicated-registration-number.message = Número de registro ya usado
+
+
+acme.validation.administrator.aircraft.status-UNDER_MAINTENANCE.message = La aeronave ya está en mantenimiento.
 
 # Validación AssistanceAgent
 
