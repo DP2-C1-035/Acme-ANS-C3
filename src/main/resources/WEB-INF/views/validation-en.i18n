@@ -16,7 +16,6 @@ acme.validation.trackinglog.invalid-resolution.message = Incorrect resolution
 acme.validation.range.message = The date is not in a correct range.
 
 #Administrator General Validation
-acme.validation.airport.duplicated-iata.message = This iataCode already exists
 acme.validation.airline.duplicated-iata.message = An airline with this IATA code already exists
 
 #Customer Validation
