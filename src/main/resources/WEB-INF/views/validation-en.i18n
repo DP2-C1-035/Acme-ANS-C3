@@ -17,6 +17,7 @@ acme.validation.range.message = The date is not in a correct range.
 
 #Administrator General Validation
 acme.validation.airline.duplicated-iata.message = An airline with this IATA code already exists
+acme.validation.airport.duplicated-iataCode.message = This iataCode already exists
 
 #Customer Validation
 acme.validation.customer.invalid-identifier.message = The customer's identifier number already exists.

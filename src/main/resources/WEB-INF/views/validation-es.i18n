@@ -2,6 +2,7 @@
 
 #Validación Administrador
 acme.validation.airline.duplicated-iata.message = Ya existe una aerolínea con ese código IATA
+acme.validation.airport.duplicated-iataCode.message = El iataCode ya está en uso
 
 # Validación AssistanceAgent
 
