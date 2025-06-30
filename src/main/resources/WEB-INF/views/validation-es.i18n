@@ -1,7 +1,6 @@
 # validation-es.i18n
 
 #Validación Administrador
-acme.validation.airport.duplicated-iata.message = El iataCode ya está en uso
 acme.validation.airline.duplicated-iata.message = Ya existe una aerolínea con ese código IATA
 
 # Validación AssistanceAgent
