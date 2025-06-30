@@ -5,7 +5,7 @@
 acme.validation.assistanceAgent.invalid-employee-code-format.message = The employee code pattern is incorrect or it is null.
 acme.validation.assistanceAgent.invalid-employee-code.message = The employee code must consist of the initials of the first name and the first surname.
 acme.validation.assistanceAgent.unique-assistance-agent.message = There is already an existing employee with this code.
-
+acme.validation.aircraft.duplicated-registration-number.message = The registration number is duplicated
 # Tracking log validation
 
 acme.validation.trackinglog.invalid-state.message = Incorrect resolution state
@@ -15,9 +15,13 @@ acme.validation.trackinglog.invalid-resolution.message = Incorrect resolution
 
 acme.validation.range.message = The date is not in a correct range.
 
+
 #Administrator General Validation
 acme.validation.airline.duplicated-iata.message = An airline with this IATA code already exists
 acme.validation.airport.duplicated-iataCode.message = This iataCode already exists
+acme.validation.aircraft.airline-not-found.message = Airline not found.
+
+acme.validation.administrator.aircraft.status-UNDER_MAINTENANCE.message = The aircraft is already in maintenance.
 
 #Customer Validation
 acme.validation.customer.invalid-identifier.message = The customer's identifier number already exists.
