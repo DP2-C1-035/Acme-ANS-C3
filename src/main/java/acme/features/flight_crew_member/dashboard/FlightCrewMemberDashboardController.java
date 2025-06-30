@@ -16,8 +16,6 @@ public class FlightCrewMemberDashboardController extends AbstractGuiController<F
 	@Autowired
 	private FlightCrewMemberDashboardShowService showService;
 
-	// Constructors -----------------------------------------------------------
-
 
 	@PostConstruct
 	protected void initialise() {
