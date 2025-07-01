@@ -24,6 +24,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidFlightCrewMember
+
 @Table(indexes = {
 	@Index(columnList = "working_for_id, availabilityStatus")
 })
