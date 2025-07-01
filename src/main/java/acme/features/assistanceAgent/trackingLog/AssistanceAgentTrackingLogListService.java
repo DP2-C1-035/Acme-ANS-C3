@@ -54,7 +54,7 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 		String published;
 		Dataset dataset;
 
-		dataset = super.unbindObject(object, "lastUpdateMoment", "resolutionPercentage", "indicator");
+		dataset = super.unbindObject(object, "lastUpdateMoment", "resolutionPercentage", "indicator", "creationMoment");
 		published = !object.isDraftMode() ? "Yes" : "No";
 		dataset.put("published", published);
 

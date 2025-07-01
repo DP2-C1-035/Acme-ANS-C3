@@ -30,6 +30,8 @@ assistanceAgent.trackingLog.form.label.resolutionPercentage = Resolution Percent
 assistanceAgent.trackingLog.form.label.resolution = Resolution
 assistanceAgent.trackingLog.form.label.indicator = Indicator
 assistanceAgent.trackingLog.form.label.claim = Claim
+assistanceAgent.trackingLog.form.label.creationMoment = Creation Moment
+
 
 assistanceAgent.claim.form.error.indicator-in-progress-exceptional-case = The indicator can't be in progress for this exceptional case
 assistanceAgent.claim.form.error.must-be-100 = The resolution percentage must be 100%

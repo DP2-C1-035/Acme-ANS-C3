@@ -60,25 +60,27 @@ public class AssistanceAgentTrackingLogCreateExceptionService extends AbstractGu
 		object.setResolutionPercentage(100.00);
 		object.setIndicator(trackingLog.getIndicator());
 		object.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		object.setCreationMoment(MomentHelper.getCurrentMoment());
 
 		super.getBuffer().addData(object);
 	}
 
 	@Override
 	public void bind(final TrackingLog object) {
-		super.bindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator");
+		super.bindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator", "creationMoment");
 	}
 
 	@Override
 	public void validate(final TrackingLog object) {
 		if (!super.getBuffer().getErrors().hasErrors("resolution"))
-			super.state(Optional.ofNullable(object.getResolution()).map(String::strip).filter(s -> !s.isEmpty()).isPresent(), "resolution", "assistanceAgent.claim.form.error.resolution-not-null");
+			super.state(Optional.ofNullable(object.getResolution()).map(String::strip).filter(s -> !s.isEmpty()).isPresent(), "resolution", "assistanceAgent.trackingLog.form.error.resolution-not-null");
 	}
 
 	@Override
 	public void perform(final TrackingLog object) {
 
 		object.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		object.setCreationMoment(MomentHelper.getCurrentMoment());
 
 		this.repository.save(object);
 	}
@@ -87,7 +89,7 @@ public class AssistanceAgentTrackingLogCreateExceptionService extends AbstractGu
 	public void unbind(final TrackingLog object) {
 		Dataset dataset;
 
-		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator");
+		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator", "creationMoment");
 		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
 		dataset.put("exceptionalCase", true);
 

@@ -50,7 +50,7 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 
 	@Override
 	public void bind(final TrackingLog object) {
-		super.bindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator");
+		super.bindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator", "creationMoment");
 	}
 
 	@Override
@@ -71,7 +71,7 @@ public class AssistanceAgentTrackingLogDeleteService extends AbstractGuiService<
 
 		choicesIndicator = SelectChoices.from(TrackingLogIndicator.class, object.getIndicator());
 
-		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator", "draftMode");
+		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator", "creationMoment", "draftMode");
 		dataset.put("indicators", choicesIndicator);
 
 		super.getResponse().addData(dataset);

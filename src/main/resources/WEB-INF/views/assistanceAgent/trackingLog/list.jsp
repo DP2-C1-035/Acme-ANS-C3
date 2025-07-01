@@ -20,6 +20,7 @@
 	<acme:list-column code="assistanceAgent.trackingLog.list.label.resolutionPercentage" path="resolutionPercentage"/>
 	<acme:list-column code="assistanceAgent.trackingLog.list.label.indicator" path="indicator"/>
 	<acme:list-column code="assistanceAgent.trackingLog.list.label.published" path="published"/>		
+	<acme:list-column code="assistanceAgent.trackingLog.list.creationMoment" path="creationMoment"/>
 </acme:list>
 
 <jstl:choose>

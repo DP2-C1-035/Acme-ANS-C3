@@ -23,6 +23,7 @@
 			<acme:input-double code="assistanceAgent.trackingLog.form.label.resolutionPercentage" path="resolutionPercentage"/>
 			<acme:input-textbox code="assistanceAgent.trackingLog.form.label.resolution" path="resolution"/>
 			<acme:input-select code="assistanceAgent.trackingLog.form.label.indicator" path="indicator" choices="${indicators}"/>
+			<acme:input-moment code="assistanceAgent.trackingLog.form.label.creationMoment" path="creationMoment" readonly="true"/>
 		</jstl:when>
 		<jstl:when test="${exceptionalCase}">
 			<acme:input-moment code="assistanceAgent.trackingLog.form.label.lastUpdateMoment" path="lastUpdateMoment" readonly="true"/>
@@ -30,6 +31,7 @@
 			<acme:input-double code="assistanceAgent.trackingLog.form.label.resolutionPercentage" path="resolutionPercentage" readonly="true"/>
 			<acme:input-textbox code="assistanceAgent.trackingLog.form.label.resolution" path="resolution"/>
 			<acme:input-textbox code="assistanceAgent.trackingLog.form.label.indicator" path="indicator" readonly="true"/>
+			<acme:input-moment code="assistanceAgent.trackingLog.form.label.creationMoment" path="creationMoment" readonly="true"/>
 		</jstl:when>
 	</jstl:choose>	
 

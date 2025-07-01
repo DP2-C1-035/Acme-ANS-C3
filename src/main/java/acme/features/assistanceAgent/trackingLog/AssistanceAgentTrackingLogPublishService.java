@@ -1,6 +1,9 @@
 
 package acme.features.assistanceAgent.trackingLog;
 
+import java.util.Collection;
+import java.util.Comparator;
+import java.util.Date;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -60,16 +63,27 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 	@Override
 	public void validate(final TrackingLog object) {
-		super.state(!object.getClaim().isDraftMode(), "*", "assistanceAgent.claim.form.error.claim-must-be-published");
-		super.state(this.repository.countTrackingLogsForException(object.getClaim().getId()) < 2, "*", "assistanceAgent.claim.form.error.only-two-tracking-logs-100");
+		{
+			super.state(!object.getClaim().isDraftMode(), "*", "assistanceAgent.trackingLog.form.error.claim-must-be-published");
+			super.state(this.repository.countTrackingLogsForException(object.getClaim().getId()) < 2, "*", "assistanceAgent.trackingLog.form.error.only-two-tracking-logs-100");
+
+		}
 		if (!super.getBuffer().getErrors().hasErrors("indicator")) {
 			boolean bool1;
 			boolean bool2;
 			if (!super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
 				bool1 = object.getIndicator() == TrackingLogIndicator.PENDING && object.getResolutionPercentage() < 100;
 				bool2 = object.getIndicator() != TrackingLogIndicator.PENDING && object.getResolutionPercentage() == 100;
-				super.state(bool1 || bool2, "indicator", "assistanceAgent.claim.form.error.indicator-in-progress");
+				super.state(bool1 || bool2, "indicator", "assistanceAgent.trackingLog.form.error.indicator-in-progress");
 			}
+			boolean bool3;
+			ClaimStatus indicator = this.repository.findClaimById(object.getClaim().getId()).getIndicator();
+			TrackingLogIndicator logIndicator = object.getIndicator();
+			if (indicator.toString().equals(logIndicator.toString()))
+				bool3 = true;
+			else
+				bool3 = false;
+			super.state(bool3, "indicator", "assistanceAgent.trackingLog.form.error.indicator-not-equal-to-claim-indicator");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
 			Double maxResolutionPercentage;
@@ -81,9 +95,22 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 			finalMaxResolutionPercentage = maxResolutionPercentage != null ? maxResolutionPercentage : -0.01;
 
 			if (notAnyMore)
-				super.state(object.getResolutionPercentage() == 100, "resolutionPercentage", "assistanceAgent.claim.form.error.must-be-100");
+				super.state(object.getResolutionPercentage() == 100, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.must-be-100");
 			else
-				super.state(object.getResolutionPercentage() > finalMaxResolutionPercentage, "resolutionPercentage", "assistanceAgent.claim.form.error.less-than-max-resolution-percentage");
+				super.state(object.getResolutionPercentage() > finalMaxResolutionPercentage, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.less-than-max-resolution-percentage");
+			Collection<TrackingLog> logs = this.repository.findTrackingLogsByClaimId(object.getClaim().getId());
+
+			Double percentage = object.getResolutionPercentage();
+
+			boolean hasLowerDrafts = logs.stream().filter(log -> log.getId() != object.getId()).filter(log -> log.isDraftMode()).anyMatch(log -> log.getResolutionPercentage() < percentage);
+
+			super.state(!hasLowerDrafts, "*", "assistanceAgent.trackingLog.form.error.unpublished-lower-logs");
+
+			Optional<TrackingLog> mostRecentLog = logs.stream().filter(log -> log.getId() != object.getId()).max(Comparator.comparing(TrackingLog::getCreationMoment));
+
+			boolean isProgressing = mostRecentLog.map(lastLog -> percentage > lastLog.getResolutionPercentage()).orElse(true);
+
+			super.state(isProgressing, "resolutionpercentage", "assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("resolution")) {
 			boolean isPending = object.getIndicator() == TrackingLogIndicator.PENDING;
@@ -91,8 +118,32 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 			boolean valid = isPending && !Optional.ofNullable(object.getResolution()).map(String::strip).filter(s -> !s.isEmpty()).isPresent()
 				|| !isPending && Optional.ofNullable(object.getResolution()).map(String::strip).filter(s -> !s.isEmpty()).isPresent();
 
-			super.state(valid, "resolution", "assistanceAgent.claim.form.error.resolution-not-null");
+			super.state(valid, "resolution", "assistanceAgent.trackingLog.form.error.resolution-not-null");
 		}
+		Claim claim;
+		claim = this.repository.findClaimById(object.getClaim().getId());
+		Collection<TrackingLog> logs;
+		logs = this.repository.findTrackingLogsByClaimId(claim.getId());
+		if (!super.getBuffer().getErrors().hasErrors("creationMoment")) {
+			Date creationMoment = object.getCreationMoment();
+			Double percentage = object.getResolutionPercentage();
+
+			boolean hasNoPastInconsistencies = logs.stream().filter(log -> log.getId() != object.getId()).filter(log -> log.getCreationMoment().before(creationMoment)).allMatch(log -> log.getResolutionPercentage() < percentage);
+
+			boolean hasNoFutureInconsistencies = logs.stream().filter(log -> log.getId() != object.getId()).filter(log -> log.getCreationMoment().after(creationMoment)).allMatch(log -> log.getResolutionPercentage() > percentage);
+
+			boolean isCreationMomentValid = hasNoPastInconsistencies && hasNoFutureInconsistencies;
+
+			super.state(isCreationMomentValid, "creationMoment", "assistanceAgent.trackingLog.form.error.invalid-creation-moment");
+
+			// boolean creationMomentIsAfterClaimRegistrationMoment = MomentHelper.isAfter(creationMoment, claim.getRegistrationMoment());
+
+			//super.state(creationMomentIsAfterClaimRegistrationMoment, "creationMoment", "assistanceAgent.claim.form.error.creation-moment-not-after-registration-moment");
+		}
+		//if (!super.getBuffer().getErrors().hasErrors("lastUpdateMoment")) {
+		//boolean lastUpdateMomentIsAfterCreationMoment = MomentHelper.isAfterOrEqual(object.getLastUpdateMoment(), object.getCreationMoment());
+		//super.state(lastUpdateMomentIsAfterCreationMoment, "lastUpdateMoment", "assistanceAgent.claim.form.error.update-moment-not-after-creation-moment");
+		//}
 	}
 
 	@Override

@@ -30,6 +30,7 @@ assistanceAgent.trackingLog.form.label.resolutionPercentage = Porcentaje de Reso
 assistanceAgent.trackingLog.form.label.resolution = Resolución  
 assistanceAgent.trackingLog.form.label.indicator = Indicador  
 assistanceAgent.trackingLog.form.label.claim = Reclamo 
+assistanceAgent.trackingLog.form.label.creationMoment = Momento de creación
 
 assistanceAgent.claim.form.error.indicator-in-progress-exceptional-case = El indicador no puede estar en progreso para este caso excepcional
 assistanceAgent.claim.form.error.must-be-100 = El porcentaje de resolución debe ser 100%
