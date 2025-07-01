@@ -32,11 +32,11 @@ assistanceAgent.trackingLog.form.label.indicator = Indicator
 assistanceAgent.trackingLog.form.label.claim = Claim
 assistanceAgent.trackingLog.form.label.creationMoment = Creation Moment
 
-
-assistanceAgent.claim.form.error.indicator-in-progress-exceptional-case = The indicator can't be in progress for this exceptional case
-assistanceAgent.claim.form.error.must-be-100 = The resolution percentage must be 100%
-assistanceAgent.claim.form.error.resolution-not-null = The resolution reason can't be blank or null if the indicator is "ACCEPTED" or "DENIED"
-assistanceAgent.claim.form.error.indicator-in-progress = Only the indicator is "IN-PROGRESS" if the resolution percentage is less than 100%. If it is equal to 100%, it must be "ACCEPTED" or "DENIED
-assistanceAgent.claim.form.error.less-than-max-resolution-percentage = The new resolution percentage of this tracking log must be higher than the ones that are uploaded  
-assistanceAgent.claim.form.error.claim-must-be-published = Before publishing a tracking log, you must publish its corresponding claim
-assistanceAgent.claim.form.error.only-two-tracking-logs-100 = You can only have 2 tracking logs with a percentage of a 100%. Delete the other tracking logs that are not published
+assistanceAgent.trackingLog.form.error.resolution-not-null =  The resolution reason can't be blank or null if the indicator is "ACCEPTED" or "DENIED"
+assistanceAgent.trackingLog.form.error.indicator-pending = Only the indicator is "PENDING" if the resolution percentage is less than 100%. If it is equal to 100%, it must be "ACCEPTED" or "DENIED
+assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage = The resolution percentage must be higher than the percentages of the other created logs
+assistanceAgent.trackingLog.form.error.unpublished-lower-logs = There are existing logs whose percentages are lower to this one. Please, delete them or publish them to maintain an increasing process
+assistanceAgent.trackingLog.form.error.less-than-max-resolution-percentage = The new resolution percentage of this tracking log must be higher than the ones that are uploaded  
+assistanceAgent.trackingLog.form.error.must-be-100 = The resolution percentage must be 100%
+assistanceAgent.trackingLog.form.error.only-two-tracking-logs-100 = You can only have 2 tracking logs with a percentage of a 100%. Delete the other tracking logs that are not published
+assistanceAgent.trackingLog.form.error.claim-must-be-published = Before publishing a tracking log, you must publish its corresponding claim

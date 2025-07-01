@@ -74,7 +74,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 			if (!super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
 				bool1 = object.getIndicator() == TrackingLogIndicator.PENDING && object.getResolutionPercentage() < 100;
 				bool2 = object.getIndicator() != TrackingLogIndicator.PENDING && object.getResolutionPercentage() == 100;
-				super.state(bool1 || bool2, "indicator", "assistanceAgent.trackingLog.form.error.indicator-in-progress");
+				super.state(bool1 || bool2, "indicator", "assistanceAgent.trackingLog.form.error.indicator-pending");
 			}
 			boolean bool3;
 			ClaimStatus indicator = this.repository.findClaimById(object.getClaim().getId()).getIndicator();
@@ -110,7 +110,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 			boolean isProgressing = mostRecentLog.map(lastLog -> percentage > lastLog.getResolutionPercentage()).orElse(true);
 
-			super.state(isProgressing, "resolutionpercentage", "assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage");
+			super.state(isProgressing, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("resolution")) {
 			boolean isPending = object.getIndicator() == TrackingLogIndicator.PENDING;
@@ -134,7 +134,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 			boolean isCreationMomentValid = hasNoPastInconsistencies && hasNoFutureInconsistencies;
 
-			super.state(isCreationMomentValid, "creationMoment", "assistanceAgent.trackingLog.form.error.invalid-creation-moment");
+			super.state(isCreationMomentValid, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.invalid-creation-moment");
 
 			// boolean creationMomentIsAfterClaimRegistrationMoment = MomentHelper.isAfter(creationMoment, claim.getRegistrationMoment());
 

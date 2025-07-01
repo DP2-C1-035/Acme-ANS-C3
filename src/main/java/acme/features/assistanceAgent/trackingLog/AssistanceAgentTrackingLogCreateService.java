@@ -2,7 +2,6 @@
 package acme.features.assistanceAgent.trackingLog;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Optional;
 
@@ -84,7 +83,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 			if (!super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
 				bool1 = object.getIndicator() == TrackingLogIndicator.PENDING && object.getResolutionPercentage() < 100;
 				bool2 = object.getIndicator() != TrackingLogIndicator.PENDING && object.getResolutionPercentage() == 100;
-				super.state(bool1 || bool2, "indicator", "assistanceAgent.trackingLog.form.error.indicator-in-progress");
+				super.state(bool1 || bool2, "indicator", "assistanceAgent.trackingLog.form.error.indicator-pending");
 			}
 		}
 		if (!super.getBuffer().getErrors().hasErrors("resolution")) {
@@ -95,14 +94,14 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 			super.state(valid, "resolution", "assistanceAgent.trackingLog.form.error.resolution-not-null");
 		}
-		if (!super.getBuffer().getErrors().hasErrors("resolutionpercentage")) {
-			Double percentage = object.getResolutionPercentage();
-			Optional<TrackingLog> mostRecentLog = logs.stream().filter(log -> log.getId() != object.getId()).max(Comparator.comparing(TrackingLog::getCreationMoment));
-
-			boolean isProgressing = mostRecentLog.map(lastLog -> percentage > lastLog.getResolutionPercentage()).orElse(true); // Si es el primer log, se acepta cualquier porcentaje
-
-			super.state(isProgressing, "resolutionpercentage", "assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage");
-		}
+		//		if (!super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
+		//			Double percentage = object.getResolutionPercentage();
+		//			Optional<TrackingLog> mostRecentLog = logs.stream().filter(log -> log.getId() != object.getId()).max(Comparator.comparing(TrackingLog::getCreationMoment));
+		//
+		//			boolean isProgressing = mostRecentLog.map(lastLog -> percentage > lastLog.getResolutionPercentage()).orElse(true);
+		//
+		//			super.state(isProgressing, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage");
+		//		}
 		if (!super.getBuffer().getErrors().hasErrors("creationMoment")) {
 			Date creationMoment = object.getCreationMoment();
 			Double percentage = object.getResolutionPercentage();
@@ -113,7 +112,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 			boolean isCreationMomentValid = hasNoPastInconsistencies;
 
-			super.state(isCreationMomentValid, "creationMoment", "assistanceAgent.trackingLog.form.error.invalid-creation-moment");
+			super.state(isCreationMomentValid, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage");
 
 			//boolean creationMomentIsAfterClaimRegistrationMoment = MomentHelper.isAfter(creationMoment, claim.getRegistrationMoment());
 
