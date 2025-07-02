@@ -41,11 +41,18 @@ master.menu.provider.favourite-link = Favourite link
 master.menu.consumer = Consumer
 master.menu.consumer.favourite-link = Favourite link
 
+# master.menu.technician ########################################################
+
+master.menu.technician = Technician
+master.menu.technician.list-my-maintenance-records = See my maintenance records
+master.menu.technician.list-my-tasks = See my tasks
+master.menu.technician.list-all-maintenance-records-published = See all maintenance records published
+master.menu.technician.list-all-tasks-published = See all tasks published
+
 # master.menu.customer ##########################################################
 
 master.menu.customer = Customer
 master.menu.customer.list-my-bookings = My Bookings
-master.menu.customer.list-my-passengers = My Passengers
 
 # master.menu.manager ##########################################################
 master.menu.manager = Manager
