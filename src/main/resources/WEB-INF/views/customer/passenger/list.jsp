@@ -13,3 +13,8 @@
 <jstl:if test="${_command == 'list'}">
 	<acme:button code="customer.passenger.list.button.create" action="/customer/passenger/create"/>
 </jstl:if>
+
+<jstl:if test="${draftMode == true}">
+	<acme:button code="customer.booking-record.list.button.create" action="/customer/booking-record/create?bookingId=${bookingId}"/>
+	<acme:button code="customer.passenger.list.button.create" action="/customer/passenger/create?bookingId=${bookingId}"/>
+</jstl:if>

@@ -28,6 +28,9 @@ public class CustomerBookingController extends AbstractGuiController<Customer, B
 	@Autowired
 	private CustomerBookingUpdateService	updateService;
 
+	@Autowired
+	private CustomerBookingDeleteService	deleteService;
+
 
 	@PostConstruct
 	protected void initialise() {

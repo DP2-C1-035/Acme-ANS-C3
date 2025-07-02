@@ -6,17 +6,20 @@ customer.booking.form.label.purchaseMoment = Purchase Moment:
 customer.booking.form.label.travelClass = Travel Class: 
 customer.booking.form.label.price = Price:
 customer.booking.form.label.flight = Flight:
-customer.booking.form.label.creditCardNibble = Card last nibble (Optional):
+customer.booking.form.label.creditCardNibble = Last 4 digits of payment card:
 customer.booking.form.label.purchaseMoment = Purchase Moment:
 customer.booking.form.label.draftMode = Draft Mode:
 
 customer.booking.form.placeholder.travelClass = ECONOMY or BUSINESS
-customer.booking.form.placeholder.creditCardNibble = 0
+customer.booking.form.placeholder.creditCardNibble = 0000
     
 customer.booking.form.button.passengers = Passengers
+customer.booking.form.show.passengers = Show passengers
+customer.booking.form.button.passenger.delete = Delete Passenger
 customer.booking.form.button.update = Update
 customer.booking.form.button.publish = Publish
 customer.booking.form.button.create = Create
+customer.booking.form.button.delete = Cancel booking
 
 customer.booking.list.button.create = Create
 
@@ -24,3 +27,5 @@ customer.booking.list.label.locatorCode = Locator Code:
 customer.booking.list.label.travelClass = Travel Class: 
 customer.booking.list.label.price = Price:
 customer.booking.list.label.draftMode = Draft Mode:
+
+acme.validation.creditCardNibble.message = You must complete the last digits of your card to publish
