@@ -1,0 +1,41 @@
+customer.booking.form.title = Formulario de reservas
+customer.booking.list.title = Lista de reservas
+
+customer.booking.form.label.locatorCode = Código de localización:
+customer.booking.form.label.purchaseMoment = Momento de compra:
+customer.booking.form.label.travelClass = Clase de vuelo: 
+customer.booking.form.label.price = Precio:
+customer.booking.form.label.creditCardNibble = Últimos 4 números de la tarjeta:
+customer.booking.form.label.purchaseMoment = Fecha de reserva:
+customer.booking.form.label.draftMode = Modo borrador:
+
+customer.booking.form.placeholder.travelClass = ECONOMY o BUSINESS
+customer.booking.form.placeholder.creditCardNibble = 0000
+    
+customer.booking.form.button.passengers = Pasajeros
+customer.booking.form.button.update = Actualizar
+customer.booking.form.button.publish = Publicar
+customer.booking.form.show.passengers = Mostrar pasajeros
+customer.booking.form.button.create = Crear
+customer.booking.form.button.passenger.delete = Eliminar Pasajero
+customer.booking.form.button.delete = Cancelar reserva
+
+customer.booking.form.label.locatorCode = Código de localización:
+customer.booking.form.label.travelClass = Clase de vuelo: 
+customer.booking.form.label.price = Precio:
+customer.booking.form.label.flight = Vuelo:
+customer.booking.form.label.draftMode = Modo borrador:
+
+customer.booking.list.button.create = Crear
+
+customer.booking.list.label.locatorCode = Código de localización:
+customer.booking.list.label.travelClass = Clase de vuelo: 
+customer.booking.list.label.price = Precio:
+customer.booking.list.label.draftMode = Modo borrador:
+
+customer.booking.form.error.duplicateLocatorCode = El localizador de vuelo ya está en uso
+
+customer.booking.publish.no-passengers= Debes tener al menos pasajero para publicar tu reserva
+customer.booking.publish.no-card-nibble-stored = Introduzca los 4 ultimos digitos de su tarjeta de credito
+customer.booking.publish.no-passengers-published = Hay un pasajero sin publicar
+

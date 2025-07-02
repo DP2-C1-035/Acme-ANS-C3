@@ -1,0 +1,55 @@
+key,name,picture,average_dwell_time,promotion_code,money_discounted,key:airport
+# Base entity
+service-01,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,50,ABCD-25,EUR 50.00,airport-01
+# name - variations
+service-02,L,http://lorem.com/ipsum,50,EFGH-25,EUR 50.00,airport-02
+service-03,Lo,http://lorem.com/ipsum,50,IJKL-25,EUR 50.00,airport-03
+service-04,"Lorem ipsum dolor sit amet, consectetur adipiscin",http://lorem.com/ipsum,50,MNOP-25,EUR 50.00,airport-01
+service-05,"Lorem ipsum dolor sit amet, consectetur adipiscing",http://lorem.com/ipsum,50,BBCD-25,EUR 50.00,airport-01
+service-06,"Lorem ipsum dolor sit ame",http://lorem.com/ipsum,50,CBCD-25,EUR 50.00,airport-01
+service-07,โลเร็ม อิปซัม,http://lorem.com/ipsum,50,DBCD-25,EUR 50.00,airport-01
+service-08,لوريم إيبسوم,http://lorem.com/ipsum,50,EBCD-25,EUR 50.00,airport-01
+service-09,"<marquee>Hacked</marquee>",http://lorem.com/ipsum,50,GBCD-25,EUR 50.00,airport-01
+service-10,"<script>alert(‘Hacked!’);</script>",http://lorem.com/ipsum,50,HBCD-25,EUR 50.00,airport-01
+service-11,"' or 'A' = 'A ",http://lorem.com/ipsum,50,IBCD-25,EUR 50.00,airport-01
+
+
+# picture - variations
+service-12,Lorem ipsum dolor sit ame,"http://a.b",50,UVWX-25,EUR 50.00,airport-01
+service-13,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/",50,YZAB-25,EUR 50.00,airport-05
+service-14,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org/dolor/sit/amet,/consectetur/adipiscing/elit,/sed/do/eiusmod/tempor/incididunt/ut/labore/et/dolore/magna/aliqua/Ut/enim/ad/minim/veniam/quis/nostrud/exercitation/ullamco/laboris/nisi/ut/aliquip/ex/ea/commodo/consequat/duis/aute/X",50,CDEF-25,EUR 50.00,airport-08
+service-15,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org",50,GHIJ-25,EUR 50.00,airport-10
+service-16,Lorem ipsum dolor sit ame,"https://www.lorem-ipsum.org",50,KLMN-25,EUR 50.00,airport-08
+service-17,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org/dolor/sit.html",50,OPQR-25,EUR 50.00,airport-02
+service-18,Lorem ipsum dolor sit ame,"http://www.lorem-ipsum.org/dolor/sit.html#dolor",50,STDV-25,EUR 50.00,airport-14
+service-19,โลเร็ม อิปซัม,"http://example.org?a=1&b=2",50,STUV-25,EUR 50.00,airport-14
+service-20,لوريم إيبسوم,"http://example.org?",50,STUU-25,EUR 50.00,airport-08
+service-21,洛伦·伊普森,"http://example.org?a",50,STUI-25,EUR 50.00,airport-09
+service-22,"<marquee>Hacked</marquee>","http://example.org?a&b",50,HTUV-25,EUR 50.00,airport-07
+service-23,"<script>alert(‘Hacked!’);</script>","http://example.org/",50,STLV-25,EUR 50.00,airport-09
+service-24,"' or 'A' = 'A ","http://example.org/a",50,STKV-25,EUR 50.00,airport-09
+service-25,Lorem ipsum dolor sit ame,"http://example.org/a/b",50,JBCD-25,EUR 50.00,airport-01
+service-26,Lorem ipsum dolor sit ame,"http://example.org/a/b?",50,KBCD-25,EUR 50.00,airport-12
+service-27,Lorem ipsum dolor sit ame,"http://example.org/a/b?a&b",50,LBCD-25,EUR 50.00,airport-13
+
+
+# averageDwellTime - variations
+service-28,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,2,ABKK-25,EUR 50.00,airport-12
+service-29,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,1,ABXK-25,EUR 50.00,airport-05
+service-30,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,100,FBCK-25,EUR 50.00,airport-02
+service-31,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,99,AGCK-25,EUR 50.00,airport-08
+# moneyDiscounted - variations
+service-32,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,99,UBCK-25,EUR 500000.00,airport-03
+service-33,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,99,IBCK-25,EUR 0.00,airport-05
+service-34,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,99,OBCK-25,EUR 0.01,airport-01
+service-35,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,99,PDCK-25,EUR 999999.99,airport-09
+service-36,Lorem ipsum dolor sit ame,http://lorem.com/ipsum,99,JBCK-25,EUR 1000000.00,airport-13
+
+
+# usable urls
+service-37,Lorem ipsum dolor sit ame,https://images.unsplash.com/photo-1745990652119-f13cced69b7c?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D,50,UUUU-25,EUR 50.00,airport-08
+service-38,Lorem ipsum dolor sit ame,https://plus.unsplash.com/premium_photo-1736854895987-a2e233830e9d?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D,50,AUUU-25,EUR 50.00,airport-09
+service-39,Lorem ipsum dolor sit ame,https://images.unsplash.com/photo-1746105523293-1954154b6ccc?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D,50,BUUU-25,EUR 50.00,airport-01
+service-40,Lorem ipsum dolor sit ame,https://images.unsplash.com/photo-1742241461508-07dfb49187c1?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDF8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D,50,CUUU-25,EUR 50.00,airport-11
+service-41,Lorem ipsum dolor sit ame,https://images.unsplash.com/photo-1747217616203-88e828ba010f?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D,50,DUUU-25,EUR 50.00,airport-09
+service-42,Lorem ipsum dolor sit ame,https://images.unsplash.com/photo-1747134392591-0c748c9727b3?fm=jpg&q=60&w=3000&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D,50,EUUU-25,EUR 50.00,airport-13

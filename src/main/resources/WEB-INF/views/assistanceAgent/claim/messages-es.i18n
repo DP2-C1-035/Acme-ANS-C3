@@ -1,0 +1,52 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+assistanceAgent.claim.list.button.create = Crear
+
+assistance-agent.claim.list.title = Lista de Reclamos
+assistance-agent.claim.form.title = Detalles del Reclamo
+
+assistanceAgent.claim.list.label.type = Tipo de Reclamo
+assistanceAgent.claim.list.label.leg = Tramo del Vuelo
+assistanceAgent.claim.list.label.indicator = Situación Actual
+assistanceAgent.claim.list.label.published = ¿Está Publicado?
+
+assistanceAgent.claim.list.button.create = Crear
+
+assistanceAgent.claim.form.button.create = Crear
+assistanceAgent.claim.form.button.update = Actualizar
+assistanceAgent.claim.form.button.publish = Publicar
+assistanceAgent.claim.form.button.delete = Eliminar
+assistanceAgent.claim.form.button.trackingLogs = Registros de Seguimiento
+
+assistanceAgent.claim.form.label.registrationMoment = Momento de Registro
+assistanceAgent.claim.form.label.email = Correo Electrónico
+assistanceAgent.claim.form.label.description = Descripción
+assistanceAgent.claim.form.label.type = Tipo de Reclamo
+assistanceAgent.claim.form.label.indicator = Indicador
+assistanceAgent.claim.form.label.assistanceAgent = Agente de Asistencia
+assistanceAgent.claim.form.label.leg = Tramo del Vuelo
+
+# Claim Create:
+assistanceAgent.claim.form.error.indicator-must-be-pending = El estado tiene que estar en pendiente al crear una reclamación
+assistanceAgent.claim.form.error.wrong-leg-date= La fecha de reclamación no puede ser anterior a la fecha del tramo de vuelo
+
+# Claim Delete:
+
+# Claim Lists:
+
+# Claim Publish:
+assistanceAgent.claim.form.error.indicator-must-not-be-pending = El estado tiene que estar en pendiente al publicar una reclamación
+assistanceAgent.claim.form.error.claim-published-with-pending-status = No hay ningún registro de seguimiento con un estado distinto
+a pendiente, por lo que la reclamación no se puede publicar
+
+# Claim Update:
+assistanceAgent.claim.form.error.claim-updated-with-status-different-to-logs = Existe un registro de seguimiento de la reclamación
+cuyo estado es distinto a pendiente, por lo que la reclamación solo se puede actualizar a dicho estado

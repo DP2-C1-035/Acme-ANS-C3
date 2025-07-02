@@ -4,7 +4,9 @@ package acme.entities.activity_log;
 import java.util.Date;
 
 import javax.persistence.Entity;
+import javax.persistence.Index;
 import javax.persistence.ManyToOne;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 import javax.validation.Valid;
@@ -24,6 +26,10 @@ import lombok.Setter;
 @Getter
 @Setter
 @ValidActivityLog
+@Table(indexes = {
+	@Index(columnList = "draftMode"), @Index(columnList = "draftMode, flight_assignment_id")
+})
+
 public class ActivityLog extends AbstractEntity {
 
 	private static final long	serialVersionUID	= 1L;
@@ -31,6 +37,7 @@ public class ActivityLog extends AbstractEntity {
 	@Mandatory
 	@ValidMoment(past = true)
 	@Temporal(TemporalType.TIMESTAMP)
+	@Automapped
 	private Date				registrationMoment;
 
 	@Mandatory
@@ -47,6 +54,11 @@ public class ActivityLog extends AbstractEntity {
 	@ValidNumber(min = 0, max = 10)
 	@Automapped
 	private Integer				severityLevel;
+
+	@Mandatory
+	// HINT: @Valid by default.
+	@Automapped
+	private boolean				draftMode;
 
 	@Mandatory
 	@Valid
