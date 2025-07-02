@@ -24,3 +24,11 @@ leg-21,ABC0021,2020/01/02 04:00,2020/01/02 05:00,"ON_TIME",airport-07,airport-08
 leg-22,ABC0022,2020/01/01 01:00,2020/01/01 03:00,"ON_TIME",airport-01,airport-02,aircraft-18,flight-27,true
 leg-23,ABC0023,2020/01/01 01:00,2020/01/01 03:00,"ON_TIME",airport-01,airport-02,aircraft-19,flight-28,true
 leg-24,ABC0024,2020/01/01 01:00,2020/01/01 03:00,"ON_TIME",airport-01,airport-02,aircraft-20,flight-29,false
+
+# leg TEST añadir un crew member a diferentes legs en diferentes tiempos (test positivo)
+leg-25,ABC0025,2202/01/01 01:00,2203/12/31 23:59,"ON_TIME",airport-01,airport-02,aircraft-09,flight-14,false
+leg-26,ABC0026,2402/01/01 01:00,2403/12/31 23:59,"ON_TIME",airport-01,airport-02,aircraft-09,flight-14,false
+
+# leg TEST añadir un crew member a diferentes legs en MISMO tiempo (test negativo)
+leg-27,ABC0027,2030/01/01 01:00,2200/12/31 23:59,"ON_TIME",airport-01,airport-02,aircraft-09,flight-14,false
+leg-28,ABC0028,2030/01/01 01:00,2200/12/31 23:59,"ON_TIME",airport-01,airport-02,aircraft-09,flight-14,false

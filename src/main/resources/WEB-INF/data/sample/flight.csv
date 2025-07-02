@@ -30,5 +30,3 @@ flight-27,"Legs no publicadas 1",false,EUR 1000.00,"Lorem ipsum dolor sit amet, 
 flight-28,"Legs no publicadas 2",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,true
 flight-29,"Leg publicada",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,true
 flight-30,"Sin Legs",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,true
-flight-98,"Vuelo 98",false,EUR 1500.00,"Descripción para el vuelo 98",manager-01,false
-flight-99,"Vuelo 99",false,EUR 1500.00,"Descripción para el vuelo 99",manager-01,false

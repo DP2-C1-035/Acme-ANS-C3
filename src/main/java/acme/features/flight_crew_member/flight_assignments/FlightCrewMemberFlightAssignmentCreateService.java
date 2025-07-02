@@ -13,6 +13,7 @@ import acme.client.services.GuiService;
 import acme.entities.flight_assignment.AssignmentStatus;
 import acme.entities.flight_assignment.FlightAssignment;
 import acme.entities.flight_assignment.FlightCrewDuty;
+import acme.entities.flight_crew_member.AvailabilityStatus;
 import acme.entities.flight_crew_member.FlightCrewMember;
 import acme.entities.leg.Leg;
 
@@ -75,7 +76,27 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
-		;
+		FlightCrewMember crewMember = flightAssignment.getFlightCrewMember();
+		Leg leg = flightAssignment.getLeg();
+
+		crewMember.getAvailabilityStatus();
+		// 1. El flight crew member debe estar AVAILABLE
+		super.state(crewMember.getAvailabilityStatus() == AvailabilityStatus.AVAILABLE, "flightCrewMember", "flight-crew-member.flight-assignment.error.member-not-available");
+		// 2. No puede haber solapamientos de legs (ya está asignado a otra leg simultánea)
+		Collection<FlightAssignment> currentAssignments = this.repository.findFlightAssignmentsByFlightCrewMemberId(crewMember.getId());
+
+		boolean overlaps = currentAssignments.stream().anyMatch(fa -> {
+			Leg l = fa.getLeg();
+			return !fa.equals(flightAssignment) && l.getScheduledDeparture().before(leg.getScheduledArrival()) && leg.getScheduledDeparture().before(l.getScheduledArrival());
+		});
+		super.state(!overlaps, "*", "flight-crew-member.flight-assignment.error.overlapping-legs");
+
+		// 3. No puede haber más de un piloto ni copiloto en el mismo leg
+		Collection<FlightAssignment> assignmentsInLeg = this.repository.findPublishedFlightAssignmentsByLegId(leg.getId());
+
+		boolean dutyConflict = assignmentsInLeg.stream().anyMatch(fa -> fa.getFlightCrewDuty() == flightAssignment.getFlightCrewDuty() && (fa.getFlightCrewDuty() == FlightCrewDuty.PILOT || fa.getFlightCrewDuty() == FlightCrewDuty.CO_PILOT));
+		if (flightAssignment.getFlightCrewDuty() == FlightCrewDuty.PILOT || flightAssignment.getFlightCrewDuty() == FlightCrewDuty.CO_PILOT)
+			super.state(!dutyConflict, "flightCrewDuty", "flight-crew-member.flight-assignment.error.duty-already-assigned");
 	}
 
 	@Override
