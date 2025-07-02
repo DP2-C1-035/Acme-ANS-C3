@@ -11,8 +11,8 @@ leg-08,ABC0008,2200/12/31 23:57,2200/12/31 23:58,"ON_TIME",airport-01,airport-02
 leg-09,ABC0009,2200/12/31 23:58,2200/12/31 23:59,"ON_TIME",airport-01,airport-02,aircraft-05,flight-10,false
 leg-10,ABC0010,2000/01/01 00:00,2000/01/01 00:01,"ON_TIME",airport-01,airport-02,aircraft-43,flight-11,false
 leg-11,ABC0011,2000/01/01 00:00,2000/01/01 00:02,"ON_TIME",airport-01,airport-02,aircraft-44,flight-12,false
-leg-12,ABC0012,2030/01/01 01:00,2200/12/31 23:58,"ON_TIME",airport-01,airport-02,aircraft-08,flight-13,false
-leg-13,ABC0013,2030/01/01 01:00,2200/12/31 23:59,"ON_TIME",airport-01,airport-02,aircraft-09,flight-14,false
+leg-12,ABC0012,2031/01/01 01:00,2031/12/31 23:58,"ON_TIME",airport-01,airport-02,aircraft-08,flight-13,false
+leg-13,ABC0013,2030/01/01 01:00,2030/12/31 23:59,"ON_TIME",airport-01,airport-02,aircraft-09,flight-14,false
 leg-14,ABC0014,2020/01/01 01:00,2020/01/01 03:00,"CANCELLED",airport-01,airport-02,aircraft-10,flight-15,false
 leg-15,ABC0015,2020/01/01 01:00,2020/01/01 03:00,"DELAYED",airport-01,airport-02,aircraft-11,flight-16,false
 leg-16,ABC0016,2020/01/01 01:00,2020/01/01 03:00,"LANDED",airport-01,airport-02,aircraft-12,flight-17,false
