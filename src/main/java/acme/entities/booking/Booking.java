@@ -48,9 +48,9 @@ public class Booking extends AbstractEntity {
 	private Date				purchaseMoment;
 
 	@Mandatory
-	@ValidString(pattern = "^(ECONOMY|BUSINESS)$", message = "Travel class must be either ECONOMY or BUSINESS")
+	@Valid
 	@Automapped
-	private String				travelClass;
+	private TravelClass			travelClass;
 
 	@Mandatory
 	@ValidMoney(min = 0, max = 100000)
@@ -58,7 +58,7 @@ public class Booking extends AbstractEntity {
 	private Money				price;
 
 	@Optional
-	@ValidString(pattern = "^[0-9A-Fa-f]{1}$", message = "Last nibble of credit card should be a single hexadecimal character")
+	@ValidString(pattern = "^[0-9]{4}$")
 	@Automapped
 	private String				creditCardNibble;  // Optional field for the last nibble of the credit card used for payment
 

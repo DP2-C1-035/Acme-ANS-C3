@@ -42,8 +42,17 @@ acme.validation.booking.flight.not-found.messasge = No se encontró ese vuelo
 acme.validation.booking.publish.passengers-associated.message = Esta reserva no tiene pasajeros asociados.
 acme.validation.booking.publish.passenger-associated-not-owned.message = Esta reserva tiene pasajeros que no te pertenecen.
 acme.validation.booking.published.passenger-not-published.message = Esta reserva tiene pasajeros no publicados.
-acme.validation.booking.publish.creditCardNibble-null.message = Esta reserva no tiene un número de tarjeta válido.
 
 acme.validation.booking-record.create.passenger-not-from-customer.message = Este pasajero no está asociado contigo
 acme.validation.booking-record.create.passenger-not-published.message = Este pasajero no se ha publicado
 acme.validation.booking-record.create.passenger-already-associated.message = Este pasajero ya está asociado a la reserva
+
+#Validaciones para Pasajero
+
+
+acme.validation.dateOfBirth.null-or-invalid = Debe cumplir el patron regular yyyy/mm/dd Hh:mm
+acme.validation.dateOfBirth.notPast.message = La fecha no puede estar en el futuro
+
+#BookingRecord
+
+customer.booking-record.delete.passenger.not-null = Debe seleccionar un pasajero para eliminar

@@ -22,11 +22,15 @@ public class CustomerBookingRecordController extends AbstractGuiController<Custo
 	@Autowired
 	private CustomerBookingRecordCreateService	createService;
 
+	@Autowired
+	private CustomerBookingRecordDeleteService	deleteService;
+
 
 	@PostConstruct
 	protected void initialise() {
 		super.addBasicCommand("list", this.listService);
 		super.addBasicCommand("show", this.showService);
 		super.addBasicCommand("create", this.createService);
+		super.addBasicCommand("delete", this.deleteService);
 	}
 }
