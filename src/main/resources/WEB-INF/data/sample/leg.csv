@@ -24,3 +24,11 @@ leg-21,ABC0021,2020/01/02 04:00,2020/01/02 05:00,"ON_TIME",airport-07,airport-08
 leg-22,ABC0022,2020/01/01 01:00,2020/01/01 03:00,"ON_TIME",airport-01,airport-02,aircraft-18,flight-27,true
 leg-23,ABC0023,2020/01/01 01:00,2020/01/01 03:00,"ON_TIME",airport-01,airport-02,aircraft-19,flight-28,true
 leg-24,ABC0024,2020/01/01 01:00,2020/01/01 03:00,"ON_TIME",airport-01,airport-02,aircraft-20,flight-29,false
+leg-98,QWE0001,2000/01/01 10:00,2000/01/01 14:00,"ON_TIME",airport-01,airport-02,aircraft-31,flight-98,false
+leg-99,QWE0001,2000/01/01 10:00,2000/01/01 14:00,"ON_TIME",airport-01,airport-02,aircraft-31,flight-98,false
+leg-100,QWE0002,2000/01/01 10:00,2000/01/01 15:00,"ON_TIME",airport-01,airport-02,aircraft-31,flight-98,false
+leg-101,QWE0003,2000/01/01 10:00,2000/01/01 16:00,"ON_TIME",airport-01,airport-02,aircraft-31,flight-98,false
+leg-102,QWE0005,2040/01/01 10:00,2099/01/01 14:00,"ON_TIME",airport-01,airport-02,aircraft-30,flight-99,false
+leg-103,QWE0006,2040/01/01 10:00,2099/01/01 15:00,"ON_TIME",airport-01,airport-02,aircraft-30,flight-99,false
+leg-104,QWE0007,2040/01/01 10:00,2099/01/01 16:00,"ON_TIME",airport-01,airport-02,aircraft-30,flight-99,false
+leg-105,QWE0008,2040/01/01 10:00,2099/01/01 17:00,"ON_TIME",airport-01,airport-02,aircraft-30,flight-99,false
