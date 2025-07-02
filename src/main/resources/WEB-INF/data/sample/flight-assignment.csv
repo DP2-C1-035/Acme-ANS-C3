@@ -29,3 +29,4 @@ flight-assignment-21,PILOT,2020/01/01 00:00,CONFIRMED,тестирование,t
 flight-assignment-22,PILOT,2020/01/01 00:00,CONFIRMED,' OR 1=1; --,true,flight-crew-member-02,leg-13
 flight-assignment-23,PILOT,2020/01/01 00:00,CONFIRMED,<script>alert('XSS')</script>,false,flight-crew-member-03,leg-14
 flight-assignment-24,PILOT,2020/01/01 00:00,CONFIRMED,Todo correcto,false,flight-crew-member-04,leg-15
+
