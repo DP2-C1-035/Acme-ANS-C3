@@ -46,10 +46,11 @@ acme.validation.booking-record.create.passenger-already-associated.message = Thi
 
 acme.validation.customer.passenger.update.is-not-dratMode.message = This passenger is not on draftMode.
 
-acme.validation.dateOfBirth.null-or-invalid = Must follow the pattern yyyy/mm/dd Hh:mm
-acme.validation.dateOfBirth.notPast.message = Date of birth can't be on the future
-acme.validation.dateOfBirth.invalid-format = Must follow the pattern yyyy/mm/dd Hh:mm
-
+acme.validation.passenger.dateOfBirth.null-or-invalid = Must follow the pattern yyyy/mm/dd Hh:mm
+acme.validation.customer.passenger.dateOfBirth.notPast.message = Date of birth can't be on the future
+acme.validation.customer.passenger.dateOfBirth.invalid-format = Must follow the pattern yyyy/mm/dd Hh:mm
+typeMismatch.date= Must follow the pattern yyyy/mm/dd Hh:mm
+typeMismatch.java.util.Date=  Must follow the pattern yyyy/mm/dd Hh:mm
 
 #BookingRecord
 

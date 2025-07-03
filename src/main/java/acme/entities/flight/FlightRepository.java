@@ -1,6 +1,8 @@
 
 package acme.entities.flight;
 
+import java.util.List;
+
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
 
@@ -14,17 +16,17 @@ public interface FlightRepository extends AbstractRepository {
 		    SELECT l
 		    FROM Leg l
 		    WHERE l.flight.id = :flightId AND l.draftMode = false
-		    AND (l.scheduledDeparture = (SELECT MIN(l2.scheduledDeparture) FROM Leg l2 WHERE l2.flight.id = :flightId))
+		    ORDER BY l.scheduledDeparture ASC
 		""")
-	Leg findFirstLegByFlightId(int flightId);
+	List<Leg> findLegsByFlightIdOrderByScheduledDepartureAsc(int flightId);
 
 	@Query("""
 		    SELECT l
 		    FROM Leg l
 		    WHERE l.flight.id = :flightId AND l.draftMode = false
-		    AND (l.scheduledArrival = (SELECT MAX(l2.scheduledArrival) FROM Leg l2 WHERE l2.flight.id = :flightId))
+		    ORDER BY l.scheduledArrival DESC
 		""")
-	Leg findLastLegByFlightId(int flightId);
+	List<Leg> findLegsByFlightIdOrderByScheduledArrivalDesc(int flightId);
 
 	@Query("SELECT COUNT(l) FROM Leg l WHERE l.flight.id = :flightId")
 	Integer getNumbersOfLegsByFlightId(int flightId);
