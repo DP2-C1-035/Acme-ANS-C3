@@ -1,5 +1,5 @@
 
-package acme.features.assistanceAgent;
+package acme.features.assistanceAgent.claim;
 
 import java.util.Collection;
 
@@ -7,19 +7,19 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
 import acme.entities.claim.ClaimStatus;
 import acme.entities.claim.ClaimType;
 import acme.entities.leg.Leg;
-import acme.entities.tracking_log.TrackingLog;
-import acme.entities.tracking_log.TrackingLogIndicator;
 import acme.realms.assistanceAgents.AssistanceAgent;
 
 @GuiService
-public class AssistanceAgentClaimUpdateService extends AbstractGuiService<AssistanceAgent, Claim> {
+public class AssistanceAgentClaimCreateService extends AbstractGuiService<AssistanceAgent, Claim>
 
+{
 	// Internal state ---------------------------------------------------------
 
 	@Autowired
@@ -30,15 +30,14 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 
 	@Override
 	public void authorise() {
-		boolean status;
-		int masterId;
-		Claim claim;
+		AssistanceAgent assistanceAgent;
+		boolean status = false;
+		boolean bool = true;
 		int legId;
 		Leg leg;
-		boolean externalRelation = true;
 
 		if (super.getRequest().getMethod().equals("GET"))
-			externalRelation = true;
+			bool = true;
 		else {
 			legId = super.getRequest().getData("leg", int.class);
 			leg = this.repository.findLegById(legId);
@@ -49,32 +48,39 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 				boolean isLegNotDraft = !leg.isDraftMode();
 				if (isLegNotDraft) {
 					boolean isFlightNotDraft = !leg.getFlight().isDraftMode();
-					externalRelation = isFlightNotDraft;
+					bool = isFlightNotDraft;
 				} else
-					externalRelation = isLegNotDraft;
+					bool = isLegNotDraft;
 			}
 		}
 
-		masterId = super.getRequest().getData("id", int.class);
-		claim = this.repository.findClaimById(masterId);
-		status = claim != null && claim.isDraftMode() && externalRelation && super.getRequest().getPrincipal().hasRealm(claim.getAssistanceAgent());
+		assistanceAgent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+		if (super.getRequest().getPrincipal().hasRealm(assistanceAgent))
+			if (bool)
+				status = true;
 
 		super.getResponse().setAuthorised(status);
 	}
 
 	@Override
 	public void load() {
-		int masterId;
 		Claim object;
+		AssistanceAgent assistanceAgent;
 
-		masterId = super.getRequest().getData("id", int.class);
-		object = this.repository.findClaimById(masterId);
+		assistanceAgent = (AssistanceAgent) super.getRequest().getPrincipal().getActiveRealm();
+
+		object = new Claim();
+		object.setDraftMode(true);
+		object.setAssistanceAgent(assistanceAgent);
+		object.setIndicator(ClaimStatus.PENDING);
+		object.setRegistrationMoment(MomentHelper.getCurrentMoment());
 
 		super.getBuffer().addData(object);
 	}
 
 	@Override
 	public void bind(final Claim object) {
+		assert object != null;
 		int legId;
 		Leg leg;
 
@@ -90,7 +96,6 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 		assert object != null;
 		boolean isNotWrongLeg = true;
 		boolean isLegPublished;
-		ClaimStatus indicator;
 		Claim claim = this.repository.findClaimById(object.getId());
 
 		if (!super.getBuffer().getErrors().hasErrors("registrationMoment")) {
@@ -103,23 +108,23 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 			super.state(isLegPublished, "leg", "assistanceAgent.claim.form.error.leg-not-published");
 		}
 
-		{
-			Collection<TrackingLog> logs;
-			logs = this.repository.findTrackingLogsByClaimId(claim.getId());
-			TrackingLogIndicator trackingLogIndicator;
-			indicator = claim.getIndicator();
-			trackingLogIndicator = logs.stream().filter(t -> !t.getIndicator().equals(TrackingLogIndicator.PENDING)).findFirst().get().getIndicator();
-			super.state(indicator.toString().equals(trackingLogIndicator.toString()), "*", "assistanceAgent.claim.form.error.claim-updated-with-status-different-to-logs");
-		}
+		if (!super.getBuffer().getErrors().hasErrors("indicator"))
+			super.state(object.getIndicator() == ClaimStatus.PENDING, "indicator", "assistanceAgent.claim.form.error.indicator-must-be-pending");
+
 	}
 
 	@Override
 	public void perform(final Claim object) {
+		assert object != null;
+
+		object.setRegistrationMoment(MomentHelper.getCurrentMoment());
+
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final Claim object) {
+		assert object != null;
 		Dataset dataset;
 
 		Collection<Leg> legs;
@@ -133,12 +138,11 @@ public class AssistanceAgentClaimUpdateService extends AbstractGuiService<Assist
 		choicesType = SelectChoices.from(ClaimType.class, object.getType());
 		choicesIndicator = SelectChoices.from(ClaimStatus.class, object.getIndicator());
 
-		dataset = super.unbindObject(object, "registrationMoment", "passengerEmail", "description", "type", "indicator", "leg", "draftMode");
+		dataset = super.unbindObject(object, "registrationMoment", "passengerEmail", "description", "type", "indicator", "leg");
 		dataset.put("legs", choices);
 		dataset.put("indicators", choicesIndicator);
 		dataset.put("types", choicesType);
 
 		super.getResponse().addData(dataset);
 	}
-
 }

@@ -1,0 +1,43 @@
+# messages-es.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+assistance-agent.tracking-log.list.title = Lista de Registros de Seguimiento  
+assistance-agent.tracking-log.form.title = Detalles del Registro de Seguimiento  
+
+assistanceAgent.trackingLog.list.label.resolutionPercentage = Porcentaje  
+assistanceAgent.trackingLog.list.label.lastUpdateMoment = Momento de Última Actualización  
+assistanceAgent.trackingLog.list.label.indicator = Estado  
+assistanceAgent.trackingLog.list.label.published = ¿Está Publicado?  
+assistanceAgent.trackingLog.list.creationMoment = Momento de creación
+
+assistanceAgent.trackingLog.list.button.create = Crear 
+assistanceAgent.trackingLog.list.button.create-exceptional-case = Caso Excepcional 
+
+assistanceAgent.trackingLog.form.button.create = Crear  
+assistanceAgent.trackingLog.form.button.update = Actualizar  
+assistanceAgent.trackingLog.form.button.publish = Publicar  
+assistanceAgent.trackingLog.form.button.delete = Eliminar  
+
+assistanceAgent.trackingLog.form.label.lastUpdateMoment = Momento de Última Actualización  
+assistanceAgent.trackingLog.form.label.step = Paso en Proceso  
+assistanceAgent.trackingLog.form.label.resolutionPercentage = Porcentaje de Resolución  
+assistanceAgent.trackingLog.form.label.resolution = Resolución  
+assistanceAgent.trackingLog.form.label.indicator = Indicador  
+assistanceAgent.trackingLog.form.label.claim = Reclamo 
+assistanceAgent.trackingLog.form.label.creationMoment = Momento de creación
+
+assistanceAgent.trackingLog.form.error.resolution-not-null = La resolución no puede estar vacía o ser nula si el indicador está en estado "ACCEPTED" o "DENIED"
+assistanceAgent.trackingLog.form.error.indicator-pending = El indicador tiene estado "PENDING" si el porcentaje de resolución es menor a 100%. Si es igual a 100%, el estado debe ser "ACCEPTED" o "DENIED"
+assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage = El porcentaje de resolución debe ser mayor que los porcentajes de los otros registros creados.
+assistanceAgent.trackingLog.form.error.unpublished-lower-logs = Existen registros con porcentajes inferiores a este. Por favor, elimínelos o publíquelos para mantener un proceso de avance coherente.
+assistanceAgent.trackingLog.form.error.less-than-max-resolution-percentage = El nuevo porcentaje de resolución de este registro debe ser mayor que los porcentajes ya registrados.
+assistanceAgent.trackingLog.form.error.must-be-100 = El porcentaje de resolución debe ser del 100 %.
+assistanceAgent.trackingLog.form.error.only-two-tracking-logs-100 = Solo puede haber 2 registros de seguimiento con un porcentaje del 100 %. Elimine los registros que no estén publicados.
+assistanceAgent.trackingLog.form.error.claim-must-be-published = Antes de publicar un registro de seguimiento, debe publicar la reclamación correspondiente.

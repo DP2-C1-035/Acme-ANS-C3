@@ -1,5 +1,5 @@
 
-package acme.features.assistanceAgent;
+package acme.features.assistanceAgent.claim;
 
 import java.util.Collection;
 
@@ -113,10 +113,10 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 			allLogsPending = logs.size() == 0 || logs.stream().allMatch(l -> l.getIndicator().equals(TrackingLogIndicator.PENDING)) ? true : false;
 			super.state(allLogsPending, "*", "assistanceAgent.claim.form.error.claim-published-with-pending-status");
 
-			TrackingLogIndicator trackingLogIndicator;
-			indicator = claim.getIndicator();
-			trackingLogIndicator = logs.stream().filter(t -> !t.getIndicator().equals(TrackingLogIndicator.PENDING)).findFirst().get().getIndicator();
-			super.state(indicator.toString().equals(trackingLogIndicator.toString()), "*", "assistanceAgent.claim.form.error.claim-published-with-status-different-to-logs");
+			//TrackingLogIndicator trackingLogIndicator;
+			//indicator = claim.getIndicator();
+			//trackingLogIndicator = logs.stream().filter(t -> !t.getIndicator().equals(TrackingLogIndicator.PENDING)).findFirst().get().getIndicator();
+			//super.state(indicator.toString().equals(trackingLogIndicator.toString()), "*", "assistanceAgent.claim.form.error.claim-published-with-status-different-to-logs");
 		}
 	}
 

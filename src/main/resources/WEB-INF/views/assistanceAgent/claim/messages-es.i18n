@@ -15,7 +15,7 @@ assistance-agent.claim.form.title = Detalles del Reclamo
 
 assistanceAgent.claim.list.label.type = Tipo de Reclamo
 assistanceAgent.claim.list.label.leg = Tramo del Vuelo
-assistanceAgent.claim.list.label.indicator = Situación Actual
+assistanceAgent.claim.list.label.indicator = Estado
 assistanceAgent.claim.list.label.published = ¿Está Publicado?
 
 assistanceAgent.claim.list.button.create = Crear
@@ -27,7 +27,7 @@ assistanceAgent.claim.form.button.delete = Eliminar
 assistanceAgent.claim.form.button.trackingLogs = Registros de Seguimiento
 
 assistanceAgent.claim.form.label.registrationMoment = Momento de Registro
-assistanceAgent.claim.form.label.email = Correo Electrónico
+assistanceAgent.claim.form.label.passengerEmail = Correo Electrónico
 assistanceAgent.claim.form.label.description = Descripción
 assistanceAgent.claim.form.label.type = Tipo de Reclamo
 assistanceAgent.claim.form.label.indicator = Indicador

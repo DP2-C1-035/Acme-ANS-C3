@@ -1,0 +1,43 @@
+# messages-en.i18n
+#
+# Copyright (C) 2012-2025 Rafael Corchuelo.
+#
+# In keeping with the traditional purpose of furthering education and research, it is
+# the policy of the copyright owner to permit non-commercial use and redistribution of
+# this software. It has been tested carefully, but it is not guaranteed for any particular
+# purposes.  The copyright owner does not offer any warranties or representations, nor do
+# they accept any liabilities with respect to them.
+
+assistance-agent.tracking-log.list.title = Tracking Logs List
+assistance-agent.tracking-log.form.title = Tracking Log Details
+
+assistanceAgent.trackingLog.list.label.resolutionPercentage = Percentage
+assistanceAgent.trackingLog.list.label.lastUpdateMoment = Last Update Moment
+assistanceAgent.trackingLog.list.label.indicator = Status
+assistanceAgent.trackingLog.list.label.published = Is Published?
+assistanceAgent.trackingLog.list.creationMoment = Creation Moment
+
+assistanceAgent.trackingLog.list.button.create = Create
+assistanceAgent.trackingLog.list.button.create-exceptional-case = Create Exceptional Case
+
+assistanceAgent.trackingLog.form.button.create = Create
+assistanceAgent.trackingLog.form.button.update = Update
+assistanceAgent.trackingLog.form.button.publish = Publish
+assistanceAgent.trackingLog.form.button.delete = Delete
+
+assistanceAgent.trackingLog.form.label.lastUpdateMoment = Last Update Moment
+assistanceAgent.trackingLog.form.label.step = Step Undergoing
+assistanceAgent.trackingLog.form.label.resolutionPercentage = Resolution Percentage
+assistanceAgent.trackingLog.form.label.resolution = Resolution
+assistanceAgent.trackingLog.form.label.indicator = Indicator
+assistanceAgent.trackingLog.form.label.claim = Claim
+assistanceAgent.trackingLog.form.label.creationMoment = Creation Moment
+
+assistanceAgent.trackingLog.form.error.resolution-not-null =  The resolution reason can't be blank or null if the indicator is "ACCEPTED" or "DENIED"
+assistanceAgent.trackingLog.form.error.indicator-pending = Only the indicator is "PENDING" if the resolution percentage is less than 100%. If it is equal to 100%, it must be "ACCEPTED" or "DENIED
+assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage = The resolution percentage must be higher than the percentages of the other created logs
+assistanceAgent.trackingLog.form.error.unpublished-lower-logs = There are existing logs whose percentages are lower to this one. Please, delete them or publish them to maintain an increasing process
+assistanceAgent.trackingLog.form.error.less-than-max-resolution-percentage = The new resolution percentage of this tracking log must be higher than the ones that are uploaded  
+assistanceAgent.trackingLog.form.error.must-be-100 = The resolution percentage must be 100%
+assistanceAgent.trackingLog.form.error.only-two-tracking-logs-100 = You can only have 2 tracking logs with a percentage of a 100%. Delete the other tracking logs that are not published
+assistanceAgent.trackingLog.form.error.claim-must-be-published = Before publishing a tracking log, you must publish its corresponding claim
