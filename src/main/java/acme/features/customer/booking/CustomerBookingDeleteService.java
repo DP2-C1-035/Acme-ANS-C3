@@ -80,7 +80,7 @@ public class CustomerBookingDeleteService extends AbstractGuiService<Customer, B
 		fligths = this.repository.findAllFlights().stream().filter(f -> !f.isDraftMode() && f.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
 		flightChoices = SelectChoices.from(fligths, "tag", booking.getFlight());
 
-		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "lastNibble", "draftMode");
+		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "creditCardNibble", "draftMode");
 		dataset.put("classes", classChoices);
 		dataset.put("flights", flightChoices);
 

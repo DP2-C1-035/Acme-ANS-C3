@@ -3,7 +3,9 @@ package acme.features.customer.booking;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -135,18 +137,29 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		Dataset dataset;
 		Collection<Flight> flights;
 		SelectChoices choices;
-		Date moment;
+		Date moment = MomentHelper.getCurrentMoment();
 		Flight selectedFlight = booking.getFlight();
 
-		moment = MomentHelper.getCurrentMoment();
 		flights = this.repository.findFlightsWithFirstLegAfter(moment);
 
+		// Asegurarse de que el vuelo seleccionado todavía es válido
 		if (selectedFlight != null && !flights.contains(selectedFlight))
 			selectedFlight = null;
 
-		choices = SelectChoices.from(flights, "flightRoute", selectedFlight);
+		// Filtrar vuelos con flightRoute no nulo y sin duplicados
+		Set<String> seen = new HashSet<>();
+		List<Flight> validFlights = flights.stream().filter(f -> {
+			try {
+				return f.getFlightRoute() != null && seen.add(f.getFlightRoute());
+			} catch (Exception e) {
+				return false;
+			}
+		}).toList();
 
-		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "price", "creditCardNibble", "draftMode");
+		// Crear SelectChoices
+		choices = SelectChoices.from(validFlights, "flightRoute", selectedFlight);
+
+		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "price", "creditCardNibble");
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
 

@@ -58,7 +58,7 @@ public class Booking extends AbstractEntity {
 	private Money				price;
 
 	@Optional
-	@ValidString(pattern = "^[0-9]{4}$")
+	@ValidString(pattern = "^[0-9]{4}$", message = "The last nibble of the credit card must consist of four hexadecimal characters.")
 	@Automapped
 	private String				creditCardNibble;  // Optional field for the last nibble of the credit card used for payment
 
