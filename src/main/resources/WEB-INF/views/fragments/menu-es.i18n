@@ -72,3 +72,9 @@ master.menu.user-account.consumer-profile = Perfil de consumidor
 master.menu.user-account.become-manager = Hazte manager
 master.menu.user-account.manager-profile = Perfil de manager
 master.menu.user-account.customer-profile = Perfil de Customer
+
+
+##Any principals
+
+master.menu.authenticated = Autenticado
+master.menu.authenticated.list-flight= Ver vuelos
