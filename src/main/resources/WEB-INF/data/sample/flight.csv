@@ -1,32 +1,32 @@
 key,tag,requires-self-transfer,cost,description,key:manager,draft-mode
-flight-00,"Lorem ipsum dolor sit ame",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,true
-flight-01,"L",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-02,"Lo",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
+flight-00,Flight numer 0,false,EUR 1000.00,Vuelo estándar con conexión internacional. Requiere documentación adicional.,manager-01,true
+flight-01,F,false,EUR 1000.00,Viaje corto con equipaje de mano permitido. No se permiten cambios una vez emitido.,manager-01,false
+flight-02,AA,false,EUR 1000.00,Itinerario sin escalas. Se incluye refrigerio a bordo.,manager-01,false
 flight-03,"Lorem ipsum dolor sit amet, consectetur adipiscin",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
 flight-04,"Lorem ipsum dolor sit amet, consectetur adipiscing",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-05,"โลเร็ม อิปซัม",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-06,"لوريم إيبسوم",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-07,"洛伦·伊普森",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-08,"<marquee>Hacked</marquee>",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-09,"<script>alert(‘Hacked!’);</script>",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-10,"' or 'A' = 'A",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-11,"Lorem ipsum dolor sit ame",true,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-12,"Lorem ipsum dolor sit ame",false,EUR 0.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-13,"Lorem ipsum dolor sit ame",false,EUR 0.01,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-14,"Lorem ipsum dolor sit ame",false,EUR 199999.99,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-15,"Lorem ipsum dolor sit ame",false,EUR 200000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,false
-flight-16,"Lorem ipsum dolor sit ame",false,EUR 1000.00,,manager-01,false
-flight-17,"Lorem ipsum dolor sit ame",false,EUR 1000.00,"L",manager-01,false
-flight-18,"Lorem ipsum dolor sit ame",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor",manager-01,false
-flight-19,"Lorem ipsum dolor sit ame",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut enim ad minim veniam? Quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor*",manager-01,true
-flight-20,"Lorem ipsum dolor sit ame",false,EUR 1000.00,"โลเร็ม อิปซัม",manager-01,true
-flight-21,"Lorem ipsum dolor sit ame",false,EUR 1000.00,"لوريم إيبسوم",manager-01,true
-flight-22,"Lorem ipsum dolor sit ame",false,EUR 1000.00,"洛伦·伊普森",manager-01,true
-flight-23,"Lorem ipsum dolor sit ame",false,EUR 1000.00,"<marquee>Hacked</marquee>",manager-01,true
-flight-24,"Lorem ipsum dolor sit ame",false,EUR 1000.00,"<script>alert(‘Hacked!’);</script>",manager-01,true
-flight-25,"Lorem ipsum dolor sit ame",false,EUR 1000.00,"' or 'A' = 'A",manager-01,true
-flight-26,"Lorem ipsum dolor sit ame",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-02,true
-flight-27,"Legs no publicadas 1",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,true
-flight-28,"Legs no publicadas 2",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,true
-flight-29,"Leg publicada",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,true
-flight-30,"Sin Legs",false,EUR 1000.00,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut*",manager-01,true
+flight-05,โลเร็ม อิปซัม,false,EUR 1000.00,Vuelo con origen en Tailandia. Atención en tailandés disponible a bordo.,manager-01,false
+flight-06,لوريم إيبسوم,false,EUR 1000.00,Ruta directa desde Oriente Medio. Incluye opciones de menú halal.,manager-01,false
+flight-07,洛伦·伊普森,false,EUR 1000.00,Servicio premium con intérprete en mandarín disponible.,manager-01,false
+flight-08,<marquee>Hacked</marquee>,false,EUR 1000.00,⚠️ Contenido potencialmente malicioso detectado. Este registro será revisado.,manager-01,false
+flight-09,<script>alert(‘Hacked!’);</script>,false,EUR 1000.00,⚠️ Advertencia: script sospechoso en campo descripción. Requiere validación de seguridad.,manager-01,true
+flight-10,' or 'A' = 'A,false,EUR 1000.00,Intento de inyección detectado. Registro bajo cuarentena.,manager-01,false
+flight-11,Vuelo publicado,true,EUR 1000.00,Vuelo con transferencia manual requerida. Se recomienda llegar con antelación.,manager-01,false
+flight-12,Vuelo promo,false,EUR 0.00,Promoción especial: primer viaje gratis en rutas seleccionadas.,manager-01,false
+flight-13,Vuelo descuento,false,EUR 0.01,Descuento aplicado. No incluye equipaje facturado.,manager-01,true
+flight-14,Vuelo de lujo,false,EUR 199999.99,Vuelo de lujo en clase ejecutiva privada. Servicio gourmet incluido.,manager-01,true
+flight-15,Vuelo caro,false,EUR 200000.00,Charter presidencial con seguridad reforzada y pista reservada.,manager-01,false
+flight-16,Vuelo sin descripcion,false,EUR 1000.00,,manager-01,false
+flight-17,Vuelo descripcion minima,false,EUR 1000.00,L,manager-01,false
+flight-18,Vuelo beneficios adicionales,false,EUR 1000.00,"Este vuelo ofrece beneficios adicionales: prioridad de embarque, acceso a salas VIP, y mayor flexibilidad en cambios.",manager-01,false
+flight-19,Vuelo corporativo,false,EUR 1000.00,Viaje corporativo con políticas adaptadas para empleados. Consultar condiciones.,manager-01,true
+flight-20,Vuelo 1,false,EUR 1000.00,Vuelo normal,manager-01,true
+flight-21,Vuelo 2,false,EUR 1000.00,Vuelo curioso,manager-01,true
+flight-22,Vuelo 3,false,EUR 1000.00,Incluye menú vegetariano y traducciones automáticas en pantallas de entretenimiento.,manager-01,true
+flight-23,<h1>Vuelo</h1>,false,EUR 1000.00,<h1>Vuelo</h1>,manager-01,true
+flight-24,"<script>console.log(""Vuelo"")</h1>",false,EUR 1000.00,"<script>console.log(""Vuelo"")</h1>",manager-01,true
+flight-25,' or 1 = 1,false,EUR 1000.00,' or 1 = 1,manager-01,true
+flight-26,Vuelo,false,EUR 1000.00,Itinerario revisado por el nuevo gestor. Aún en fase de aprobación preliminar.,manager-02,true
+flight-27,Legs no publicadas 1,false,EUR 1000.00,Trayecto aún no disponible para el público general. Prueba interna en curso.,manager-01,true
+flight-28,Legs no publicadas 2,false,EUR 1000.00,Vuelo experimental sin horario fijo. Información restringida al equipo interno.,manager-01,true
+flight-29,Leg publicada,false,EUR 1000.00,Ruta ya publicada en el sistema y habilitada para reserva.,manager-01,true
+flight-30,Sin Legs,false,EUR 1000.00,Este vuelo no tiene tramos definidos. Se requiere planificación personalizada.,manager-01,true
