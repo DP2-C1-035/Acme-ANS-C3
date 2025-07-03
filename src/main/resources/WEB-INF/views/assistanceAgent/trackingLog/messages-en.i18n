@@ -15,6 +15,7 @@ assistanceAgent.trackingLog.list.label.resolutionPercentage = Percentage
 assistanceAgent.trackingLog.list.label.lastUpdateMoment = Last Update Moment
 assistanceAgent.trackingLog.list.label.indicator = Status
 assistanceAgent.trackingLog.list.label.published = Is Published?
+assistanceAgent.trackingLog.list.creationMoment = Creation Moment
 
 assistanceAgent.trackingLog.list.button.create = Create
 assistanceAgent.trackingLog.list.button.create-exceptional-case = Create Exceptional Case
