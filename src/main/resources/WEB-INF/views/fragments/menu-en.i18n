@@ -76,5 +76,4 @@ master.menu.user-account.customer-profile = Customer Profile
 #Any principals:
 
 master.menu.authenticated = Authenticated
-master.menu.authenticated.list-flight-assignments = List flight assignments
 master.menu.authenticated.list-flight= List flights
