@@ -15,4 +15,7 @@ public interface AuthenticatedFlightRepository extends AbstractRepository {
 	@Query("select f from Flight f where f.draftMode = false")
 	Collection<Flight> findPublishedFlights();
 
+	@Query("select f from Flight f where f.id = :id")
+	Flight findFlightById(int id);
+
 }
