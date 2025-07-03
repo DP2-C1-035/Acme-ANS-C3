@@ -50,8 +50,8 @@ acme.validation.booking-record.create.passenger-already-associated.message = Est
 #Validaciones para Pasajero
 
 
-acme.validation.dateOfBirth.null-or-invalid = Debe cumplir el patron regular yyyy/mm/dd Hh:mm
-acme.validation.dateOfBirth.notPast.message = La fecha no puede estar en el futuro
+acme.validation.customer.passenger.dateOfBirth.null-or-invalid = Debe cumplir el patron regular yyyy/mm/dd Hh:mm
+acme.validation.customer.passenger.dateOfBirth.notPast.message = La fecha no puede estar en el futuro
 
 #BookingRecord
 

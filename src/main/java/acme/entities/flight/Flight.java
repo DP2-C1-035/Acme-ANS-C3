@@ -2,6 +2,7 @@
 package acme.entities.flight;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Entity;
 import javax.persistence.Index;
@@ -68,18 +69,16 @@ public class Flight extends AbstractEntity {
 
 	@Transient
 	public Leg getFirstLeg() {
-		FlightRepository repository;
-
-		repository = SpringHelper.getBean(FlightRepository.class);
-		return repository.findFirstLegByFlightId(this.getId());
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		List<Leg> legs = repository.findLegsByFlightIdOrderByScheduledDepartureAsc(this.getId());
+		return legs.isEmpty() ? null : legs.get(0);
 	}
 
 	@Transient
 	public Leg getLastLeg() {
-		FlightRepository repository;
-
-		repository = SpringHelper.getBean(FlightRepository.class);
-		return repository.findLastLegByFlightId(this.getId());
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		List<Leg> legs = repository.findLegsByFlightIdOrderByScheduledArrivalDesc(this.getId());
+		return legs.isEmpty() ? null : legs.get(0);
 	}
 
 	@Transient
@@ -108,11 +107,8 @@ public class Flight extends AbstractEntity {
 
 	@Transient
 	public Integer getLayovers() {
-		FlightRepository repository;
-		Integer totalLegs;
-
-		repository = SpringHelper.getBean(FlightRepository.class);
-		totalLegs = repository.getNumbersOfLegsByFlightId(this.getId()) - 1;
+		FlightRepository repository = SpringHelper.getBean(FlightRepository.class);
+		int totalLegs = repository.getNumbersOfLegsByFlightId(this.getId()) - 1;
 		if (totalLegs == -1)
 			totalLegs = 0;
 		return totalLegs;

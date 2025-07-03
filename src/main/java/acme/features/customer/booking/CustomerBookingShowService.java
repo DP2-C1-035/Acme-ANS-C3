@@ -4,6 +4,9 @@ package acme.features.customer.booking;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -50,7 +53,6 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 
 		super.getBuffer().addData(booking);
 	}
-
 	@Override
 	public void unbind(final Booking booking) {
 		Dataset dataset;
@@ -67,6 +69,16 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 		if (selectedFlight != null && !flights.contains(selectedFlight)) {
 			flights = new ArrayList<>(flights);
 			flights.add(selectedFlight);
+		}
+
+		// Filtrar vuelos con flightRoute nulo y eliminar duplicados
+		Set<String> seenRoutes = new HashSet<>();
+		Iterator<Flight> iter = flights.iterator();
+		while (iter.hasNext()) {
+			Flight f = iter.next();
+			String route = f.getFlightRoute();
+			if (route == null || !seenRoutes.add(route))
+				iter.remove(); // eliminar vuelo con route nulo o duplicado
 		}
 
 		choices = SelectChoices.from(flights, "flightRoute", selectedFlight);
