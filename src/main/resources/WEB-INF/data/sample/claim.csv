@@ -2,8 +2,8 @@ key,registration-moment,passenger-email,description,type,indicator,key:assistanc
 # base entity
 claim-00,2012/07/02 0:00,"acme@lorem-ipsum.org","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut","FLIGHT_ISSUES",PENDING,assistance-agent-01,leg-11,true
 # registrationMoment - standard variations
-claim-01,2000/01/01 0:00,"acme@lorem-ipsum.org","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut","FLIGHT_ISSUES",PENDING,assistance-agent-01,leg-11,true
-claim-02,2000/01/01 0:01,"acme@lorem-ipsum.org","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut","FLIGHT_ISSUES",PENDING,assistance-agent-01,leg-11,true
+claim-01,2000/01/01 0:02,"acme@lorem-ipsum.org","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut","FLIGHT_ISSUES",PENDING,assistance-agent-01,leg-10,true
+claim-02,2000/01/01 0:03,"acme@lorem-ipsum.org","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut","FLIGHT_ISSUES",PENDING,assistance-agent-01,leg-10,true
 claim-03,2024/12/31 23:59,"acme@lorem-ipsum.org","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut","FLIGHT_ISSUES",PENDING,assistance-agent-01,leg-00,true
 claim-04,2025/01/01 0:00,"acme@lorem-ipsum.org","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! Ut","FLIGHT_ISSUES",PENDING,assistance-agent-01,leg-00,true
 # registrationMoment - no singular values
@@ -45,3 +45,5 @@ claim-28,2012/07/02 0:00,"acme@lorem-ipsum.org","Lorem ipsum dolor sit amet, con
 #draftMode - standard variations
 claim-29,2012/07/02 0:00,"acme@lorem-ipsum.org","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! U*","FLIGHT_ISSUES",REJECTED,assistance-agent-01,leg-11,false
 #draftMode - no singular values
+claim-30,2000/01/01 0:02,"acme@lorem-ipsum.org","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! U*","FLIGHT_ISSUES",REJECTED,assistance-agent-01,leg-10,false
+claim-31,2000/01/01 0:02,"acme@lorem-ipsum.org","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do: eiusmod tempor incididunt ut labore et dolore magna aliqua! U*","FLIGHT_ISSUES",ACCEPTED,assistance-agent-01,leg-10,false

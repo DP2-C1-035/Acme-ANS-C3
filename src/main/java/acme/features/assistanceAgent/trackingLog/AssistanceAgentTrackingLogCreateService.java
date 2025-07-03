@@ -11,12 +11,14 @@ import acme.client.components.models.Dataset;
 import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
+import acme.client.services.GuiService;
 import acme.entities.claim.Claim;
 import acme.entities.claim.ClaimStatus;
 import acme.entities.tracking_log.TrackingLog;
 import acme.entities.tracking_log.TrackingLogIndicator;
 import acme.realms.assistanceAgents.AssistanceAgent;
 
+@GuiService
 public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<AssistanceAgent, TrackingLog> {
 
 	// Internal state ---------------------------------------------------------
