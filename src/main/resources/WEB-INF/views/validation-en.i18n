@@ -55,3 +55,25 @@ typeMismatch.java.util.Date=  Must follow the pattern yyyy/mm/dd Hh:mm
 #BookingRecord
 
 customer.booking-record.delete.passenger.not-null = Must select one passenger to delete
+
+#Flight Validation
+acme.validation.flight.leg.message = All legs must not be in draftMode
+acme.validation.flight.Delete.message = The flight must be in draftMode
+
+
+#Leg validation
+acme.validation.leg.duplicated-flightNumber.message = The flight number is already in use
+acme.validation.constraints.leg.flightNumber-IATACode.message =  The flight number must start with the IATA code of the airline associated with the manager
+acme.validation.constraints.leg.arrivalDepartureDates.message = The departure date must be earlier than the arrival date
+acme.validation.leg.duplicated-leg-arrivalDepartureDates.message = The departure or arrival dates overlap with another leg's interval
+acme.validation.leg.invalid-leg-dates.message = The leg introduced is neither later than the first leg nor earlier than the last leg
+acme.validation.leg.invalid-leg-arrivalAirport.message = The entered arrival airport does not match the departure airport of the first leg, but the flight is not a self-transfer
+acme.validation.leg.invalid-leg-departureAirport.message = The entered departure airport does not match the arrival airport of the last leg, but the flight is not a self-transfer
+acme.validation.leg.invalid-leg-arrivalAirport-selfTransfer.message = The entered arrival airport matches the departure airport of the first leg, but the flight is a self-transfer
+acme.validation.leg.invalid-leg-departureAirport-selfTransfer.message = The entered departure airport matches the arrival airport of the last leg, but the flight is a self-transfer 
+acme.validation.constraints.leg.arrivalAirport.message = The departure airport value cannot be empty.  
+acme.validation.constraints.leg.departureAirport.message = The arrival airport value cannot be empty.  
+acme.validation.constraints.leg.invalid-airports.message = The arrival and departure airport can not be the same airport
+acme.validation.leg.invalid-aircraft.message = This aircraft is not available in that moment
+acme.validation.constraints.leg.invalid-min-date.message = The date must be after 2000/01/01 00:00
+acme.validation.constraints.leg.invalid-max-date.message = The date must be before 2200/12/31 23:59
