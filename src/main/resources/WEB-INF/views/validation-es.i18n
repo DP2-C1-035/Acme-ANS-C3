@@ -74,3 +74,82 @@ customer.booking-record.delete.passenger.not-null = Debe seleccionar un pasajero
 #Validaciones Booking
 
  acme.validation.locatorCode.not-unique = Este código localizador ya existe
+
+#Validación Administrador
+acme.validation.airline.duplicated-iata.message = Ya existe una aerolínea con ese código IATA
+acme.validation.airport.duplicated-iataCode.message = El iataCode ya está en uso
+acme.validation.aircraft.airline-not-found.message = No se encontró la aerolínea.
+
+acme.validation.aircraft.duplicated-registration-number.message = Número de registro ya usado
+
+
+acme.validation.administrator.aircraft.status-UNDER_MAINTENANCE.message = La aeronave ya está en mantenimiento.
+
+# Validación AssistanceAgent
+
+acme.validation.assistanceAgent.invalid-employee-code-format.message = El patrón de códgio de empleado es incorrecto o el código es nulo.
+acme.validation.assistanceAgent.invalid-employee-code.message = El código de empleado debe consistir de las iniciales del nombre y el primer apellido.
+acme.validation.assistanceAgent.unique-assistance-agent.message = Ya existe un empleado con este código.
+
+# Validación TrackingLog
+
+acme.validation.trackinglog.invalid-state.message = Estado de resolución incorrecto
+acme.validation.trackinglog.invalid-resolution.message = Resolución incorrecta
+
+# Validación general de fechas
+
+acme.validation.range.message = La fecha no está en un rango correcto.
+
+#Validación general de clientes
+acme.validation.customer.invalid-identifier.message = The customer's identifier number already exists.
+acme.validation.customer.invalid-identifierNumber.message = The identifier number does not start with the initial of the first name and the initial of the surname.Add commentMore actions
+
+#Validación general de reservas
+
+acme.validation.booking.duplicated-locatorCode.message = Este locatorCode ya existe.
+
+acme.validation.customer.passenger.update.is-not-dratMode.message = Este pasajero no está en modo borrador.
+
+acme.validation.booking.departure-not-in-future.message = Este vuelo ya ha salido. Esto no es un error 500 por que un cliente puede crear una reserva con un vuelo. Tiempo después puede hacer show de la reserva. Ese vuelo no está en la lista debido a que solo se listan los vuelos que aún no han salido y ese vuelo ya salió. 
+acme.validation.booking.is-not-draft-mode.message = No se puede actualizar esta reserva. No está en modo borrador
+acme.validation.booking.flight.not-found.messasge = No se encontró ese vuelo
+
+acme.validation.booking.publish.passengers-associated.message = Esta reserva no tiene pasajeros asociados.
+acme.validation.booking.publish.passenger-associated-not-owned.message = Esta reserva tiene pasajeros que no te pertenecen.
+acme.validation.booking.published.passenger-not-published.message = Esta reserva tiene pasajeros no publicados.
+
+acme.validation.booking-record.create.passenger-not-from-customer.message = Este pasajero no está asociado contigo
+acme.validation.booking-record.create.passenger-not-published.message = Este pasajero no se ha publicado
+acme.validation.booking-record.create.passenger-already-associated.message = Este pasajero ya está asociado a la reserva
+
+#Validaciones para Pasajero
+
+
+acme.validation.customer.passenger.dateOfBirth.null-or-invalid = Debe cumplir el patron regular yyyy/mm/dd Hh:mm
+acme.validation.customer.passenger.dateOfBirth.notPast.message = La fecha no puede estar en el futuro
+
+#BookingRecord
+
+customer.booking-record.delete.passenger.not-null = Debe seleccionar un pasajero para eliminar
+
+#Validaciones de vuelos
+acme.validation.flight.leg.message = Todas las legs tienen que estar en modo no borrador
+acme.validation.flight.Delete.message = El vuelo tiene que estar en modo borrador
+
+
+#Validaciones de tramos
+acme.validation.leg.duplicated-flightNumber.message = El número de vuelo ya está en uso
+acme.validation.constraints.leg.flightNumber-IATACode.message =  El número de vuelo debe comenzar por el código IATA de la aerolinea del manager
+acme.validation.constraints.leg.arrivalDepartureDates.message = La fecha de salida debe ser anterior que la de llegada
+acme.validation.leg.duplicated-leg-arrivalDepartureDates.message = Las fechas de salida o de llegada coinciden en el intervalo de otro tramo
+acme.validation.leg.invalid-leg-dates.message = El tramo introducido no es posterior o anterior al último tramo o primer tramo
+acme.validation.leg.invalid-leg-arrivalAirport.message = El aeropuerto de llegada introducido no coincide con el aeropuerto de salida del primer tramo pero el vuelo no es de transferencia propia
+acme.validation.leg.invalid-leg-departureAirport.message = El aeropuerto de salida introducido no coincide con el aeropuerto de llegada del último tramo pero el vuelo no es de transferencia propia
+acme.validation.leg.invalid-leg-arrivalAirport-selfTransfer.message = El aeropuerto de llegada introducido coincide con el aeropuerto de salida del primer tramo pero el vuelo es de transferencia propia
+acme.validation.leg.invalid-leg-departureAirport-selfTransfer.message = El aeropuerto de salida introducido coincide con el aeropuerto de llegada del último tramo pero el vuelo es de transferencia propia
+acme.validation.constraints.leg.arrivalAirport.message = El valor del aeropuerto de salida no puede estar vacio
+acme.validation.constraints.leg.departureAirport.message = El valor del aeropuerto de llegada no puede estar vacio
+acme.validation.constraints.leg.invalid-airports.message = El aeropuerto de llegada y salida no pueden ser el mismo aeropuerto.
+acme.validation.leg.invalid-aircraft.message = Este aircraft ya está en uso en ese momento
+acme.validation.constraints.leg.invalid-min-date.message = La fecha debe ser posterior al 01/01/2000 00:00
+acme.validation.constraints.leg.invalid-max-date.message = La fecha debe ser anterior al 31/12/2200 23:59
