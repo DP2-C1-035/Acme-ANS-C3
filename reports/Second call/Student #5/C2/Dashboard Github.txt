@@ -1,0 +1,10 @@
+Dashboard de evalucion continua(En desuso)
+D01: https://github.com/orgs/DP2-C1-035/projects/1
+D02: https://github.com/orgs/DP2-C1-035/projects/2
+D03: https://github.com/orgs/DP2-C1-035/projects/3
+D04: https://github.com/orgs/DP2-C1-035/projects/5
+
+Dashboard Second Call
+Para filtrar por el student 5 debe poner como parámetros C2-S05-XXX siendo XXX el numero de la tarea del doc de requirements.
+C2: https://github.com/orgs/DP2-C1-035/projects/6/views/1?filterQuery=C2-S05
+El link ya viene con el filtro de C2-S05

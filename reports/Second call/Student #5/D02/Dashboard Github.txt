@@ -1,0 +1,5 @@
+Link al dashboard
+
+Filtrar por D02-S5, el link ya lo tiene
+
+https://github.com/orgs/DP2-C1-035/projects/2/views/1?filterQuery=D02-S5
