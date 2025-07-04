@@ -31,6 +31,11 @@ acme.validation.customer.invalid-identifierNumber.message = The identifier numbe
 
 #Validación general de reservas
 
+acme.validation.customer.invalid-identifier.message = The customer's identifier number already exists.
+acme.validation.customer.invalid-identifierNumber.message = The identifier number does not start with the initial of the first name and the initial of the surname.
+
+acme.validation.customer.duplicated-identifier.message = El identificador del customer ya existe
+
 acme.validation.booking.duplicated-locatorCode.message = Este locatorCode ya existe.
 
 acme.validation.customer.passenger.update.is-not-dratMode.message = Este pasajero no está en modo borrador.
@@ -42,6 +47,7 @@ acme.validation.booking.flight.not-found.messasge = No se encontró ese vuelo
 acme.validation.booking.publish.passengers-associated.message = Esta reserva no tiene pasajeros asociados.
 acme.validation.booking.publish.passenger-associated-not-owned.message = Esta reserva tiene pasajeros que no te pertenecen.
 acme.validation.booking.published.passenger-not-published.message = Esta reserva tiene pasajeros no publicados.
+acme.validation.booking.publish.creditCardNibble-null.message = Esta reserva no tiene un número de tarjeta válido.
 
 acme.validation.booking-record.create.passenger-not-from-customer.message = Este pasajero no está asociado contigo
 acme.validation.booking-record.create.passenger-not-published.message = Este pasajero no se ha publicado
@@ -50,9 +56,21 @@ acme.validation.booking-record.create.passenger-already-associated.message = Est
 #Validaciones para Pasajero
 
 
-acme.validation.customer.passenger.dateOfBirth.null-or-invalid = Debe cumplir el patron regular yyyy/mm/dd Hh:mm
-acme.validation.customer.passenger.dateOfBirth.notPast.message = La fecha no puede estar en el futuro
+acme.validation.dateOfBirth.null-or-invalid = Debe cumplir el patron regular yyyy/mm/dd Hh:mm
+acme.validation.dateOfBirth.notPast.message = La fecha no puede estar en el futuro
+acme.validation.dateOfBirth.invalid-format = Debe seguir el patrón dd/mm/yyyy HH:mm
+
+typeMismatch.date=Debe seguir el patrón dd/mm/yyyy HH:mm
+typeMismatch.java.util.Date=Debe seguir el patrón dd/mm/yyyy HH:mm
+
+
+#Validaciones Record de Reserva
 
 #BookingRecord
 
 customer.booking-record.delete.passenger.not-null = Debe seleccionar un pasajero para eliminar
+
+
+#Validaciones Booking
+
+ acme.validation.locatorCode.not-unique = Este código localizador ya existe

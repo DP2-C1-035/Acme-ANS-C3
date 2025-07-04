@@ -3,6 +3,7 @@ package acme.entities.booking;
 
 import java.util.Date;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Index;
 import javax.persistence.ManyToOne;
@@ -39,6 +40,7 @@ public class Booking extends AbstractEntity {
 	@Mandatory
 	@Pattern(regexp = "^[A-Z0-9]{6,8}$", message = "Locator code must be 6 to 8 characters long with uppercase letters and digits")
 	@Automapped
+	@Column(unique = true, nullable = false)
 	private String				locatorCode;
 
 	@Mandatory
