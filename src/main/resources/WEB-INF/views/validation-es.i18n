@@ -31,6 +31,81 @@ acme.validation.customer.invalid-identifierNumber.message = The identifier numbe
 
 #Validación general de reservas
 
+acme.validation.customer.invalid-identifier.message = The customer's identifier number already exists.
+acme.validation.customer.invalid-identifierNumber.message = The identifier number does not start with the initial of the first name and the initial of the surname.
+
+acme.validation.customer.duplicated-identifier.message = El identificador del customer ya existe
+
+acme.validation.booking.duplicated-locatorCode.message = Este locatorCode ya existe.
+
+acme.validation.customer.passenger.update.is-not-dratMode.message = Este pasajero no está en modo borrador.
+
+acme.validation.booking.departure-not-in-future.message = Este vuelo ya ha salido. Esto no es un error 500 por que un cliente puede crear una reserva con un vuelo. Tiempo después puede hacer show de la reserva. Ese vuelo no está en la lista debido a que solo se listan los vuelos que aún no han salido y ese vuelo ya salió. 
+acme.validation.booking.is-not-draft-mode.message = No se puede actualizar esta reserva. No está en modo borrador
+acme.validation.booking.flight.not-found.messasge = No se encontró ese vuelo
+
+acme.validation.booking.publish.passengers-associated.message = Esta reserva no tiene pasajeros asociados.
+acme.validation.booking.publish.passenger-associated-not-owned.message = Esta reserva tiene pasajeros que no te pertenecen.
+acme.validation.booking.published.passenger-not-published.message = Esta reserva tiene pasajeros no publicados.
+acme.validation.booking.publish.creditCardNibble-null.message = Esta reserva no tiene un número de tarjeta válido.
+
+acme.validation.booking-record.create.passenger-not-from-customer.message = Este pasajero no está asociado contigo
+acme.validation.booking-record.create.passenger-not-published.message = Este pasajero no se ha publicado
+acme.validation.booking-record.create.passenger-already-associated.message = Este pasajero ya está asociado a la reserva
+
+#Validaciones para Pasajero
+
+
+acme.validation.dateOfBirth.null-or-invalid = Debe cumplir el patron regular yyyy/mm/dd Hh:mm
+acme.validation.dateOfBirth.notPast.message = La fecha no puede estar en el futuro
+acme.validation.dateOfBirth.invalid-format = Debe seguir el patrón dd/mm/yyyy HH:mm
+
+typeMismatch.date=Debe seguir el patrón dd/mm/yyyy HH:mm
+typeMismatch.java.util.Date=Debe seguir el patrón dd/mm/yyyy HH:mm
+
+
+#Validaciones Record de Reserva
+
+#BookingRecord
+
+customer.booking-record.delete.passenger.not-null = Debe seleccionar un pasajero para eliminar
+
+
+#Validaciones Booking
+
+ acme.validation.locatorCode.not-unique = Este código localizador ya existe
+
+#Validación Administrador
+acme.validation.airline.duplicated-iata.message = Ya existe una aerolínea con ese código IATA
+acme.validation.airport.duplicated-iataCode.message = El iataCode ya está en uso
+acme.validation.aircraft.airline-not-found.message = No se encontró la aerolínea.
+
+acme.validation.aircraft.duplicated-registration-number.message = Número de registro ya usado
+
+
+acme.validation.administrator.aircraft.status-UNDER_MAINTENANCE.message = La aeronave ya está en mantenimiento.
+
+# Validación AssistanceAgent
+
+acme.validation.assistanceAgent.invalid-employee-code-format.message = El patrón de códgio de empleado es incorrecto o el código es nulo.
+acme.validation.assistanceAgent.invalid-employee-code.message = El código de empleado debe consistir de las iniciales del nombre y el primer apellido.
+acme.validation.assistanceAgent.unique-assistance-agent.message = Ya existe un empleado con este código.
+
+# Validación TrackingLog
+
+acme.validation.trackinglog.invalid-state.message = Estado de resolución incorrecto
+acme.validation.trackinglog.invalid-resolution.message = Resolución incorrecta
+
+# Validación general de fechas
+
+acme.validation.range.message = La fecha no está en un rango correcto.
+
+#Validación general de clientes
+acme.validation.customer.invalid-identifier.message = The customer's identifier number already exists.
+acme.validation.customer.invalid-identifierNumber.message = The identifier number does not start with the initial of the first name and the initial of the surname.Add commentMore actions
+
+#Validación general de reservas
+
 acme.validation.booking.duplicated-locatorCode.message = Este locatorCode ya existe.
 
 acme.validation.customer.passenger.update.is-not-dratMode.message = Este pasajero no está en modo borrador.

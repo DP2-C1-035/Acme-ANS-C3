@@ -3,6 +3,9 @@ package acme.features.customer.booking;
 
 import java.util.Collection;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -104,9 +107,12 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		flights = this.repository.findFlightsWithFirstLegAfter(moment);
 
 		if (selectedFlight != null && !flights.contains(selectedFlight))
-			flights.add(selectedFlight);
+			selectedFlight = null;
 
-		choices = SelectChoices.from(flights, "flightRoute", selectedFlight);
+		Set<String> seen = new HashSet<>();
+		List<Flight> validFlights = flights.stream().filter(f -> f.getFlightRoute() != null && seen.add(f.getFlightRoute())).toList();
+
+		choices = SelectChoices.from(validFlights, "flightRoute", selectedFlight);
 
 		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "price", "creditCardNibble");
 		dataset.put("flight", choices.getSelected().getKey());
