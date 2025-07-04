@@ -94,19 +94,6 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 	@Override
 	public void validate(final Claim object) {
 		assert object != null;
-		boolean isNotWrongLeg = true;
-		boolean isLegPublished;
-		Claim claim = this.repository.findClaimById(object.getId());
-
-		if (!super.getBuffer().getErrors().hasErrors("registrationMoment")) {
-			if (claim.getLeg() != null && claim.getRegistrationMoment() != null)
-				isNotWrongLeg = claim.getRegistrationMoment().after(claim.getLeg().getScheduledArrival());
-			super.state(isNotWrongLeg, "registrationMoment", "assistanceAgent.claim.form.error.wrong-leg-date");
-		}
-		if (!super.getBuffer().getErrors().hasErrors("leg")) {
-			isLegPublished = claim.getLeg().isDraftMode() == false ? true : false;
-			super.state(isLegPublished, "leg", "assistanceAgent.claim.form.error.leg-not-published");
-		}
 
 		if (!super.getBuffer().getErrors().hasErrors("indicator"))
 			super.state(object.getIndicator() == ClaimStatus.PENDING, "indicator", "assistanceAgent.claim.form.error.indicator-must-be-pending");

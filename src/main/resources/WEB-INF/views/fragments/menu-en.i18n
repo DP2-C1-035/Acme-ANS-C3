@@ -31,6 +31,13 @@ master.menu.administrator.airline = Airlines
 master.menu.administrator.list-airlines = List airlines
 master.menu.administrator.airport = Airport
 master.menu.administrator.list-airports = List airports
+
+# master.menu.assistanceAgent ##########################################################
+
+master.menu.assistance-agent = Assistance Agent
+master.menu.assistance-agent.claim-undergoing = My Undergoing Claims
+master.menu.assistance-agent.claim-completed = My Completed Claims
+
 # master.menu.provider ########################################################
 
 master.menu.provider = Provider
