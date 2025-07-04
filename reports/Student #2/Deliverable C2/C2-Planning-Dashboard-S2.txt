@@ -4,15 +4,20 @@ You can find our project planning dashboard on GitHub to track tasks, view their
 
 D01:
 
-**Planning Dashboard:** [Link to the GitHub Planning Board](https://github.com/orgs/DP2-C1-035/projects/6/views/1?filterQuery=assignee%3Alucianoya) 
+**Planning Dashboard:** [Link to the GitHub Planning Board](https://github.com/orgs/DP2-C1-035/projects/1/views/1?filterQuery=S2) 
 
 D02:
  
-**Planning Dashboard:** [Link to the GitHub Planning Board](https://github.com/orgs/DP2-C1-035/projects/6/views/1?filterQuery=assignee%3Alucianoya)
+**Planning Dashboard:** [Link to the GitHub Planning Board](https://github.com/orgs/DP2-C1-035/projects/2/views/1?filterQuery=S2)
 
 D03:
 
-**Planning Dashboard:** [Link to the GitHub Planning Board](https://github.com/orgs/DP2-C1-035/projects/6/views/1?filterQuery=assignee%3Alucianoya)
+**Planning Dashboard:** [Link to the GitHub Planning Board](https://github.com/orgs/DP2-C1-035/projects/3/views/1?filterQuery=S2)
 
 D04:
-**Planning Dashboard:** [Link to the GitHub Planning Board](https://github.com/orgs/DP2-C1-035/projects/6/views/1?filterQuery=assignee%3Alucianoya)
+
+**Planning Dashboard:** [Link to the GitHub Planning Board](https://github.com/orgs/DP2-C1-035/projects/5/views/1?filterQuery=S2)
+
+C2:
+
+**Planning Dashboard:** [Link to the GitHub Planning Board](https://github.com/orgs/DP2-C1-035/projects/6/views/1?filterQuery=S02)
