@@ -62,7 +62,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 		object.setClaim(claim);
 		object.setIndicator(TrackingLogIndicator.PENDING);
 		object.setLastUpdateMoment(MomentHelper.getCurrentMoment());
-		object.setCreationMoment(MomentHelper.getCurrentMoment());
+		object.setCreationMoment(object.getLastUpdateMoment());
 
 		super.getBuffer().addData(object);
 	}
@@ -96,34 +96,17 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 			super.state(valid, "resolution", "assistanceAgent.trackingLog.form.error.resolution-not-null");
 		}
-		//		if (!super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
-		//			Double percentage = object.getResolutionPercentage();
-		//			Optional<TrackingLog> mostRecentLog = logs.stream().filter(log -> log.getId() != object.getId()).max(Comparator.comparing(TrackingLog::getCreationMoment));
-		//
-		//			boolean isProgressing = mostRecentLog.map(lastLog -> percentage > lastLog.getResolutionPercentage()).orElse(true);
-		//
-		//			super.state(isProgressing, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage");
-		//		}
 		if (!super.getBuffer().getErrors().hasErrors("creationMoment")) {
 			Date creationMoment = object.getCreationMoment();
 			Double percentage = object.getResolutionPercentage();
 
 			boolean hasNoPastInconsistencies = logs.stream().filter(log -> log.getId() != object.getId()).filter(log -> log.getCreationMoment().before(creationMoment)).allMatch(log -> log.getResolutionPercentage() < percentage);
 
-			// boolean hasNoFutureInconsistencies = logs.stream().filter(log -> log.getId() != object.getId()).filter(log -> log.getCreationMoment().after(creationMoment)).allMatch(log -> log.getResolutionPercentage() > percentage);
-
 			boolean isCreationMomentValid = hasNoPastInconsistencies;
 
 			super.state(isCreationMomentValid, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage");
 
-			//boolean creationMomentIsAfterClaimRegistrationMoment = MomentHelper.isAfter(creationMoment, claim.getRegistrationMoment());
-
-			//super.state(creationMomentIsAfterClaimRegistrationMoment, "creationMoment", "assistanceAgent.claim.form.error.creation-moment-not-after-registration-moment");
 		}
-		//if (!super.getBuffer().getErrors().hasErrors("lastUpdateMoment")) {
-		//boolean lastUpdateMomentIsAfterCreationMoment = MomentHelper.isAfterOrEqual(object.getLastUpdateMoment(), object.getCreationMoment());
-		//super.state(lastUpdateMomentIsAfterCreationMoment, "lastUpdateMoment", "assistanceAgent.claim.form.error.update-moment-not-after-creation-moment");
-		//}
 
 	}
 
@@ -154,7 +137,7 @@ public class AssistanceAgentTrackingLogCreateService extends AbstractGuiService<
 
 		choicesIndicator = SelectChoices.from(TrackingLogIndicator.class, object.getIndicator());
 
-		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator");
+		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator", "creationMoment");
 		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
 		dataset.put("indicators", choicesIndicator);
 
