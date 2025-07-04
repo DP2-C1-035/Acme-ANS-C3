@@ -77,3 +77,7 @@ acme.validation.constraints.leg.invalid-airports.message = The arrival and depar
 acme.validation.leg.invalid-aircraft.message = This aircraft is not available in that moment
 acme.validation.constraints.leg.invalid-min-date.message = The date must be after 2000/01/01 00:00
 acme.validation.constraints.leg.invalid-max-date.message = The date must be before 2200/12/31 23:59
+acme.validation.leg.duplicated-leg-arrivalDepartureDates.message = The departure or arrival dates overlap with another leg's interval
+acme.validation.leg.invalid-leg-dates.message = The leg introduced is neither later than the first leg nor earlier than the last leg
+acme.validation.leg.invalid-futureDates.message = The date must be later than the current date
+

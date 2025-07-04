@@ -78,3 +78,6 @@ acme.validation.constraints.leg.invalid-airports.message = El aeropuerto de lleg
 acme.validation.leg.invalid-aircraft.message = Este aircraft ya está en uso en ese momento
 acme.validation.constraints.leg.invalid-min-date.message = La fecha debe ser posterior al 01/01/2000 00:00
 acme.validation.constraints.leg.invalid-max-date.message = La fecha debe ser anterior al 31/12/2200 23:59
+acme.validation.leg.invalid-leg-arrivalAirport-selfTransfer.message = El aeropuerto de llegada introducido coincide con el aeropuerto de salida del primer tramo pero el vuelo es de transferencia propia
+acme.validation.leg.invalid-leg-departureAirport-selfTransfer.message = El aeropuerto de salida introducido coincide con el aeropuerto de llegada del último tramo pero el vuelo es de transferencia propia
+acme.validation.leg.invalid-futureDates.message = La fecha tiene que ser posterior a la actual
