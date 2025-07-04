@@ -58,7 +58,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 	@Override
 	public void bind(final TrackingLog object) {
-		super.bindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator");
+		super.bindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator", "creationMoment");
 	}
 
 	@Override
@@ -135,15 +135,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 			boolean isCreationMomentValid = hasNoPastInconsistencies && hasNoFutureInconsistencies;
 
 			super.state(isCreationMomentValid, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.invalid-creation-moment");
-
-			// boolean creationMomentIsAfterClaimRegistrationMoment = MomentHelper.isAfter(creationMoment, claim.getRegistrationMoment());
-
-			//super.state(creationMomentIsAfterClaimRegistrationMoment, "creationMoment", "assistanceAgent.claim.form.error.creation-moment-not-after-registration-moment");
 		}
-		//if (!super.getBuffer().getErrors().hasErrors("lastUpdateMoment")) {
-		//boolean lastUpdateMomentIsAfterCreationMoment = MomentHelper.isAfterOrEqual(object.getLastUpdateMoment(), object.getCreationMoment());
-		//super.state(lastUpdateMomentIsAfterCreationMoment, "lastUpdateMoment", "assistanceAgent.claim.form.error.update-moment-not-after-creation-moment");
-		//}
 	}
 
 	@Override
@@ -174,7 +166,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 		choicesIndicator = SelectChoices.from(TrackingLogIndicator.class, object.getIndicator());
 
-		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolution", "resolutionReason", "indicator", "draftMode");
+		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolution", "resolutionReason", "indicator", "creationMoment", "draftMode");
 		dataset.put("indicators", choicesIndicator);
 
 		super.getResponse().addData(dataset);

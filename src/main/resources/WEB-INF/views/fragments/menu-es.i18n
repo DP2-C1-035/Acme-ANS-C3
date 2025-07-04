@@ -32,6 +32,12 @@ master.menu.administrator.list-airlines = Ver aerolíneas
 master.menu.administrator.airport = Aeropuertos
 master.menu.administrator.list-airports = Ver aeropuertos
 
+# master.menu.assistanceAgent ##########################################################
+
+master.menu.assistance-agent = Agente de Asistencia
+master.menu.assistance-agent.claim-undergoing = Mis Reclamos en Proceso
+master.menu.assistance-agent.claim-completed = Mis Reclamos Completados
+
 # master.menu.provider ########################################################
 
 master.menu.provider = Proveedor
