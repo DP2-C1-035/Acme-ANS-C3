@@ -13,9 +13,9 @@ import acme.client.services.GuiService;
 import acme.entities.flight_assignment.AssignmentStatus;
 import acme.entities.flight_assignment.FlightAssignment;
 import acme.entities.flight_assignment.FlightCrewDuty;
-import acme.entities.flight_crew_member.AvailabilityStatus;
-import acme.entities.flight_crew_member.FlightCrewMember;
 import acme.entities.leg.Leg;
+import acme.realms.flight_crew_member.AvailabilityStatus;
+import acme.realms.flight_crew_member.FlightCrewMember;
 
 @GuiService
 public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {

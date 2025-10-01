@@ -67,6 +67,17 @@ master.menu.manager = Manager
 master.menu.manager.list-my-flights= My flights
 master.menu.manager.dashboard = Dashboard
 
+# master.menu.crewMember ##########################################################
+
+master.menu.crewMember=Flight Crew Member
+master.menu.crewMember.list-my-completed-assignments=My Completed Assignments
+master.menu.crewMember.list-my-planned-assignments=My Planned Assignments
+master.menu.crewMember.show-dashboard=Dashboard
+master.menu.crewMember.list-visa=Visa Requirements
+master.menu.user-account.become-crewMember=Become Flight Crew Member
+master.menu.user-account.crewMember-profile=Flight Crew Member Profile
+
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Account

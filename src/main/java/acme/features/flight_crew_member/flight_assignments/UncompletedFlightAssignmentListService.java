@@ -10,7 +10,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flight_assignment.FlightAssignment;
-import acme.entities.flight_crew_member.FlightCrewMember;
+import acme.realms.flight_crew_member.FlightCrewMember;
 
 @GuiService
 public class UncompletedFlightAssignmentListService extends AbstractGuiService<FlightCrewMember, FlightAssignment> {
