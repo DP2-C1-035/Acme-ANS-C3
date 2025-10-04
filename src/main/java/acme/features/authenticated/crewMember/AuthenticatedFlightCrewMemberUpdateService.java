@@ -81,7 +81,7 @@ public class AuthenticatedFlightCrewMemberUpdateService extends AbstractGuiServi
 		Dataset dataset = super.unbindObject(member, "employeeCode", "phoneNumber", "languageSkills", "salary", "yearsOfExperience", "availabilityStatus");
 
 		Collection<Airline> airlines = this.repository.findAllAirlines();
-		var choicesAirlines = acme.client.components.views.SelectChoices.from(airlines, "iataCode", member.getWorkingFor());
+		var choicesAirlines = acme.client.components.views.SelectChoices.from(airlines, "iata", member.getWorkingFor());
 		var choicesStatus = acme.client.components.views.SelectChoices.from(AvailabilityStatus.class, member.getAvailabilityStatus());
 
 		dataset.put("airlines", choicesAirlines);

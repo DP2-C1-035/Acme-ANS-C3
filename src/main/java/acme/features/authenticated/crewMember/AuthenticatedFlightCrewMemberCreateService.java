@@ -111,7 +111,7 @@ public class AuthenticatedFlightCrewMemberCreateService extends AbstractGuiServi
 
 		// Para combos de airline y availability
 		var airlines = this.repository.findAllAirlines();
-		var choicesAirlines = acme.client.components.views.SelectChoices.from(airlines, "iataCode", object.getWorkingFor());
+		var choicesAirlines = acme.client.components.views.SelectChoices.from(airlines, "iata", object.getWorkingFor());
 		var choicesStatus = acme.client.components.views.SelectChoices.from(AvailabilityStatus.class, object.getAvailabilityStatus());
 
 		dataset.put("airlines", choicesAirlines);
