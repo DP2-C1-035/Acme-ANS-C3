@@ -1,0 +1,17 @@
+authenticated.flight-crew-member.form.title = Crew Member form
+
+authenticated.flight-crew-member.form.label.employeeCode = Employee code
+authenticated.flight-crew-member.form.label.phoneNumber = Phone number
+authenticated.flight-crew-member.form.label.languageSkills = Language skills
+authenticated.flight-crew-member.form.label.availabilityStatus = Availability status
+authenticated.flight-crew-member.form.label.airline = Airline
+authenticated.flight-crew-member.form.label.salary = Salary
+authenticated.flight-crew-member.form.label.yearsOfExperience = Years of experience
+authenticated.flight-crew-member.form.label.create = Register as flight crew member
+
+authenticated.flight-crew-member.error.duplicate-code = The employee code is already in use
+authenticated.flight-crew-member.error.null-airline = You must select an airline
+
+authenticated.flight-crew-member.form.button.create = Register
+authenticated.flight-crew-member.form.button.update = Update profile
+authenticated.flight-crew-member.form.button.currency = The specified currency is not valid

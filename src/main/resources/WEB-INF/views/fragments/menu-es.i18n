@@ -67,6 +67,16 @@ master.menu.technician.list-my-tasks = Ver mis tareas
 master.menu.technician.list-all-maintenance-records-published = Ver todos los registros de mantenimiento publicados
 master.menu.technician.list-all-tasks-published = Ver todas las tareas publicadas
 
+# master.menu.crewMember ##########################################################
+master.menu.crewMember=Miembro de la Tripulación
+master.menu.crewMember.list-my-completed-assignments=Mis Asignaciones Completadas
+master.menu.crewMember.list-my-planned-assignments=Mis Asignaciones Planificadas
+master.menu.crewMember.show-dashboard=Panel de Control
+master.menu.crewMember.list-visa=Requisitos de Visado
+master.menu.user-account.become-crewMember=Convertirse en Tripulante de Cabina
+master.menu.user-account.crewMember-profile=Perfil de Tripulante de Cabina
+
+
 # master.menu.user-account ####################################################
 
 master.menu.user-account = Cuenta

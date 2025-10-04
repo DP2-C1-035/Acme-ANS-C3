@@ -79,6 +79,15 @@
 			<acme:menu-suboption code="master.menu.customer.list-my-bookings" action="/customer/booking/list"/>
  		</acme:menu-option>
  		
+ 		<acme:menu-option code="master.menu.crewMember" access="hasRealm('FlightCrewMember')">
+			<acme:menu-suboption code="master.menu.crewMember.list-my-completed-assignments" action="/flight-crew-member/flight-assignment/list-completed" />			
+			<acme:menu-suboption code="master.menu.crewMember.list-my-planned-assignments" action="/flight-crew-member/flight-assignment/list-uncompleted" />
+			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.crewMember.show-dashboard" action="/flight-crew-member/flight-crew-member-dashboard/show" />
+			<acme:menu-separator />
+			<acme:menu-suboption code="master.menu.crewMember.list-visa" action="/flight-crew-member/visa-requirement/list" />
+		</acme:menu-option>
+ 		
  		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
 			<acme:menu-suboption code="master.menu.authenticated.list-flight" action="/authenticated/flight/list" />
 		</acme:menu-option>
@@ -93,6 +102,9 @@
 			<acme:menu-suboption code="master.menu.user-account.become-consumer" action="/authenticated/consumer/create" access="!hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.consumer-profile" action="/authenticated/consumer/update" access="hasRealm('Consumer')"/>
 			<acme:menu-suboption code="master.menu.user-account.become-manager" action="/authenticated/manager/create" access="!hasRealm('Manager')"/>
+			<acme:menu-suboption code="master.menu.user-account.become-crewMember" action="/authenticated/flight-crew-member/create" access="!hasRealm('FlightCrewMember')"/>
+			<acme:menu-suboption code="master.menu.user-account.crewMember-profile" action="/authenticated/flight-crew-member/update" access="hasRealm('FlightCrewMember')"/>
+			
 		</acme:menu-option>
 	</acme:menu-right>
 </acme:menu-bar>

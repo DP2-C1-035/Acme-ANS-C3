@@ -10,9 +10,9 @@ import org.springframework.stereotype.Repository;
 import acme.client.repositories.AbstractRepository;
 import acme.entities.activity_log.ActivityLog;
 import acme.entities.flight_assignment.FlightAssignment;
-import acme.entities.flight_crew_member.AvailabilityStatus;
-import acme.entities.flight_crew_member.FlightCrewMember;
 import acme.entities.leg.Leg;
+import acme.realms.flight_crew_member.AvailabilityStatus;
+import acme.realms.flight_crew_member.FlightCrewMember;
 
 @Repository
 public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepository {

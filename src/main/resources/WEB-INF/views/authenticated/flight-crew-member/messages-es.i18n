@@ -1,0 +1,17 @@
+authenticated.flight-crew-member.form.title = Detalles de miembro de la tripulación
+
+authenticated.flight-crew-member.form.label.employeeCode = Código de empleado
+authenticated.flight-crew-member.form.label.phoneNumber = Número de teléfono
+authenticated.flight-crew-member.form.label.languageSkills = Idiomas
+authenticated.flight-crew-member.form.label.availabilityStatus = Estado de disponibilidad
+authenticated.flight-crew-member.form.label.airline = Aerolínea
+authenticated.flight-crew-member.form.label.salary = Salario
+authenticated.flight-crew-member.form.label.yearsOfExperience = Años de experiencia
+authenticated.flight-crew-member.form.label.create = Registrarse como miembro de tripulación
+
+authenticated.flight-crew-member.error.duplicate-code = El código de empleado ya está en uso
+authenticated.flight-crew-member.error.null-airline = Debes seleccionar una aerolínea
+
+authenticated.flight-crew-member.form.button.create = Registrarse
+authenticated.flight-crew-member.form.button.update = Actualizar perfil
+authenticated.flight-crew-member.form.button.currency = La moneda especificada no es válida

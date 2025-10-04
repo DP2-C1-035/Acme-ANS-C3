@@ -11,9 +11,9 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.flight_assignment.AssignmentStatus;
-import acme.entities.flight_crew_member.FlightCrewMember;
 import acme.entities.leg.Leg;
 import acme.forms.FlightCrewMemberDashboard;
+import acme.realms.flight_crew_member.FlightCrewMember;
 
 @GuiService
 public class FlightCrewMemberDashboardShowService extends AbstractGuiService<FlightCrewMember, FlightCrewMemberDashboard> {
