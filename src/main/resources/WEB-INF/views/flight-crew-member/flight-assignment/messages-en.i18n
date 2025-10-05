@@ -21,8 +21,8 @@ flight-crew-member.flight-assignment.form.title = Flight assignment
 flight-crew-member.flight-assignment.form.label.flight-number = Flight number
 flight-crew-member.flight-assignment.form.label.member = Member
 flight-crew-member.flight-assignment.form.label.member.nomember = No crew available
-flight-crew-member.flight-assignment.form.label.duty = Duty
-flight-crew-member.flight-assignment.form.label.current-status = Current status
+flight-crew-member.flight-assignment.form.label.flight-crew-duty = Flight crew duty
+flight-crew-member.flight-assignment.form.label.assignment-status = Assignment status
 flight-crew-member.flight-assignment.form.label.last-update = Last update
 flight-crew-member.flight-assignment.form.label.remarks = Remarks (Optional)
 
@@ -41,3 +41,10 @@ flight-crew-member.flight-assignment.validation.current-status.publish = You can
 flight-crew-member.flight-assignment.error.member-not-available=Only AVAILABLE members can be assigned.
 flight-crew-member.flight-assignment.error.overlapping-legs=This crew member is already assigned to another leg at the same time.
 flight-crew-member.flight-assignment.error.duty-already-assigned=There is already a {0} assigned to this leg.
+
+flight-crew-member.flight-assignment.form.label.assigned-crew = Assigned crew members for this flight:
+flight-crew-member.flight-assignment.form.label.no-crew = No crew members assigned yet.
+flight-crew-member.flight-assignment.form.label.associated-legs = Other legs associated with this flight:
+flight-crew-member.flight-assignment.form.label.no-legs = No other legs associated with this flight.
+
+

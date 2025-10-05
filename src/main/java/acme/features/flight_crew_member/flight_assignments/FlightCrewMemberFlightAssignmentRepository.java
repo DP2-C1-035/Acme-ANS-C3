@@ -53,4 +53,13 @@ public interface FlightCrewMemberFlightAssignmentRepository extends AbstractRepo
 	@Query("SELECT fa FROM FlightAssignment fa WHERE fa.flightCrewMember.id = :id")
 	Collection<FlightAssignment> findFlightAssignmentsByFlightCrewMemberId(int id);
 
+	@Query("select fa from FlightAssignment fa where fa.leg.id = :legId")
+	Collection<FlightAssignment> findAllAssignmentsByLegId(int legId);
+
+	@Query("select l from Leg l where l.flight.tag = :flightNumber")
+	Collection<Leg> findLegsByFlightNumber(String flightNumber);
+
+	@Query("select fa from FlightAssignment fa where fa.leg.id = :legId")
+	Collection<FlightAssignment> findFlightAssignmentsByLegId(int legId);
+
 }

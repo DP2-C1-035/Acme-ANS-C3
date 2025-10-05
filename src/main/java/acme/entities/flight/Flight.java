@@ -118,4 +118,8 @@ public class Flight extends AbstractEntity {
 	public String getFlightRoute() {
 		return this.getOriginCity() + " " + this.getScheduledDeparture() + " - " + this.getDestinationCity() + " " + this.getScheduledArrival();
 	}
+
+	public String getFlightNumber() {
+		return this.tag;
+	}
 }

@@ -19,15 +19,46 @@
 	<acme:input-select code="flight-crew-member.flight-assignment.form.label.flight-number" path="leg" choices="${legs}"/>
 	<acme:input-textbox code="flight-crew-member.flight-assignment.form.label.member" path="member" readonly = "true"/>
 	<acme:input-select code="flight-crew-member.flight-assignment.form.label.flight-crew-duty" path="flightCrewDuty" choices="${duties}"/>
+	
 	<jstl:if test="${_command != 'create'}">
 		<acme:input-moment code="flight-crew-member.flight-assignment.form.label.last-update" path="lastUpdate" readonly="true"/>
-		<acme:input-select code="flight-crew-member.flight-assignment.form.label.assignment-status" path="AssignmentStatus" choices="${currentStatus}"/>
-		
+		<acme:input-select code="flight-crew-member.flight-assignment.form.label.assignment-status" path="assignmentStatus" choices="${assignmentStatus}"/>
 	</jstl:if>
 
-			
 	<acme:input-textarea code="flight-crew-member.flight-assignment.form.label.remarks" path="remarks"/>
+
 	
+	<hr />
+		<h4>Crew members assigned to this flight:</h4>
+		<ul>
+			<jstl:choose>
+				<jstl:when test="${not empty crewMembers}">
+					<jstl:forEach var="cm" items="${crewMembers}">
+						<li><jstl:out value="${cm}" /></li>
+					</jstl:forEach>
+				</jstl:when>
+				<jstl:otherwise>
+					<li><em>No crew members assigned yet</em></li>
+				</jstl:otherwise>
+			</jstl:choose>
+		</ul>
+		<h4>Other legs associated with the same flight:</h4>
+		<jstl:choose>
+			<jstl:when test="${not empty associatedLegs}">
+				<ul>
+					<jstl:forEach var="leg" items="${associatedLegs}">
+						<li><jstl:out value="${leg}" /></li>
+					</jstl:forEach>
+				</ul>
+			</jstl:when>
+			<jstl:otherwise>
+				<p><em>There are no other legs associated with this flight.</em></p>
+			</jstl:otherwise>
+		</jstl:choose>
+	<hr />
+	
+	
+
 	<jstl:choose>
 		<jstl:when test="${_command == 'show' && draftMode == false && legHasArrive == true}">
 			<acme:button code="flight-crew-member.activity-log.form.button.list" action="/flight-crew-member/activity-log/list?masterId=${id}"/>

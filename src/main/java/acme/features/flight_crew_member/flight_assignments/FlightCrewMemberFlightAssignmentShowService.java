@@ -67,7 +67,6 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 			legChoices = SelectChoices.from(legs, "flightNumber", flightAssignment.getLeg());
 		} else if (!legs.contains(flightAssignment.getLeg()))
 			legChoices = SelectChoices.from(legs, "flightNumber", null);
-
 		else
 			legChoices = SelectChoices.from(legs, "flightNumber", flightAssignment.getLeg());
 
@@ -85,6 +84,18 @@ public class FlightCrewMemberFlightAssignmentShowService extends AbstractGuiServ
 
 		boolean legHasArrive = MomentHelper.isAfter(MomentHelper.getCurrentMoment(), flightAssignment.getLeg().getScheduledArrival());
 		dataset.put("legHasArrive", legHasArrive);
+
+		Collection<FlightAssignment> assignmentsForLeg = this.repository.findAllAssignmentsByLegId(flightAssignment.getLeg().getId());
+
+		List<String> crewMembers = assignmentsForLeg.stream().map(a -> a.getFlightCrewMember().getIdentity().getFullName() + " (" + a.getFlightCrewDuty() + ")").toList();
+
+		dataset.put("crewMembers", crewMembers);
+
+		Collection<Leg> associatedLegs = this.repository.findLegsByFlightNumber(flightAssignment.getLeg().getFlight().getFlightNumber());
+
+		List<String> associatedLegsList = associatedLegs.stream().map(l -> l.getLegLabel() + " | " + l.getDepartureAirport().getIataCode() + " → " + l.getArrivalAirport().getIataCode()).toList();
+
+		dataset.put("associatedLegs", associatedLegsList);
 
 		super.getResponse().addData(dataset);
 	}
