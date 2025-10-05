@@ -7,7 +7,7 @@ import acme.client.components.models.Dataset;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activity_log.ActivityLog;
-import acme.entities.flight_crew_member.FlightCrewMember;
+import acme.realms.flight_crew_member.FlightCrewMember;
 
 @GuiService
 public class FlightCrewMemberActivityLogUpdateService extends AbstractGuiService<FlightCrewMember, ActivityLog> {

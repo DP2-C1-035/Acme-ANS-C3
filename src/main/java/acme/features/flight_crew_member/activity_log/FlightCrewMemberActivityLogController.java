@@ -8,7 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import acme.client.controllers.AbstractGuiController;
 import acme.client.controllers.GuiController;
 import acme.entities.activity_log.ActivityLog;
-import acme.entities.flight_crew_member.FlightCrewMember;
+import acme.realms.flight_crew_member.FlightCrewMember;
 
 @GuiController
 public class FlightCrewMemberActivityLogController extends AbstractGuiController<FlightCrewMember, ActivityLog> {
