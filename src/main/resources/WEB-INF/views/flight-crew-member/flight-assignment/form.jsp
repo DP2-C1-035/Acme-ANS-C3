@@ -29,7 +29,7 @@
 
 	
 	<hr />
-		<h4>Tripulantes asignados a este vuelo:</h4>
+		<h4>Crew members assigned to this flight:</h4>
 		<ul>
 			<jstl:choose>
 				<jstl:when test="${not empty crewMembers}">
@@ -38,11 +38,11 @@
 					</jstl:forEach>
 				</jstl:when>
 				<jstl:otherwise>
-					<li><em>No hay tripulantes asignados todavía.</em></li>
+					<li><em>No crew members assigned yet</em></li>
 				</jstl:otherwise>
 			</jstl:choose>
 		</ul>
-		<h4>Otras legs asociadas al mismo vuelo:</h4>
+		<h4>Other legs associated with the same flight:</h4>
 		<jstl:choose>
 			<jstl:when test="${not empty associatedLegs}">
 				<ul>
@@ -52,7 +52,7 @@
 				</ul>
 			</jstl:when>
 			<jstl:otherwise>
-				<p><em>No hay otras legs asociadas a este vuelo.</em></p>
+				<p><em>There are no other legs associated with this flight.</em></p>
 			</jstl:otherwise>
 		</jstl:choose>
 	<hr />

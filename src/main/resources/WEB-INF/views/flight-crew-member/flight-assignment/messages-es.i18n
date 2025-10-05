@@ -12,7 +12,7 @@ master.menu.flight-crew-member = Asignaciones de vuelos
 
 flight-crew-member.flight-assignment.list.title = Lista de las asignaciones de vuelos
 flight-crew-member.flight-assignment.list.label.flight-number = Número de vuelo
-flight-crew-member.flight-assignment.list.label.duty = Responsabilidad
+flight-crew-member.flight-assignment.form.label.flight-crew-duty = Responsabilidad
 flight-crew-member.flight-assignment.list.label.current-status = Estado actual
 flight-crew-member.flight-assignment.list.label.last-update = Última actualización
 flight-crew-member.flight-assignment.list.draft-mode = Modo borrador
@@ -21,7 +21,7 @@ flight-crew-member.flight-assignment.list.button.create = Crear
 flight-crew-member.flight-assignment.form.title = Asignación de vuelo
 flight-crew-member.flight-assignment.form.label.flight-number = Número de vuelo
 flight-crew-member.flight-assignment.form.label.member = Miembro
-flight-crew-member.flight-assignment.form.label.duty = Responsabilidad
+flight-crew-member.flight-assignment.form.label.flight-crew-duty = Responsabilidad del tripulante
 flight-crew-member.flight-assignment.form.label.assignment-status = Estado de la asignación
 flight-crew-member.flight-assignment.form.label.last-update = Última actualización
 flight-crew-member.flight-assignment.form.label.remarks = Observaciones (Opcional)
@@ -39,3 +39,8 @@ flight-crew-member.flight-assignment.validation.flight-number.publish = Este mie
 flight-crew-member.flight-assignment.validation.overlapping-leg = Este tramo se solapa con otro tramo del mismo miembro
 flight-crew-member.flight-assignment.validation.current-status.publish = No puedes publicar una asignación de vuelo en estado pendiente.
 flight-crew-member.flight-assignment.validation.overlapping-leg.publish = Este tramo se solapa con otro tramo del mismo miembro
+
+flight-crew-member.flight-assignment.form.label.assigned-crew = Tripulantes asignados a este vuelo:
+flight-crew-member.flight-assignment.form.label.associated-legs = Otras legs asociadas al mismo vuelo:
+flight-crew-member.flight-assignment.form.label.no-crew = No hay tripulantes asignados todavía.
+flight-crew-member.flight-assignment.form.label.no-legs = No hay otras legs asociadas a este vuelo.
