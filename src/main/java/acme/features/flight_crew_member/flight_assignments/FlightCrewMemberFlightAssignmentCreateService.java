@@ -24,28 +24,22 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 	private FlightCrewMemberFlightAssignmentRepository repository;
 
 
+	//Cualquier miembro puede crear, independientemente de su availability status
 	@Override
 	public void authorise() {
 		boolean status;
 		String method;
 		int legId;
 
-		FlightCrewMember flightCrewMember = (FlightCrewMember) super.getRequest().getPrincipal().getActiveRealm();
-		Collection<FlightAssignment> assignments = this.repository.findFlightAssignmentsByFlightCrewMemberId(flightCrewMember.getId());
-		boolean isLeadAttendant = assignments.stream().anyMatch(fa -> fa.getFlightCrewDuty() == FlightCrewDuty.LEAD_ATTENDANT);
+		method = super.getRequest().getMethod();
 
-		status = isLeadAttendant;
-
-		if (status) {
-			method = super.getRequest().getMethod();
-			if (method.equals("GET"))
-				status = true;
-			else {
-				legId = super.getRequest().getData("leg", int.class);
-				Leg leg = this.repository.findLegById(legId);
-				Collection<Leg> uncompletedLegs = this.repository.findUncompletedLegs(MomentHelper.getCurrentMoment());
-				status = legId == 0 || uncompletedLegs.contains(leg);
-			}
+		if (method.equals("GET"))
+			status = true;
+		else {
+			legId = super.getRequest().getData("leg", int.class);
+			Leg leg = this.repository.findLegById(legId);
+			Collection<Leg> uncompletedLegs = this.repository.findUncompletedLegs(MomentHelper.getCurrentMoment());
+			status = legId == 0 || uncompletedLegs.contains(leg);
 		}
 
 		super.getResponse().setAuthorised(status);
@@ -80,8 +74,9 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		Leg leg = flightAssignment.getLeg();
 
 		crewMember.getAvailabilityStatus();
-		// 1. El flight crew member debe estar AVAILABLE
-		super.state(crewMember.getAvailabilityStatus() == AvailabilityStatus.AVAILABLE, "flightCrewMember", "flight-crew-member.flight-assignment.error.member-not-available");
+		// 1. El flight crew member que se asigna debe estar AVAILABLE
+		if (crewMember.getAvailabilityStatus() != AvailabilityStatus.AVAILABLE)
+			super.state(false, "*", "flight-crew-member.flight-assignment.error.member-not-available");
 		// 2. No puede haber solapamientos de legs (ya está asignado a otra leg simultánea)
 		Collection<FlightAssignment> currentAssignments = this.repository.findFlightAssignmentsByFlightCrewMemberId(crewMember.getId());
 
@@ -92,11 +87,17 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		super.state(!overlaps, "*", "flight-crew-member.flight-assignment.error.overlapping-legs");
 
 		// 3. No puede haber más de un piloto ni copiloto en el mismo leg
-		Collection<FlightAssignment> assignmentsInLeg = this.repository.findPublishedFlightAssignmentsByLegId(leg.getId());
+		Collection<FlightAssignment> assignmentsInLeg = this.repository.findFlightAssignmentsByLegId(leg.getId());
 
-		boolean dutyConflict = assignmentsInLeg.stream().anyMatch(fa -> fa.getFlightCrewDuty() == flightAssignment.getFlightCrewDuty() && (fa.getFlightCrewDuty() == FlightCrewDuty.PILOT || fa.getFlightCrewDuty() == FlightCrewDuty.CO_PILOT));
+		boolean dutyConflict = assignmentsInLeg.stream()
+			.anyMatch(fa -> !fa.equals(flightAssignment) && fa.getFlightCrewDuty() == flightAssignment.getFlightCrewDuty() && (fa.getFlightCrewDuty() == FlightCrewDuty.PILOT || fa.getFlightCrewDuty() == FlightCrewDuty.CO_PILOT));
+
 		if (flightAssignment.getFlightCrewDuty() == FlightCrewDuty.PILOT || flightAssignment.getFlightCrewDuty() == FlightCrewDuty.CO_PILOT)
 			super.state(!dutyConflict, "flightCrewDuty", "flight-crew-member.flight-assignment.error.duty-already-assigned");
+
+		// Validación: el leg no puede haber ocurrido ya
+		boolean legHasOccurred = flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
+		super.state(!legHasOccurred, "leg", "flight-crew-member.flight-assignment.error.leg-occurred");
 	}
 
 	@Override
