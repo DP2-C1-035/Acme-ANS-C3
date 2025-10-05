@@ -22,7 +22,7 @@ flight-crew-member.flight-assignment.form.label.flight-number = Flight number
 flight-crew-member.flight-assignment.form.label.member = Member
 flight-crew-member.flight-assignment.form.label.member.nomember = No crew available
 flight-crew-member.flight-assignment.form.label.duty = Duty
-flight-crew-member.flight-assignment.form.label.current-status = Current status
+flight-crew-member.flight-assignment.form.label.assignment-status = Assignment status
 flight-crew-member.flight-assignment.form.label.last-update = Last update
 flight-crew-member.flight-assignment.form.label.remarks = Remarks (Optional)
 
