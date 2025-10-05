@@ -2,7 +2,6 @@
 package acme.features.flight_crew_member.flight_assignments;
 
 import java.util.Collection;
-import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -15,7 +14,6 @@ import acme.entities.flight_assignment.AssignmentStatus;
 import acme.entities.flight_assignment.FlightAssignment;
 import acme.entities.flight_assignment.FlightCrewDuty;
 import acme.entities.leg.Leg;
-import acme.realms.flight_crew_member.AvailabilityStatus;
 import acme.realms.flight_crew_member.FlightCrewMember;
 
 @GuiService
@@ -84,6 +82,8 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 	@Override
 	public void validate(final FlightAssignment flightAssignment) {
 		if (flightAssignment.getAssignmentStatus() != null && flightAssignment.getFlightCrewDuty() != null && flightAssignment.getLeg() != null) {
+
+			//Solo un PILOT/CO_PILOT por leg
 			if (flightAssignment.getFlightCrewDuty() == FlightCrewDuty.PILOT || flightAssignment.getFlightCrewDuty() == FlightCrewDuty.CO_PILOT) {
 				Collection<FlightAssignment> assignmentsOfLeg = this.repository.findPublishedFlightAssignmentsByLegId(flightAssignment.getLeg().getId());
 				for (FlightAssignment fa : assignmentsOfLeg)
@@ -93,22 +93,27 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 						break;
 					}
 			}
-			if (flightAssignment.getFlightCrewMember().getAvailabilityStatus() != AvailabilityStatus.AVAILABLE)
-				super.state(false, "member", "flight-crew-member.flight-assignment.validation.availability-status.publish");
+
+			// No puede tener mismo flight number ya publicado
 			Collection<FlightAssignment> currentUserAssignments = this.repository.findPublishedUncompletedFlightAssignmentsByFlightCrewMemberId(MomentHelper.getCurrentMoment(), flightAssignment.getFlightCrewMember().getId());
 			for (FlightAssignment fa : currentUserAssignments)
 				if (fa.getLeg().getFlightNumber() == flightAssignment.getLeg().getFlightNumber()) {
 					super.state(false, "leg", "flight-crew-member.flight-assignment.validation.flight-number.publish");
 					break;
 				}
-			Date newDeparture = flightAssignment.getLeg().getScheduledDeparture();
-			Date newArrival = flightAssignment.getLeg().getScheduledArrival();
-			Collection<FlightAssignment> overlapping = this.repository.findOverlappingPublishedFlightAssignments(flightAssignment.getFlightCrewMember().getId(), newDeparture, newArrival);
-			if (!overlapping.isEmpty())
-				super.state(false, "leg", "flight-crew-member.flight-assignment.validation.overlapping-leg.publish");
-			if (flightAssignment.getAssignmentStatus() == AssignmentStatus.PENDING)
-				super.state(false, "assignmentStatus", "flight-crew-member.flight-assignment.validation.assignment-status.publish");
+
+			//			//No puede haber solapamiento de horarios con otros assignments publicados
+			//			Date newDeparture = flightAssignment.getLeg().getScheduledDeparture();
+			//			Date newArrival = flightAssignment.getLeg().getScheduledArrival();
+			//			Collection<FlightAssignment> overlapping = this.repository.findOverlappingPublishedFlightAssignments(flightAssignment.getFlightCrewMember().getId(), newDeparture, newArrival);
+			//			if (!overlapping.isEmpty())
+			//				super.state(false, "leg", "flight-crew-member.flight-assignment.validation.overlapping-leg.publish");
+
+			// 5. La leg debe estar publicada y no haber ocurrido aún
+			boolean legNotOccurred = !flightAssignment.getLeg().isDraftMode() && flightAssignment.getLeg().getScheduledArrival().after(MomentHelper.getCurrentMoment());
+			super.state(legNotOccurred, "leg", "flight-crew-member.flight-assignment.validation.leg-occurred-or-not-published");
 		}
+
 	}
 
 	@Override
