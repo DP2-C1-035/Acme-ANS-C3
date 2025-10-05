@@ -17,7 +17,7 @@
 
 <acme:form> 
 	<acme:input-moment code="flight-crew-member.activity-log.form.label.registrationMoment" path="registrationMoment" readonly ="true"/>
-	<acme:input-textbox code="flight-crew-member.activity-log.form.label.incidentType" path="incidentType"/>	
+	<acme:input-textbox code="flight-crew-member.activity-log.form.label.incident-type" path="incidentType"/>	
 	<acme:input-textbox code="flight-crew-member.activity-log.form.label.description" path="description"/>	
 	<acme:input-integer code="flight-crew-member.activity-log.form.label.severityLevel" path="severityLevel"/>
 	<acme:input-textbox code="flight-crew-member.activity-log.form.label.flightAssignment" path="flightAssignment" readonly="true"/>

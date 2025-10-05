@@ -67,4 +67,9 @@ public class FlightAssignment extends AbstractEntity {
 	@ManyToOne(optional = false)
 	private Leg					leg;
 
+
+	public String getFlightNumber() {
+		return this.leg != null ? this.leg.getFlightNumber() : null;
+	}
+
 }

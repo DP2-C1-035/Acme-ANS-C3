@@ -9,19 +9,36 @@
 # they accept any liabilities with respect to them.
 
 flight-crew-member.activity-log.list.title = Registros de actividad
-flight-crew-member.activity-log.list.label.type-of-incident = Tipo de incidente
+flight-crew-member.activity-log.list.label.incident-type = Tipo de incidente
 flight-crew-member.activity-log.list.label.severity-level = Gravedad
 flight-crew-member.activity-log.list.label.registration-moment = Fecha del registro
 flight-crew-member.activity-log.list.label.draft-mode = Modo borrador
 flight-crew-member.activity-log.list.button.create = Crear
 
 flight-crew-member.activity-log.form.title = Registro de actividad
-flight-crew-member.activity-log.form.label.type-of-incident = Tipo de incidente
+flight-crew-member.activity-log.form.label.incident-type = Tipo de incidente
 flight-crew-member.activity-log.form.label.severity-level = Gravedad
 flight-crew-member.activity-log.form.label.description = Descripción
 flight-crew-member.activity-log.form.button.create = Crear
 flight-crew-member.activity-log.form.button.update = Actualizar
 flight-crew-member.activity-log.form.button.delete = Eliminar
 flight-crew-member.activity-log.form.button.publish = Publicar
+
+# Activity log form labels
+flight-crew-member.activity-log.form.label.registrationMoment = Fecha de registro
+flight-crew-member.activity-log.form.label.incident-type = Tipo de incidente
+flight-crew-member.activity-log.form.label.description = Descripción
+flight-crew-member.activity-log.form.label.severityLevel = Nivel de gravedad
+flight-crew-member.activity-log.form.label.flightAssignment = Asignación de vuelo
+
+# Activity log form buttons
+flight-crew-member.activity-log.form.button.update = Actualizar
+flight-crew-member.activity-log.form.button.publish = Publicar
+flight-crew-member.activity-log.form.button.delete = Eliminar
+flight-crew-member.activity-log.form.button.create = Crear
+
+# Confirmation (this comes from flight assignment form)
+flight-crew-member.flight-assignment.form.label.confirmation = Confirmo que la información es correcta
+
 
 flight-crew-member.activity-log.validation.create = No puedes crear registros para tramos de vuelos que no han finalizado.
