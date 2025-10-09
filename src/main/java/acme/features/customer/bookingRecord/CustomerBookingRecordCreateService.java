@@ -95,7 +95,7 @@ public class CustomerBookingRecordCreateService extends AbstractGuiService<Custo
 		if (selectedPassenger != null && !passengers.contains(selectedPassenger))
 			selectedPassenger = null;
 
-		choices = SelectChoices.from(passengers, "passportNumber", selectedPassenger);
+		choices = SelectChoices.from(passengers, "fullName", selectedPassenger);
 
 		dataset = super.unbindObject(bookingRecord, "passenger");
 		dataset.put("masterId", super.getRequest().getData("masterId", int.class));

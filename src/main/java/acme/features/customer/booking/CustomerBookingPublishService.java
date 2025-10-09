@@ -3,9 +3,7 @@ package acme.features.customer.booking;
 
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -14,8 +12,8 @@ import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
-import acme.components.ExchangeRate;
 import acme.entities.booking.Booking;
+import acme.entities.booking.TravelClass;
 import acme.entities.flight.Flight;
 import acme.entities.passenger.Passenger;
 import acme.realms.customer.Customer;
@@ -29,11 +27,21 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void authorise() {
-		boolean status;
 		int masterId;
-		Booking booking;
-		Customer customer;
+		int bookingId = super.getRequest().getData("id", int.class);
+		Booking booking = this.repository.findBookingById(bookingId);
 
+		Customer customer = booking == null ? null : booking.getCustomer();
+		boolean status = booking != null && super.getRequest().getPrincipal().hasRealm(customer);
+		if (status && "POST".equals(super.getRequest().getMethod())) {
+			List<Flight> validFlights = this.repository.findPublishedFlights().stream().filter(f -> f.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
+
+			Integer flightId = super.getRequest().getData("flight", Integer.class);
+			Flight flight = flightId != null && flightId != 0 ? this.repository.findFlightById(flightId) : null;
+
+			if (flightId != null && flightId != 0 && !validFlights.contains(flight))
+				status = false;
+		}
 		masterId = super.getRequest().getData("id", int.class);
 		booking = this.repository.findBookingById(masterId);
 		customer = booking == null ? null : booking.getCustomer();
@@ -67,39 +75,40 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 	@Override
 	public void validate(final Booking booking) {
+		// Validar que el número de tarjeta no sea nulo o vacío
 		{
-			boolean iscreditCardNibbleValid = booking.getCreditCardNibble() != null && !booking.getCreditCardNibble().trim().isEmpty();
-
-			super.state(iscreditCardNibbleValid, "creditCardNibble", "acme.validation.booking.publish.creditCardNibble-null.message");
+			boolean isCreditCardNibbleValid = booking.getCreditCardNibble() != null && !booking.getCreditCardNibble().trim().isEmpty();
+			super.state(isCreditCardNibbleValid, "creditCardNibble", "acme.validation.booking.publish.creditCardNibble-null.message");
 		}
+
+		// Validar que haya pasajeros asociados
 		{
-			boolean passengersAssociated;
 			List<Passenger> passengers = this.repository.findPassengersByBookingId(booking.getId());
-
-			passengersAssociated = !passengers.isEmpty();
-
+			boolean passengersAssociated = !passengers.isEmpty();
 			super.state(passengersAssociated, "*", "acme.validation.booking.publish.passengers-associated.message");
 		}
+
+		// Validar que el vuelo exista
 		{
-			super.state(booking.getFlight() != null, "flight", "acme.validation.booking.flight.not-found.messasge");
+			super.state(booking.getFlight() != null, "flight", "acme.validation.booking.flight.not-found.message");
 		}
+
+		// Validar que la fecha de salida del vuelo sea futura
 		{
-			Date moment;
-			moment = MomentHelper.getCurrentMoment();
+			Date moment = MomentHelper.getCurrentMoment();
 
 			if (booking.getFlight() != null) {
 				boolean flightDepartureFuture = booking.getFlight().getScheduledDeparture().after(moment);
 				super.state(flightDepartureFuture, "flight", "acme.validation.booking.departure-not-in-future.message");
 			}
+		}
 
-		}
-		if (booking.getPrice() != null && booking.getPrice().getCurrency() != null) {
-			boolean validCurrency = ExchangeRate.isValidCurrency(booking.getPrice().getCurrency());
-			super.state(validCurrency, "price", "acme.validation.currency.message");
-		}
+		// Validar que el booking esté en modo borrador
 		{
 			super.state(booking.isDraftMode(), "*", "acme.validation.booking.is-not-draft-mode.message");
 		}
+
+		// Validar que los pasajeros asociados pertenezcan al cliente
 		{
 			boolean passengersAssociatedAreFromCustomer = true;
 			List<Passenger> bookingPassengers = this.repository.findPassengersByBookingId(booking.getId());
@@ -113,6 +122,8 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 			super.state(passengersAssociatedAreFromCustomer, "*", "acme.validation.booking.publish.passenger-associated-not-owned.message");
 		}
+
+		// Validar que los pasajeros estén publicados
 		{
 			boolean passengerPublished = true;
 			List<Passenger> bookingPassengers = this.repository.findPassengersByBookingId(booking.getId());
@@ -122,12 +133,14 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 					passengerPublished = false;
 					break;
 				}
+
 			super.state(passengerPublished, "passenger", "acme.validation.booking.published.passenger-not-published.message");
 		}
 	}
 
 	@Override
 	public void perform(final Booking booking) {
+		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
 		booking.setDraftMode(false);
 		this.repository.save(booking);
 	}
@@ -135,33 +148,22 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	@Override
 	public void unbind(final Booking booking) {
 		Dataset dataset;
-		Collection<Flight> flights;
 		SelectChoices choices;
-		Date moment = MomentHelper.getCurrentMoment();
-		Flight selectedFlight = booking.getFlight();
 
-		flights = this.repository.findFlightsWithFirstLegAfter(moment);
+		List<Flight> valid = this.repository.findPublishedFlights().stream().filter(f -> f.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
 
-		// Asegurarse de que el vuelo seleccionado todavía es válido
-		if (selectedFlight != null && !flights.contains(selectedFlight))
-			selectedFlight = null;
+		Flight current = booking.getFlight();
+		Flight selected = current != null && valid.contains(current) ? current : null;
 
-		// Filtrar vuelos con flightRoute no nulo y sin duplicados
-		Set<String> seen = new HashSet<>();
-		List<Flight> validFlights = flights.stream().filter(f -> {
-			try {
-				return f.getFlightRoute() != null && seen.add(f.getFlightRoute());
-			} catch (Exception e) {
-				return false;
-			}
-		}).toList();
+		choices = SelectChoices.from(valid, "flightRoute", selected);
+		SelectChoices classChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		// Crear SelectChoices
-		choices = SelectChoices.from(validFlights, "flightRoute", selectedFlight);
+		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "price", "creditCardNibble", "draftMode");
 
-		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "price", "creditCardNibble");
-		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
+		dataset.put("flight", choices.getSelected() != null ? choices.getSelected().getKey() : "0");
+		dataset.put("classes", classChoices);
+		dataset.put("bookingId", booking.getId());
 
 		super.getResponse().addData(dataset);
 	}
