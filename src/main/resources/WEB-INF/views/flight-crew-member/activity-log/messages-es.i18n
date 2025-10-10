@@ -42,3 +42,6 @@ flight-crew-member.flight-assignment.form.label.confirmation = Confirmo que la i
 
 
 flight-crew-member.activity-log.validation.create = No puedes crear registros para tramos de vuelos que no han finalizado.
+
+flight-crew-member.activity-log.error.leg-not-completed=Solo puedes crear un registro de actividad para un vuelo ya completado.
+flight-crew-member.activity-log.error.no-leg-associated=No hay un tramo asociado a esta asignación de vuelo.
