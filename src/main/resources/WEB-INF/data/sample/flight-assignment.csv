@@ -25,7 +25,6 @@ flight-assignment-17,CABIN_ATTENDANT,2020/01/01 00:00,CONFIRMED,aaaaaaaaaaaaaaaa
 flight-assignment-18,CABIN_ATTENDANT,2020/01/01 00:00,CONFIRMED,bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb,true,flight-crew-member-02,leg-09
 flight-assignment-19,CABIN_ATTENDANT,2020/01/01 00:00,CONFIRMED,اختبار テスト,false,flight-crew-member-03,leg-10
 flight-assignment-20,CABIN_ATTENDANT,2020/01/01 00:00,CONFIRMED,测试,false,flight-crew-member-04,leg-11
-flight-assignment-21,PILOT,2020/01/01 00:00,CONFIRMED,тестирование,true,flight-crew-member-01,leg-12
 flight-assignment-22,PILOT,2020/01/01 00:00,CONFIRMED,' OR 1=1; --,true,flight-crew-member-02,leg-13
 flight-assignment-23,PILOT,2020/01/01 00:00,CONFIRMED,<script>alert('XSS')</script>,false,flight-crew-member-03,leg-14
 flight-assignment-24,PILOT,2020/01/01 00:00,CONFIRMED,Todo correcto,false,flight-crew-member-04,leg-15

@@ -41,6 +41,10 @@ flight-crew-member.flight-assignment.validation.current-status.publish = You can
 flight-crew-member.flight-assignment.error.member-not-available=Only AVAILABLE members can be assigned.
 flight-crew-member.flight-assignment.error.overlapping-legs=This crew member is already assigned to another leg at the same time.
 flight-crew-member.flight-assignment.error.duty-already-assigned=There is already a {0} assigned to this leg.
+flight-crew-member.flight-assignment.error.leg-not-published=You cannot create a flight assignment for an unpublished leg.
+flight-crew-member.flight-assignment.error.leg-null=You must select a leg before updating the assignment.
+
+
 
 flight-crew-member.flight-assignment.form.label.assigned-crew = Assigned crew members for this flight:
 flight-crew-member.flight-assignment.form.label.no-crew = No crew members assigned yet.

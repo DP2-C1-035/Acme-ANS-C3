@@ -39,6 +39,8 @@ flight-crew-member.flight-assignment.validation.flight-number.publish = Este mie
 flight-crew-member.flight-assignment.validation.overlapping-leg = Este tramo se solapa con otro tramo del mismo miembro
 flight-crew-member.flight-assignment.validation.current-status.publish = No puedes publicar una asignación de vuelo en estado pendiente.
 flight-crew-member.flight-assignment.validation.overlapping-leg.publish = Este tramo se solapa con otro tramo del mismo miembro
+flight-crew-member.flight-assignment.error.leg-not-published=No puedes crear una asignación de vuelo para un tramo que no esté publicado.
+flight-crew-member.flight-assignment.error.leg-null=Debes seleccionar un tramo antes de actualizar la asignación.
 
 flight-crew-member.flight-assignment.form.label.assigned-crew = Tripulantes asignados a este vuelo:
 flight-crew-member.flight-assignment.form.label.associated-legs = Otras legs asociadas al mismo vuelo:
