@@ -40,7 +40,14 @@ public class FlightCrewMemberActivityLogShowService extends AbstractGuiService<F
 	@Override
 	public void unbind(final ActivityLog activityLog) {
 		Dataset dataset;
-		dataset = super.unbindObject(activityLog, "registrationMoment", "incidentType", "description", "severityLevel", "draftMode");
+
+		dataset = super.unbindObject(activityLog, "registrationMoment", "incidentType", "description", "severityLevel", "draftMode", "flightAssignment");
+
+		//		if (activityLog.getFlightAssignment() != null)
+		//			dataset.put("flightAssignment", activityLog.getFlightAssignment().getFlightNumber());
+		//		else
+		//			dataset.put("flightAssignment", "");
+
 		super.getResponse().addData(dataset);
 	}
 
