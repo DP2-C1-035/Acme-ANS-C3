@@ -9,6 +9,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activity_log.ActivityLog;
 import acme.entities.flight_assignment.FlightAssignment;
+import acme.entities.leg.Leg;
 import acme.realms.flight_crew_member.FlightCrewMember;
 
 @GuiService
@@ -63,6 +64,15 @@ public class FlightCrewMemberActivityLogCreateService extends AbstractGuiService
 		boolean confirmation;
 		confirmation = super.getRequest().getData("confirmation", boolean.class);
 		super.state(confirmation, "confirmation", "acme.validation.confirmation.message");
+
+		//solo se pueden crear logs para legs ya completados
+		FlightAssignment assignment = activityLog.getFlightAssignment();
+		if (assignment != null && assignment.getLeg() != null) {
+			Leg leg = assignment.getLeg();
+			boolean legAlreadyCompleted = leg.getScheduledArrival().before(MomentHelper.getCurrentMoment());
+			super.state(legAlreadyCompleted, "flightAssignment", "flight-crew-member.activity-log.error.leg-not-completed");
+		} else
+			super.state(false, "flightAssignment", "flight-crew-member.activity-log.error.no-leg-associated");
 	}
 
 	@Override

@@ -4,9 +4,12 @@ package acme.features.flight_crew_member.activity_log;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.activity_log.ActivityLog;
+import acme.entities.flight_assignment.FlightAssignment;
+import acme.entities.leg.Leg;
 import acme.realms.flight_crew_member.FlightCrewMember;
 
 @GuiService
@@ -44,11 +47,22 @@ public class FlightCrewMemberActivityLogUpdateService extends AbstractGuiService
 
 	@Override
 	public void validate(final ActivityLog activityLog) {
-		;
+		FlightAssignment flightAssignment = activityLog.getFlightAssignment();
+
+		if (flightAssignment != null && flightAssignment.getLeg() != null) {
+			Leg leg = flightAssignment.getLeg();
+			boolean legAlreadyCompleted = leg.getScheduledArrival().before(MomentHelper.getCurrentMoment());
+			super.state(legAlreadyCompleted, "flightAssignment", "flight-crew-member.activity-log.error.leg-not-completed");
+		} else
+			super.state(false, "flightAssignment", "flight-crew-member.activity-log.error.no-leg-associated");
+
+		super.state(activityLog.isDraftMode(), "draftMode", "flight-crew-member.activity-log.error.not-editable");
+
 	}
 
 	@Override
 	public void perform(final ActivityLog activityLog) {
+		activityLog.setRegistrationMoment(MomentHelper.getCurrentMoment());
 		this.repository.save(activityLog);
 	}
 

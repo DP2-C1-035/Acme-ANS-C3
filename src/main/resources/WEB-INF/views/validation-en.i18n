@@ -71,9 +71,12 @@ typeMismatch.java.util.Date=Must follow the pattern dd/MM/yyyy HH:mm
 
 
 
+
+
 #BookingRecord
 
 customer.booking-record.delete.passenger.not-null = Must select one passenger to delete
+acme.validation.booking-record.create.passenger-required.message= You must select a passenger.
 
 
 #Booking

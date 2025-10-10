@@ -69,6 +69,7 @@ typeMismatch.java.util.Date=Debe seguir el patrón dd/mm/yyyy HH:mm
 #BookingRecord
 
 customer.booking-record.delete.passenger.not-null = Debe seleccionar un pasajero para eliminar
+acme.validation.booking-record.create.passenger-required.message=Debes seleccionar un pasajero.
 
 
 #Validaciones Booking

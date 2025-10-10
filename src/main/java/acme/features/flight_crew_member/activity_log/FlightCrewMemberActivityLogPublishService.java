@@ -54,8 +54,13 @@ public class FlightCrewMemberActivityLogPublishService extends AbstractGuiServic
 	public void validate(final ActivityLog activityLog) {
 		int activityLogId = super.getRequest().getData("id", int.class);
 		FlightAssignment flightAssignment = this.repository.findFlightAssignmentByActivityLogId(activityLogId);
-		boolean legHasArrive = MomentHelper.isAfter(MomentHelper.getCurrentMoment(), flightAssignment.getLeg().getScheduledArrival());
-		super.state(legHasArrive, "*", "flight-crew-member.activity-log.validation.create");
+
+		//Si la leg ya ha ocurrido se puede publicar el activity log
+		if (flightAssignment != null && flightAssignment.getLeg() != null) {
+			boolean legAlreadyCompleted = flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
+			super.state(legAlreadyCompleted, "flightAssignment", "flight-crew-member.activity-log.error.leg-not-completed");
+		} else
+			super.state(false, "flightAssignment", "flight-crew-member.activity-log.error.no-leg-associated");
 	}
 
 	@Override
