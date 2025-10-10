@@ -109,9 +109,14 @@ public class FlightCrewMemberFlightAssignmentPublishService extends AbstractGuiS
 			//			if (!overlapping.isEmpty())
 			//				super.state(false, "leg", "flight-crew-member.flight-assignment.validation.overlapping-leg.publish");
 
-			// 5. La leg debe estar publicada y no haber ocurrido aún
-			boolean legNotOccurred = !flightAssignment.getLeg().isDraftMode() && flightAssignment.getLeg().getScheduledArrival().after(MomentHelper.getCurrentMoment());
-			super.state(legNotOccurred, "leg", "flight-crew-member.flight-assignment.validation.leg-occurred-or-not-published");
+			//El leg no puede haber ocurrido ya
+			boolean legHasOccurred = flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
+			super.state(!legHasOccurred, "leg", "flight-crew-member.flight-assignment.error.leg-occurred");
+
+			//El leg debe estar publicado
+			boolean legNotPublished = flightAssignment.getLeg().isDraftMode();
+			super.state(!legNotPublished, "leg", "flight-crew-member.flight-assignment.error.leg-not-published");
+
 		}
 
 	}

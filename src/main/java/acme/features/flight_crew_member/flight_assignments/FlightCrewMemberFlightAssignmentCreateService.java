@@ -98,6 +98,10 @@ public class FlightCrewMemberFlightAssignmentCreateService extends AbstractGuiSe
 		// Validación: el leg no puede haber ocurrido ya
 		boolean legHasOccurred = flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
 		super.state(!legHasOccurred, "leg", "flight-crew-member.flight-assignment.error.leg-occurred");
+
+		//5. El leg debe estar publicado, no se puede asignar un flight assignment a una leg no publicada 
+		boolean legNotPublished = leg.isDraftMode();
+		super.state(!legNotPublished, "leg", "flight-crew-member.flight-assignment.error.leg-not-published");
 	}
 
 	@Override

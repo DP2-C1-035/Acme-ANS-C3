@@ -84,6 +84,12 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		// Debe estar en draftMode
 		super.state(flightAssignment.isDraftMode(), "*", "flight-crew-member.flight-assignment.error.not-editable");
 
+		// Si leg es null, mostramos un error y terminamos aquí para evitar NullPointerException
+		if (leg == null) {
+			super.state(false, "leg", "flight-crew-member.flight-assignment.error.leg-null");
+			return;
+		}
+
 		//No puede haber solapamiento de legs
 		Collection<FlightAssignment> currentAssignments = this.repository.findFlightAssignmentsByFlightCrewMemberId(crewMember.getId());
 		boolean overlaps = currentAssignments.stream().anyMatch(fa -> {
@@ -102,6 +108,10 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		//El leg no puede haber ocurrido ya
 		boolean legHasOccurred = flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
 		super.state(!legHasOccurred, "leg", "flight-crew-member.flight-assignment.error.leg-occurred");
+
+		//el leg debe estar publicado
+		boolean legNotPublished = leg.isDraftMode();
+		super.state(!legNotPublished, "leg", "flight-crew-member.flight-assignment.error.leg-not-published");
 	}
 
 	@Override
