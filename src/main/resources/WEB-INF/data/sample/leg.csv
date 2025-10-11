@@ -5,7 +5,6 @@ leg-02,ABC0000,2025/01/02 01:00,2025/01/02 03:00,ON_TIME,airport-01,airport-02,a
 leg-03,ABC0001,2025/01/03 01:00,2025/01/03 03:00,ON_TIME,airport-01,airport-02,aircraft-01,flight-03,false
 leg-04,ABC9998,2030/01/04 01:00,2030/01/04 03:00,ON_TIME,airport-01,airport-02,aircraft-01,flight-05,false
 leg-05,ABC9999,2030/01/05 01:00,2030/01/05 03:00,ON_TIME,airport-01,airport-02,aircraft-01,flight-06,false
-leg-06,ABC0006,2000/01/01 00:00,2020/01/01 03:00,ON_TIME,airport-01,airport-02,aircraft-41,flight-07,false
 leg-07,ABC0007,2000/01/01 00:01,2020/01/01 03:00,ON_TIME,airport-01,airport-02,aircraft-42,flight-08,false
 leg-08,ABC0008,2200/12/31 23:57,2200/12/31 23:58,ON_TIME,airport-01,airport-02,aircraft-04,flight-09,true
 leg-09,ABC0009,2200/12/31 23:58,2200/12/31 23:59,ON_TIME,airport-01,airport-02,aircraft-05,flight-10,false
@@ -28,3 +27,13 @@ leg-25,ABC0025,2035/01/01 01:00,2035/01/01 03:00,ON_TIME,airport-01,airport-02,a
 leg-26,ABC0026,2035/01/01 04:00,2035/01/01 06:00,ON_TIME,airport-01,airport-02,aircraft-09,flight-14,true
 leg-27,ABC0027,2030/01/01 01:00,2030/01/01 03:00,ON_TIME,airport-01,airport-02,aircraft-09,flight-14,true
 leg-28,ABC0028,2030/01/01 02:00,2030/01/01 04:00,ON_TIME,airport-01,airport-02,aircraft-09,flight-14,true
+
+# pruebas flight-crew-member
+leg-30,ABC0100,2024/12/31 22:00,2024/12/31 23:59,LANDED,airport-01,airport-02,aircraft-30,flight-100,false
+leg-31,ABC0101,2020/06/01 10:00,2020/06/01 12:00,LANDED,airport-01,airport-02,aircraft-31,flight-101,false
+leg-32,ABC0200,2025/01/02 01:00,2025/01/02 04:00,ON_TIME,airport-01,airport-02,aircraft-32,flight-200,false
+leg-33,ABC0201,2025/06/01 01:00,2025/06/01 05:00,ON_TIME,airport-01,airport-02,aircraft-33,flight-201,true
+leg-34,ABC0202,2025/01/02 03:00,2025/01/02 06:00,ON_TIME,airport-01,airport-02,aircraft-34,flight-202,false
+leg-35,ABC0300,2025/12/02 09:00,2025/12/02 12:00,ON_TIME,airport-03,airport-04,aircraft-35,flight-300,false
+leg-36,ABC0999,2035/07/01 05:00,2035/07/01 09:00,ON_TIME,airport-05,airport-06,aircraft-36,flight-999,false
+
