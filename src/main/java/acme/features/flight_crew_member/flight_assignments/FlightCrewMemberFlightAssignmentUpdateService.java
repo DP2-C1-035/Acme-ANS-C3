@@ -37,15 +37,20 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 		if (status) {
 			String method;
-			int legtId;
+			Integer legtId = null;
 			method = super.getRequest().getMethod();
-			if (method.equals("GET"))
-				status = true;
-			else {
-				legtId = super.getRequest().getData("leg", int.class);
-				Leg leg = this.repository.findLegById(legtId);
-				Collection<Leg> uncompletedLegs = this.repository.findUncompletedLegs(MomentHelper.getCurrentMoment());
-				status = legtId == 0 || uncompletedLegs.contains(leg);
+
+			if (!method.equals("GET")) {
+				try {
+					legtId = super.getRequest().getData("leg", int.class);
+				} catch (Exception e) {
+					// Ignoramos si no hay leg
+				}
+				if (legtId != null && legtId != 0) {
+					Leg leg = this.repository.findLegById(legtId);
+					Collection<Leg> uncompletedLegs = this.repository.findUncompletedLegs(MomentHelper.getCurrentMoment());
+					status = leg != null && uncompletedLegs.contains(leg);
+				}
 			}
 		}
 
@@ -72,8 +77,8 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		flightAssignment.setLeg(leg);
 		flightAssignment.setLastUpdate(MomentHelper.getCurrentMoment());
 
-		super.bindObject(flightAssignment, "flightCrewDuty", "remarks");
-
+		//Añadimos "assignmentStatus" al binding para que se capture desde el formulario
+		super.bindObject(flightAssignment, "flightCrewDuty", "remarks", "assignmentStatus");
 	}
 
 	@Override
@@ -90,7 +95,11 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 			return;
 		}
 
-		//No puede haber solapamiento de legs
+		//Si assignmentStatus es null, mostramos error
+		if (flightAssignment.getAssignmentStatus() == null)
+			super.state(false, "assignmentStatus", "flight-crew-member.flight-assignment.error.status-null");
+
+		// No puede haber solapamiento de legs
 		Collection<FlightAssignment> currentAssignments = this.repository.findFlightAssignmentsByFlightCrewMemberId(crewMember.getId());
 		boolean overlaps = currentAssignments.stream().anyMatch(fa -> {
 			Leg l = fa.getLeg();
@@ -105,11 +114,11 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 		if (flightAssignment.getFlightCrewDuty() == FlightCrewDuty.PILOT || flightAssignment.getFlightCrewDuty() == FlightCrewDuty.CO_PILOT)
 			super.state(!dutyConflict, "flightCrewDuty", "flight-crew-member.flight-assignment.error.duty-already-assigned");
 
-		//El leg no puede haber ocurrido ya
-		boolean legHasOccurred = flightAssignment.getLeg().getScheduledArrival().before(MomentHelper.getCurrentMoment());
+		// El leg no puede haber ocurrido ya
+		boolean legHasOccurred = leg.getScheduledArrival().before(MomentHelper.getCurrentMoment());
 		super.state(!legHasOccurred, "leg", "flight-crew-member.flight-assignment.error.leg-occurred");
 
-		//el leg debe estar publicado
+		// El leg debe estar publicado
 		boolean legNotPublished = leg.isDraftMode();
 		super.state(!legNotPublished, "leg", "flight-crew-member.flight-assignment.error.leg-not-published");
 	}
@@ -133,7 +142,6 @@ public class FlightCrewMemberFlightAssignmentUpdateService extends AbstractGuiSe
 
 		if (!legs.contains(flightAssignment.getLeg()))
 			legChoices = SelectChoices.from(legs, "flightNumber", null);
-
 		else
 			legChoices = SelectChoices.from(legs, "flightNumber", flightAssignment.getLeg());
 
