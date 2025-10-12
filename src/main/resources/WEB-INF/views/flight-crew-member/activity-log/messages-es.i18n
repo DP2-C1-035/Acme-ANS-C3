@@ -45,3 +45,5 @@ flight-crew-member.activity-log.validation.create = No puedes crear registros pa
 
 flight-crew-member.activity-log.error.leg-not-completed=Solo puedes crear un registro de actividad para un vuelo ya completado.
 flight-crew-member.activity-log.error.no-leg-associated=No hay un tramo asociado a esta asignación de vuelo.
+flight-crew-member.flight-assignment.validation.overlapping-leg.publish=Este tramo se solapa con otro vuelo publicado del mismo miembro.
+
