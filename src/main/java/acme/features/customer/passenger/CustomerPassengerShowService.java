@@ -43,6 +43,11 @@ public class CustomerPassengerShowService extends AbstractGuiService<Customer, P
 	}
 
 	@Override
+	public void validate(final Passenger passenger) {
+		;
+	}
+
+	@Override
 	public void unbind(final Passenger passenger) {
 		Dataset dataset;
 

@@ -6,8 +6,8 @@
 <acme:form> 
 
 	<acme:input-textbox code="customer.passenger.form.label.fullName" path="fullName"/>
-	<acme:input-textbox code="customer.passenger.form.label.email" path="email"/>
-	<acme:input-textbox code="customer.passenger.form.label.passportNumber" path="passportNumber"/>
+	<acme:input-email code="customer.passenger.form.label.email" path="email"/>
+	<acme:input-textbox code="customer.passenger.form.label.passportNumber" path="passportNumber" placeholder="customer.booking.form.placeholder.passportNumber"/>
 	<acme:input-moment code="customer.passenger.form.label.dateOfBirth" path="dateOfBirth"/>
 	<acme:input-textarea code="customer.passenger.form.label.specialNeeds" path="specialNeeds"/>
 

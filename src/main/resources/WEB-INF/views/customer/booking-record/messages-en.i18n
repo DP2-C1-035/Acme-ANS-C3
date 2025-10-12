@@ -1,3 +1,6 @@
+customer.booking-record.form.title = Manage passengers from your booking
+
+
 customer.booking-record.list.label.passenger = Passenger
 customer.booking-record.list.button.create = Associate Passenger
 customer.booking-record.list.title = Passengers Asociated

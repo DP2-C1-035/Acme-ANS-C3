@@ -21,6 +21,7 @@ import acme.client.components.validation.Optional;
 import acme.client.components.validation.ValidMoment;
 import acme.client.components.validation.ValidMoney;
 import acme.client.components.validation.ValidString;
+import acme.constraints.ValidBooking;
 import acme.entities.flight.Flight;
 import acme.realms.customer.Customer;
 import lombok.Getter;
@@ -29,6 +30,7 @@ import lombok.Setter;
 @Entity
 @Getter
 @Setter
+@ValidBooking
 @Table(indexes = {
 	@Index(columnList = "locatorCode"), @Index(columnList = "customer_id, purchaseMoment"), @Index(columnList = "flight_id")
 })
