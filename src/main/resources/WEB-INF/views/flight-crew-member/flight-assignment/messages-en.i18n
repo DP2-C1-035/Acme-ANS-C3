@@ -50,5 +50,8 @@ flight-crew-member.flight-assignment.form.label.assigned-crew = Assigned crew me
 flight-crew-member.flight-assignment.form.label.no-crew = No crew members assigned yet.
 flight-crew-member.flight-assignment.form.label.associated-legs = Other legs associated with this flight:
 flight-crew-member.flight-assignment.form.label.no-legs = No other legs associated with this flight.
+flight-crew-member.flight-assignment.error.invalid-leg=The selected leg does not exist or is invalid.
+flight-crew-member.flight-assignment.error.status-null=You must select a status before updating the assignment.
+
 
 

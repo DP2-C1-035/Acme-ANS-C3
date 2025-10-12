@@ -44,3 +44,5 @@ flight-crew-member.flight-assignment.form.label.confirmation = I confirm the inf
 flight-crew-member.activity-log.validation.create = You cannot create records for legs that have not yet ended.
 flight-crew-member.activity-log.error.leg-not-completed=You can only create an activity log for a flight that has already been completed.
 flight-crew-member.activity-log.error.no-leg-associated=No leg is associated with this flight assignment.
+flight-crew-member.flight-assignment.validation.overlapping-leg.publish=This leg overlaps with another published flight assignment of the same member.
+
