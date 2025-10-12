@@ -46,3 +46,5 @@ flight-crew-member.flight-assignment.form.label.assigned-crew = Tripulantes asig
 flight-crew-member.flight-assignment.form.label.associated-legs = Otras legs asociadas al mismo vuelo:
 flight-crew-member.flight-assignment.form.label.no-crew = No hay tripulantes asignados todavía.
 flight-crew-member.flight-assignment.form.label.no-legs = No hay otras legs asociadas a este vuelo.
+flight-crew-member.flight-assignment.error.invalid-leg=El tramo seleccionado no existe o no es válido.
+
