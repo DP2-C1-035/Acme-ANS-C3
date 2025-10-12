@@ -7,6 +7,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.validation.AbstractValidator;
 import acme.client.components.validation.Validator;
+import acme.client.helpers.SpringHelper;
+import acme.client.helpers.StringHelper;
 import acme.entities.booking.Booking;
 import acme.entities.booking.BookingRepository;
 
@@ -31,6 +33,12 @@ public class BookingValidator extends AbstractValidator<ValidBooking, Booking> {
 		assert context != null;
 
 		boolean result;
+
+		if (booking != null && StringHelper.isBlank(booking.getLocatorCode()))
+			super.state(context, false, "locatorCode", "acme.validation.locatorCode.is-blank");
+
+		if (booking != null && !StringHelper.isBlank(booking.getLocatorCode()) && SpringHelper.getBean(BookingRepository.class).findByLocatorCodeAndNotBookingId(booking.getLocatorCode(), booking.getId()).isPresent())
+			super.state(context, false, "locatorCode", "acme.validation.locatorCode.not-unique");
 
 		if (booking == null)
 			super.state(context, false, "*", "javax.validation.constraints.NotNull.message");

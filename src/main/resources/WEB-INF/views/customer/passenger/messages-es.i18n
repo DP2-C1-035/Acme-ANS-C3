@@ -18,7 +18,10 @@ customer.passenger.form.button.update = Actualizar
 customer.passenger.form.button.publish = Publicar
 
 
+customer.passenger.update.draft-mode = Un pasajero no se puede actualizar si ha sido publicado
 
+customer.passenger.form.placeholder.fullName = Nombre completo del pasajero
+customer.booking.form.placeholder.passportNumber = AAAA1234
 
 
 

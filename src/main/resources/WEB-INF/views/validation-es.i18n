@@ -75,6 +75,7 @@ acme.validation.booking-record.create.passenger-required.message=Debes seleccion
 #Validaciones Booking
 
  acme.validation.locatorCode.not-unique = Este código localizador ya existe
+ acme.validation.locatorCode.is-blank = El código localizador está en blanco
 
 #Validación Administrador
 acme.validation.airline.duplicated-iata.message = Ya existe una aerolínea con ese código IATA
@@ -99,7 +100,6 @@ acme.validation.trackinglog.invalid-resolution.message = Resolución incorrecta
 
 # Validación general de fechas
 
-acme.validation.range.message = La fecha no está en un rango correcto.
 
 #Validación general de clientes
 acme.validation.customer.invalid-identifier.message = The customer's identifier number already exists.

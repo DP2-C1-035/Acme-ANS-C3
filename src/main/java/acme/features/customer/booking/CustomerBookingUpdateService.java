@@ -16,6 +16,7 @@ import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.components.ExchangeRate;
 import acme.entities.booking.Booking;
+import acme.entities.booking.TravelClass;
 import acme.entities.flight.Flight;
 import acme.realms.customer.Customer;
 
@@ -93,6 +94,8 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 	@Override
 	public void perform(final Booking booking) {
 		this.repository.save(booking);
+		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
+		booking.setDraftMode(true);
 	}
 
 	@Override
@@ -113,10 +116,14 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 		List<Flight> validFlights = flights.stream().filter(f -> f.getFlightRoute() != null && seen.add(f.getFlightRoute())).toList();
 
 		choices = SelectChoices.from(validFlights, "flightRoute", selectedFlight);
+		SelectChoices classChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
-		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "price", "creditCardNibble");
+		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "creditCardNibble", "draftMode");
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
+		dataset.put("classes", classChoices);
+		dataset.put("travelClass", classChoices.getSelected().getKey());
+		dataset.put("bookingId", booking.getId());
 
 		super.getResponse().addData(dataset);
 	}

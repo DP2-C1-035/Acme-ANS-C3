@@ -16,6 +16,7 @@ import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
 import acme.entities.booking.Booking;
+import acme.entities.booking.TravelClass;
 import acme.entities.flight.Flight;
 import acme.realms.customer.Customer;
 
@@ -71,21 +72,23 @@ public class CustomerBookingShowService extends AbstractGuiService<Customer, Boo
 			flights.add(selectedFlight);
 		}
 
-		// Filtrar vuelos con flightRoute nulo y eliminar duplicados
 		Set<String> seenRoutes = new HashSet<>();
 		Iterator<Flight> iter = flights.iterator();
 		while (iter.hasNext()) {
 			Flight f = iter.next();
 			String route = f.getFlightRoute();
 			if (route == null || !seenRoutes.add(route))
-				iter.remove(); // eliminar vuelo con route nulo o duplicado
+				iter.remove();
 		}
 
 		choices = SelectChoices.from(flights, "flightRoute", selectedFlight);
+		SelectChoices classChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "price", "creditCardNibble", "purchaseMoment", "draftMode");
 		dataset.put("flight", choices.getSelected().getKey());
 		dataset.put("flights", choices);
+		dataset.put("classes", classChoices);
+		dataset.put("bookingId", booking.getId());
 
 		super.getResponse().addData(dataset);
 	}

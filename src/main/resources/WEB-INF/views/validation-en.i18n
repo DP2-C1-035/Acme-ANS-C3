@@ -81,7 +81,18 @@ acme.validation.booking-record.create.passenger-required.message= You must selec
 
 #Booking
 
-acme.validation.locatorCode.not-unique = This locator code already exist
+acme.validation.locatorCode.not-unique = This locator code already exists
+acme.validation.currency.message = Invalid currency
+acme.validation.locatorCode.is-blank = The locator code is blank
+
+# Travel class
+typeMismatch.booking.travelClass = Must be one of: ECONOMY or BUSINESS
+NotNull.booking.travelClass = Travel class is required
+
+# Price (Money)
+typeMismatch.booking.price = Must match: CUR 1234.56 (e.g. EUR 1234.56)
+NotNull.booking.price = Price is required
+
 
 # AssistanceAgent Validation
 
@@ -95,8 +106,6 @@ acme.validation.trackinglog.invalid-state.message = Incorrect resolution state
 acme.validation.trackinglog.invalid-resolution.message = Incorrect resolution
 
 # General Date Validation
-
-acme.validation.range.message = The date is not in a correct range.
 
 
 #Administrator General Validation
@@ -127,13 +136,18 @@ acme.validation.booking-record.create.passenger-not-from-customer.message = This
 acme.validation.booking-record.create.passenger-not-published.message = This passenger is not published
 acme.validation.booking-record.create.passenger-already-associated.message = This passenger is already associated to the booking
 
-acme.validation.customer.passenger.update.is-not-dratMode.message = This passenger is not on draftMode.
 
-acme.validation.passenger.dateOfBirth.null-or-invalid = Must follow the pattern yyyy/mm/dd Hh:mm
-acme.validation.customer.passenger.dateOfBirth.notPast.message = Date of birth can't be on the future
-acme.validation.customer.passenger.dateOfBirth.invalid-format = Must follow the pattern yyyy/mm/dd Hh:mm
-typeMismatch.date= Must follow the pattern yyyy/mm/dd Hh:mm
-typeMismatch.java.util.Date=  Must follow the pattern yyyy/mm/dd Hh:mm
+acme.validation.customer.passenger.update.is-not-draftMode.message = This passenger is not in draft mode.
+
+
+acme.validation.dateOfBirth.null-or-invalid = Must follow the pattern yyyy/MM/dd HH:mm
+acme.validation.dateOfBirth.notPast.message = Date of birth can't be in the future
+
+
+typeMismatch.passenger.dateOfBirth = Must follow the pattern yyyy/MM/dd HH:mm
+typeMismatch.java.util.Date = Must follow the pattern yyyy/MM/dd HH:mm
+typeMismatch.date = Must follow the pattern yyyy/MM/dd HH:mm
+
 
 #BookingRecord
 
