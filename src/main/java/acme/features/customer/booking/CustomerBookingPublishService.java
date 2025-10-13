@@ -1,6 +1,7 @@
 
 package acme.features.customer.booking;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Date;
 import java.util.List;
@@ -34,7 +35,8 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 		Customer customer = booking == null ? null : booking.getCustomer();
 		boolean status = booking != null && super.getRequest().getPrincipal().hasRealm(customer);
 		if (status && "POST".equals(super.getRequest().getMethod())) {
-			List<Flight> validFlights = this.repository.findPublishedFlights().stream().filter(f -> f.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
+			final Date now = Date.from(Instant.now());
+			List<Flight> validFlights = this.repository.findPublishedFlights().stream().filter(f -> f.getScheduledDeparture() != null).filter(f -> f.getScheduledDeparture().after(now)).toList();
 
 			Integer flightId = super.getRequest().getData("flight", Integer.class);
 			Flight flight = flightId != null && flightId != 0 ? this.repository.findFlightById(flightId) : null;
@@ -90,17 +92,19 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 
 		// Validar que el vuelo exista
 		{
-			super.state(booking.getFlight() != null, "flight", "acme.validation.booking.flight.not-found.message");
-		}
+			{
+				final Date now = Date.from(Instant.now());
 
-		// Validar que la fecha de salida del vuelo sea futura
-		{
-			Date moment = MomentHelper.getCurrentMoment();
-
-			if (booking.getFlight() != null) {
-				boolean flightDepartureFuture = booking.getFlight().getScheduledDeparture().after(moment);
-				super.state(flightDepartureFuture, "flight", "acme.validation.booking.departure-not-in-future.message");
+				if (booking.getFlight() == null)
+					super.state(false, "flight", "acme.validation.booking.flight.not-found.message");
+				else if (booking.getFlight().getScheduledDeparture() == null)
+					super.state(false, "flight", "acme.validation.booking.flight.date-null.message");
+				else {
+					boolean future = booking.getFlight().getScheduledDeparture().after(now);
+					super.state(future, "flight", "acme.validation.booking.departure-not-in-future.message");
+				}
 			}
+
 		}
 
 		// Validar que el booking esté en modo borrador
@@ -149,11 +153,12 @@ public class CustomerBookingPublishService extends AbstractGuiService<Customer, 
 	public void unbind(final Booking booking) {
 		Dataset dataset;
 		SelectChoices choices;
+		final Date now = Date.from(Instant.now());
 
-		List<Flight> valid = this.repository.findPublishedFlights().stream().filter(f -> f.getScheduledDeparture().after(MomentHelper.getCurrentMoment())).toList();
-
+		List<Flight> valid = this.repository.findPublishedFlights().stream().filter(f -> f.getScheduledDeparture() != null).filter(f -> f.getScheduledDeparture().after(now)).toList();
 		Flight current = booking.getFlight();
-		Flight selected = current != null && valid.contains(current) ? current : null;
+
+		Flight selected = current != null && current.getScheduledDeparture() != null && valid.contains(current) ? current : null;
 
 		choices = SelectChoices.from(valid, "flightRoute", selected);
 		SelectChoices classChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());

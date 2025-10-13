@@ -25,13 +25,15 @@ public class CustomerPassengerListService extends AbstractGuiService<Customer, P
 
 	@Override
 	public void load() {
-		Collection<Passenger> passenger;
-		int customerId;
+		Collection<Passenger> passengers;
+		int customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
+		if (super.getRequest().hasData("bookingId")) {
+			int bookingId = super.getRequest().getData("bookingId", int.class);
+			passengers = this.repository.findPassengersByBookingAndCustomerId(bookingId, customerId);
+		} else
+			passengers = this.repository.findPassengersByCustomerId(customerId);
 
-		customerId = super.getRequest().getPrincipal().getActiveRealm().getId();
-		passenger = this.repository.findPassengersByCustomerId(customerId);
-
-		super.getBuffer().addData(passenger);
+		super.getBuffer().addData(passengers);
 	}
 
 	@Override
