@@ -29,10 +29,9 @@ flight-assignment-31,CO_PILOT,2020/01/01 00:00,CONFIRMED,no remarks,false,flight
 flight-assignment-32,LEAD_ATTENDANT,2020/01/01 00:00,CONFIRMED,no remarks,false,flight-crew-member-03,leg-30
 flight-assignment-33,CABIN_ATTENDANT,2020/01/01 00:00,CONFIRMED,no remarks,false,flight-crew-member-04,leg-30
 
-flight-assignment-40,PILOT,2024/12/20 10:00,CONFIRMED,"Vuelo aún en preparación para el leg futuro 40",true,flight-crew-member-01,leg-40
-flight-assignment-41,CO_PILOT,2024/12/21 11:00,CONFIRMED,"Asignación pendiente de revisión para el leg 41",true,flight-crew-member-01,leg-41
 flight-assignment-42,LEAD_ATTENDANT,2024/12/19 09:00,CONFIRMED,"Asignación completa y lista para publicar (leg 42)",true,flight-crew-member-01,leg-42
-flight-assignment-43,CABIN_ATTENDANT,2024/12/18 08:00,CONFIRMED,"Asignación vinculada a leg completado (para logs)",true,flight-crew-member-01,leg-43
+flight-assignment-43,CABIN_ATTENDANT,2024/12/18 08:00,CONFIRMED,"Asignación vinculada a leg completado (para logs)",false,flight-crew-member-01,leg-43
+
 
 
 
