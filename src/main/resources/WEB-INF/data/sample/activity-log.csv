@@ -9,3 +9,8 @@ activityLog-13,2020/05/07 14:15,LOW_FUEL,"F" * 255 (255 caracteres de descripci�
 
 # severity-level – standard variations
 activityLog-14,2020/05/07 14:15,DOOR_WARNING,"Advertencia de puerta 1L mal cerrada; revisada y asegurada",0,false,flight-assignment-24
+activityLog-20,2024/05/10 09:00,SYSTEMS_CHECK,"Chequeo de sistemas completado sin incidencias",2,false,flight-assignment-43
+activityLog-21,2024/05/10 09:30,TURBULENCE,"Ligera turbulencia sobre el Atlántico",5,false,flight-assignment-43
+activityLog-22,2024/12/30 13:30,CREW_REPORT,"Tripulación reporta condiciones óptimas",1,true,flight-assignment-41
+
+
