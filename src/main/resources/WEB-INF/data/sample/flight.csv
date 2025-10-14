@@ -31,7 +31,6 @@ flight-28,Legs no publicadas 2,false,EUR 1000.00,Vuelo experimental sin horario 
 flight-29,Leg publicada,false,EUR 1000.00,Ruta ya publicada en el sistema y habilitada para reserva.,manager-01,true
 flight-30,Sin Legs,false,EUR 1000.00,Este vuelo no tiene tramos definidos. Se requiere planificación personalizada.,manager-01,true
 
-# pruebas flight-crew-member
 flight-100,Vuelo test 100,false,EUR 850.00,Vuelo de prueba vinculado a leg-30 (LANDED). Permite crear activity logs válidos.,manager-01,false
 flight-101,Vuelo test 101,false,EUR 900.00,Vuelo histórico vinculado a leg-31. Usado para validaciones de logs antiguos.,manager-01,false
 flight-200,Vuelo operativo futuro,false,EUR 1000.00,Vuelo publicado y futuro vinculado a leg-32. Permite crear Flight Assignments válidos.,manager-01,false
