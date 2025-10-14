@@ -2,7 +2,6 @@
 package acme.features.assistanceAgent.trackingLog;
 
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.Date;
 import java.util.Optional;
 
@@ -106,11 +105,11 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 			super.state(!hasLowerDrafts, "*", "assistanceAgent.trackingLog.form.error.unpublished-lower-logs");
 
-			Optional<TrackingLog> mostRecentLog = logs.stream().filter(log -> log.getId() != object.getId()).max(Comparator.comparing(TrackingLog::getCreationMoment));
-
-			boolean isProgressing = mostRecentLog.map(lastLog -> percentage > lastLog.getResolutionPercentage()).orElse(true);
-
-			super.state(isProgressing, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage");
+			//			Optional<TrackingLog> mostRecentLog = logs.stream().filter(log -> log.getId() != object.getId()).max(Comparator.comparing(TrackingLog::getCreationMoment));
+			//
+			//			boolean isProgressing = mostRecentLog.map(lastLog -> percentage > lastLog.getResolutionPercentage()).orElse(true);
+			//
+			//			super.state(isProgressing, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage");
 		}
 		if (!super.getBuffer().getErrors().hasErrors("resolution")) {
 			boolean isPending = object.getIndicator() == TrackingLogIndicator.PENDING;
@@ -166,7 +165,7 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 		choicesIndicator = SelectChoices.from(TrackingLogIndicator.class, object.getIndicator());
 
-		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolution", "resolutionReason", "indicator", "creationMoment", "draftMode");
+		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator", "creationMoment", "draftMode");
 		dataset.put("indicators", choicesIndicator);
 
 		super.getResponse().addData(dataset);

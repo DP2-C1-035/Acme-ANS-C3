@@ -68,12 +68,17 @@ public class AssistanceAgentTrackingLogListService extends AbstractGuiService<As
 		Boolean noMore;
 		Boolean exceptionalCase;
 		Boolean greatRealm;
+		Boolean hasDraftAt100;
 
 		masterId = super.getRequest().getData("masterId", int.class);
 		claim = this.repository.findClaimById(masterId);
 
 		exceptionalCase = this.repository.countTrackingLogsForException(masterId) == 1;
 		noMore = this.repository.countTrackingLogsForException(masterId) == 0;
+		Long totalAt100 = this.repository.countAllTrackingLogsAt100(masterId);
+		hasDraftAt100 = totalAt100 > 1;
+		if (hasDraftAt100)
+			exceptionalCase = false;
 
 		greatRealm = super.getRequest().getPrincipal().hasRealm(claim.getAssistanceAgent());
 
