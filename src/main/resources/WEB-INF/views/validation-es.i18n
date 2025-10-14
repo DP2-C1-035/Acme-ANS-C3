@@ -23,7 +23,7 @@ acme.validation.trackinglog.invalid-resolution.message = Resolución incorrecta
 
 # Validación general de fechas
 
-acme.validation.range.message = La fecha no está en un rango correcto.
+acme.validation.range.message = El valor no está en un rango correcto
 
 #Validación general de clientes
 acme.validation.customer.invalid-identifier.message = The customer's identifier number already exists.
@@ -42,7 +42,8 @@ acme.validation.customer.passenger.update.is-not-dratMode.message = Este pasajer
 
 acme.validation.booking.departure-not-in-future.message = Este vuelo ya ha salido. Esto no es un error 500 por que un cliente puede crear una reserva con un vuelo. Tiempo después puede hacer show de la reserva. Ese vuelo no está en la lista debido a que solo se listan los vuelos que aún no han salido y ese vuelo ya salió. 
 acme.validation.booking.is-not-draft-mode.message = No se puede actualizar esta reserva. No está en modo borrador
-acme.validation.booking.flight.not-found.messasge = No se encontró ese vuelo
+acme.validation.booking.flight.not-found.message = No se encontró ese vuelo
+
 
 acme.validation.booking.publish.passengers-associated.message = Esta reserva no tiene pasajeros asociados.
 acme.validation.booking.publish.passenger-associated-not-owned.message = Esta reserva tiene pasajeros que no te pertenecen.
@@ -108,12 +109,19 @@ acme.validation.customer.invalid-identifierNumber.message = The identifier numbe
 #Validación general de reservas
 
 acme.validation.booking.duplicated-locatorCode.message = Este locatorCode ya existe.
+acme.validation.booking.flight.not-found.message = Este vuelo no se encuentra
+acme.validation.booking.flight.date-null.message = Este vuelo no tiene fecha de salida
+acme.validation.booking.departure-not-in-future.message = Este vuelo ya ha partido.
+acme.validation.currency.message = Formato inválido de moneda
+
+
 
 acme.validation.customer.passenger.update.is-not-dratMode.message = Este pasajero no está en modo borrador.
 
 acme.validation.booking.departure-not-in-future.message = Este vuelo ya ha salido. Esto no es un error 500 por que un cliente puede crear una reserva con un vuelo. Tiempo después puede hacer show de la reserva. Ese vuelo no está en la lista debido a que solo se listan los vuelos que aún no han salido y ese vuelo ya salió. 
 acme.validation.booking.is-not-draft-mode.message = No se puede actualizar esta reserva. No está en modo borrador
-acme.validation.booking.flight.not-found.messasge = No se encontró ese vuelo
+acme.validation.booking.flight.not-found.message = No se encontró ese vuelo
+
 
 acme.validation.booking.publish.passengers-associated.message = Esta reserva no tiene pasajeros asociados.
 acme.validation.booking.publish.passenger-associated-not-owned.message = Esta reserva tiene pasajeros que no te pertenecen.

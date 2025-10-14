@@ -13,7 +13,7 @@ acme.validation.trackinglog.invalid-resolution.message = Incorrect resolution
 
 # General Date Validation
 
-acme.validation.range.message = The date is not in a correct range.
+acme.validation.range.message = The value is not in a correct range
 
 
 #Administrator General Validation
@@ -32,7 +32,7 @@ acme.validation.customer.invalid-identifierNumber.message = The identifier numbe
 acme.validation.booking.duplicated-locatorCode.message = This locatorCode already exists.
 acme.validation.booking.departure-not-in-future.message = This flight has already been deported. This is not a code 500 because a customer can create a booking with a flight. Time after, he can show the booking. That flight is not on the list due to i only list that flights that have not been deported yet and that flight has already been deported. 
 acme.validation.booking.is-not-draft-mode.message = This booking can't be updated. It isn't on draftMode
-acme.validation.booking.flight.not-found.messasge = This flight couldn't be found
+acme.validation.booking.flight.not-found.message = This flight couldn't be found
 
 acme.validation.booking.publish.passengers-associated.message = This booking has no passengers associated.
 acme.validation.booking.publish.passenger-associated-not-owned.message = This booking has passengers that aren't yours.
@@ -47,7 +47,7 @@ acme.validation.booking.duplicated-locatorCode.message = This locatorCode alread
 acme.validation.booking.duplicated-locatorCode.message = This locatorCode already exists.
 acme.validation.booking.departure-not-in-future.message = This flight has already been deported. This is not a code 500 because a customer can create a booking with a flight. Time after, he can show the booking. That flight is not on the list due to i only list that flights that have not been deported yet and that flight has already been deported. 
 acme.validation.booking.is-not-draft-mode.message = This booking can't be updated. It isn't on draftMode
-acme.validation.booking.flight.not-found.messasge = This flight couldn't be found
+acme.validation.booking.flight.not-found.message = This flight couldn't be found
 
 acme.validation.booking.publish.creditCardNibble-null.message = The credit Card Nibble of this booking can't be null.
 acme.validation.booking.publish.passengers-associated.message = This booking has no passengers associated.
@@ -82,8 +82,14 @@ acme.validation.booking-record.create.passenger-required.message= You must selec
 #Booking
 
 acme.validation.locatorCode.not-unique = This locator code already exists
-acme.validation.currency.message = Invalid currency
 acme.validation.locatorCode.is-blank = The locator code is blank
+acme.validation.booking.flight.not-found.message = This flight couldn't be found
+acme.validation.booking.flight.date-null.message = This flight has no scheduled departure date.
+acme.validation.booking.departure-not-in-future.message = This flight has already departed.
+acme.validation.currency.message = Invalid currency
+
+
+
 
 # Travel class
 typeMismatch.booking.travelClass = Must be one of: ECONOMY or BUSINESS
@@ -124,7 +130,7 @@ acme.validation.customer.invalid-identifierNumber.message = The identifier numbe
 acme.validation.booking.duplicated-locatorCode.message = This locatorCode already exists.
 acme.validation.booking.departure-not-in-future.message = This flight has already been deported. This is not a code 500 because a customer can create a booking with a flight. Time after, he can show the booking. That flight is not on the list due to i only list that flights that have not been deported yet and that flight has already been deported. 
 acme.validation.booking.is-not-draft-mode.message = This booking can't be updated. It isn't on draftMode
-acme.validation.booking.flight.not-found.messasge = This flight couldn't be found
+acme.validation.booking.flight.not-found.message = This flight couldn't be found
 
 acme.validation.booking.publish.passengers-associated.message = This booking has no passengers associated.
 acme.validation.booking.publish.passenger-associated-not-owned.message = This booking has passengers that aren't yours.

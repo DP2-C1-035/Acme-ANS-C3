@@ -1,6 +1,7 @@
 
 package acme.features.customer.booking;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Date;
 import java.util.HashSet;
@@ -37,15 +38,12 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	public void load() {
 		Booking booking;
 		Customer customer;
-		Date moment;
-
-		moment = MomentHelper.getCurrentMoment();
 		customer = (Customer) super.getRequest().getPrincipal().getActiveRealm();
 
 		booking = new Booking();
 		booking.setDraftMode(true);
 		booking.setCustomer(customer);
-		booking.setPurchaseMoment(moment);
+		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
 
 		super.getBuffer().addData(booking);
 	}
@@ -66,52 +64,51 @@ public class CustomerBookingCreateService extends AbstractGuiService<Customer, B
 	@Override
 	public void validate(final Booking booking) {
 		{
-			Date moment;
-			moment = MomentHelper.getCurrentMoment();
+			final Date now = Date.from(Instant.now());
+
+			if (booking.getFlight() != null)
+				super.state(booking.getFlight().getScheduledDeparture() != null, "flight", "acme.validation.booking.flight.date-null.message");
 
 			if (booking.getFlight() != null) {
-				boolean flightDepartureFuture = booking.getFlight().getScheduledDeparture().after(moment);
+				boolean flightDepartureFuture = booking.getFlight().getScheduledDeparture().after(now);
 				super.state(flightDepartureFuture, "flight", "acme.validation.booking.departure-not-in-future.message");
 			}
-
-		}
-		if (booking.getPrice() != null && booking.getPrice().getCurrency() != null) {
-			boolean validCurrency = ExchangeRate.isValidCurrency(booking.getPrice().getCurrency());
-			super.state(validCurrency, "price", "acme.validation.currency.message");
+			if (booking.getPrice() != null && booking.getPrice().getCurrency() != null) {
+				boolean validCurrency = ExchangeRate.isValidCurrency(booking.getPrice().getCurrency());
+				super.state(validCurrency, "price", "acme.validation.currency.message");
+			}
 		}
 	}
 
 	@Override
 	public void perform(final Booking booking) {
+		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
 		this.repository.save(booking);
 	}
 
 	@Override
 	public void unbind(final Booking booking) {
 		Dataset dataset;
-		Collection<Flight> flights;
-		SelectChoices choices;
-		SelectChoices classes;
-		Date moment;
+		Date now = MomentHelper.getCurrentMoment();
+
+		Collection<Flight> flights = this.repository.findFlightsWithFirstLegAfter(now);
+		Set<String> seen = new HashSet<>();
+		List<Flight> validFlights = flights.stream().filter(f -> f.getFlightRoute() != null).filter(f -> f.getScheduledDeparture() != null && seen.add(f.getFlightRoute())).toList();
+
 		Flight selectedFlight = booking.getFlight();
-
-		moment = MomentHelper.getCurrentMoment();
-		flights = this.repository.findFlightsWithFirstLegAfter(moment);
-
-		if (selectedFlight != null && !flights.contains(selectedFlight))
+		if (selectedFlight != null && !validFlights.contains(selectedFlight))
 			selectedFlight = null;
 
-		Set<String> seen = new HashSet<>();
-		List<Flight> validFlights = flights.stream().filter(f -> f.getFlightRoute() != null && seen.add(f.getFlightRoute())).toList();
+		SelectChoices flightChoices = SelectChoices.from(validFlights, "flightRoute", selectedFlight);
 
-		choices = SelectChoices.from(validFlights, "flightRoute", selectedFlight);
-		classes = SelectChoices.from(TravelClass.class, booking.getTravelClass());
+		SelectChoices classChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		dataset = super.unbindObject(booking, "locatorCode", "travelClass", "price", "creditCardNibble");
-		dataset.put("flight", choices.getSelected().getKey());
-		dataset.put("flights", choices);
-		dataset.put("classes", classes);
-		dataset.put("travelClass", classes.getSelected().getKey());
+		dataset.put("flights", flightChoices);
+		dataset.put("flight", flightChoices.getSelected() != null ? flightChoices.getSelected().getKey() : "0");
+		dataset.put("classes", classChoices);
+		dataset.put("purchaseMoment", booking.getPurchaseMoment());
+		dataset.put("travelClass", classChoices.getSelected() != null ? classChoices.getSelected().getKey() : null);
 
 		super.getResponse().addData(dataset);
 	}

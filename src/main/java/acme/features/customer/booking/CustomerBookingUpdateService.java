@@ -1,11 +1,10 @@
 
 package acme.features.customer.booking;
 
+import java.time.Instant;
 import java.util.Collection;
 import java.util.Date;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -67,62 +66,55 @@ public class CustomerBookingUpdateService extends AbstractGuiService<Customer, B
 
 	@Override
 	public void validate(final Booking booking) {
-		{
-			Date moment;
-			moment = MomentHelper.getCurrentMoment();
 
-			if (booking.getFlight() != null) {
-				boolean flightDepartureFuture = booking.getFlight().getScheduledDeparture().after(moment);
-				super.state(flightDepartureFuture, "flight", "acme.validation.booking.departure-not-in-future.message");
-			}
-
-		}
 		{
-			if (booking.getPrice() != null && booking.getPrice().getCurrency() != null) {
-				boolean validCurrency = ExchangeRate.isValidCurrency(booking.getPrice().getCurrency());
-				super.state(validCurrency, "price", "acme.validation.currency.message");
+			final Date now = Date.from(Instant.now());
+
+			if (booking.getFlight() == null)
+				super.state(false, "flight", "acme.validation.booking.flight.not-found.message");
+			else if (booking.getFlight().getScheduledDeparture() == null)
+				super.state(false, "flight", "acme.validation.booking.flight.date-null.message");
+			else {
+				boolean future = booking.getFlight().getScheduledDeparture().after(now);
+				super.state(future, "flight", "acme.validation.booking.departure-not-in-future.message");
 			}
 		}
-		{
-			super.state(booking.isDraftMode(), "*", "acme.validation.booking.is-not-draft-mode.message");
+
+		if (booking.getPrice() != null && booking.getPrice().getCurrency() != null) {
+			boolean validCurrency = ExchangeRate.isValidCurrency(booking.getPrice().getCurrency());
+			super.state(validCurrency, "price", "acme.validation.currency.message");
 		}
-		{
-			super.state(booking.getFlight() != null, "flight", "acme.validation.booking.flight.not-found.messasge");
-		}
+
+		super.state(booking.isDraftMode(), "*", "acme.validation.booking.is-not-draft-mode.message");
 	}
 
 	@Override
 	public void perform(final Booking booking) {
-		this.repository.save(booking);
 		booking.setPurchaseMoment(MomentHelper.getCurrentMoment());
-		booking.setDraftMode(true);
+		this.repository.save(booking);
 	}
 
 	@Override
 	public void unbind(final Booking booking) {
 		Dataset dataset;
-		Collection<Flight> flights;
-		SelectChoices choices;
-		Date moment;
+		final Date now = Date.from(Instant.now());
+
+		Collection<Flight> flights = this.repository.findFlightsWithFirstLegAfter(now);
+
+		List<Flight> validFlights = flights.stream().filter(f -> f.getFlightRoute() != null).filter(f -> f.getScheduledDeparture() != null).toList();
+
 		Flight selectedFlight = booking.getFlight();
-
-		moment = MomentHelper.getCurrentMoment();
-		flights = this.repository.findFlightsWithFirstLegAfter(moment);
-
-		if (selectedFlight != null && !flights.contains(selectedFlight))
+		if (selectedFlight != null && !validFlights.contains(selectedFlight))
 			selectedFlight = null;
 
-		Set<String> seen = new HashSet<>();
-		List<Flight> validFlights = flights.stream().filter(f -> f.getFlightRoute() != null && seen.add(f.getFlightRoute())).toList();
-
-		choices = SelectChoices.from(validFlights, "flightRoute", selectedFlight);
+		SelectChoices choices = SelectChoices.from(validFlights, "flightRoute", selectedFlight);
 		SelectChoices classChoices = SelectChoices.from(TravelClass.class, booking.getTravelClass());
 
 		dataset = super.unbindObject(booking, "locatorCode", "purchaseMoment", "travelClass", "price", "creditCardNibble", "draftMode");
-		dataset.put("flight", choices.getSelected().getKey());
+		dataset.put("flight", choices.getSelected() != null ? choices.getSelected().getKey() : "0");
 		dataset.put("flights", choices);
 		dataset.put("classes", classChoices);
-		dataset.put("travelClass", classChoices.getSelected().getKey());
+		dataset.put("travelClass", classChoices.getSelected() != null ? classChoices.getSelected().getKey() : null);
 		dataset.put("bookingId", booking.getId());
 
 		super.getResponse().addData(dataset);
