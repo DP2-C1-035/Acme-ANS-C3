@@ -84,8 +84,6 @@
 			<acme:menu-suboption code="master.menu.crewMember.list-my-planned-assignments" action="/flight-crew-member/flight-assignment/list-uncompleted" />
 			<acme:menu-separator />
 			<acme:menu-suboption code="master.menu.crewMember.show-dashboard" action="/flight-crew-member/flight-crew-member-dashboard/show" />
-			<acme:menu-separator />
-			<acme:menu-suboption code="master.menu.crewMember.list-visa" action="/flight-crew-member/visa-requirement/list" />
 		</acme:menu-option>
  		
  		<acme:menu-option code="master.menu.authenticated" access="isAuthenticated()">
