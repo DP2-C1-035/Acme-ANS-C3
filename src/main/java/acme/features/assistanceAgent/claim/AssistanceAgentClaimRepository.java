@@ -45,4 +45,7 @@ public interface AssistanceAgentClaimRepository extends AbstractRepository {
 
 	@Query("select l from Leg l where l.id = :legId")
 	public Leg findLegById(int legId);
+
+	@Query("Select t from TrackingLog t where t.resolutionPercentage = 100.00 and t.claim.id = :claimId")
+	public TrackingLog findFinalResolutionByClaimId(int claimId);
 }

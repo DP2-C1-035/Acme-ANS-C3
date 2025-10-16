@@ -2,6 +2,7 @@
 package acme.features.assistanceAgent.trackingLog;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
@@ -37,5 +38,8 @@ public interface AssistanceAgentTrackingLogRepository extends AbstractRepository
 
 	@Query("SELECT COUNT(t) FROM TrackingLog t WHERE t.claim.id = :claimId AND t.resolutionPercentage = 100.00")
 	public Long countAllTrackingLogsAt100(int claimId);
+
+	@Query("SELECT COUNT(t) > 0 FROM TrackingLog t WHERE t.claim.id = :claimId AND t.creationMoment = :creationMoment")
+	boolean existsTrackingLogWithCreationMoment(int claimId, Date creationMoment);
 
 }
