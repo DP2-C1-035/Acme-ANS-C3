@@ -6,6 +6,7 @@ import java.util.Optional;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import acme.client.components.models.Dataset;
+import acme.client.components.views.SelectChoices;
 import acme.client.helpers.MomentHelper;
 import acme.client.services.AbstractGuiService;
 import acme.client.services.GuiService;
@@ -68,12 +69,23 @@ public class AssistanceAgentTrackingLogCreateExceptionService extends AbstractGu
 	@Override
 	public void bind(final TrackingLog object) {
 		super.bindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator", "creationMoment");
+		object.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		object.setCreationMoment(MomentHelper.getCurrentMoment());
 	}
 
 	@Override
 	public void validate(final TrackingLog object) {
 		if (!super.getBuffer().getErrors().hasErrors("resolution"))
 			super.state(Optional.ofNullable(object.getResolution()).map(String::strip).filter(s -> !s.isEmpty()).isPresent(), "resolution", "assistanceAgent.trackingLog.form.error.resolution-not-null");
+		if (!super.getBuffer().getErrors().hasErrors("indicator")) {
+			Claim claim = this.repository.findClaimById(object.getClaim().getId());
+			boolean sameIndicator = false;
+
+			if (claim != null && claim.getIndicator() != null && object.getIndicator() != null)
+				sameIndicator = claim.getIndicator().name().equalsIgnoreCase(object.getIndicator().name());
+
+			super.state(sameIndicator, "indicator", "assistanceAgent.trackingLog.form.error.indicator-must-match-claim");
+		}
 	}
 
 	@Override
@@ -81,19 +93,21 @@ public class AssistanceAgentTrackingLogCreateExceptionService extends AbstractGu
 
 		object.setLastUpdateMoment(MomentHelper.getCurrentMoment());
 		object.setCreationMoment(MomentHelper.getCurrentMoment());
-
+		object.setResolutionPercentage(100.00);
 		this.repository.save(object);
 	}
 
 	@Override
 	public void unbind(final TrackingLog object) {
 		Dataset dataset;
-
+		SelectChoices choicesIndicator;
+		choicesIndicator = SelectChoices.from(TrackingLogIndicator.class, object.getIndicator());
 		dataset = super.unbindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator", "creationMoment");
 		dataset.put("masterId", super.getRequest().getData("masterId", int.class));
 		dataset.put("exceptionalCase", true);
-
+		dataset.put("indicators", choicesIndicator);
 		super.getResponse().addData(dataset);
+
 	}
 
 }

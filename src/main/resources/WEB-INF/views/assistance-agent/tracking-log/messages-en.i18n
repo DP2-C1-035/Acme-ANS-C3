@@ -33,8 +33,12 @@ assistanceAgent.trackingLog.form.label.indicator = Indicator
 assistanceAgent.trackingLog.form.label.claim = Claim
 assistanceAgent.trackingLog.form.label.creationMoment = Creation Moment
 
-assistanceAgent.trackingLog.form.error.resolution-not-null =  The resolution reason can't be blank or null if the indicator is "ACCEPTED" or "DENIED"
-assistanceAgent.trackingLog.form.error.indicator-pending = Only the indicator is "PENDING" if the resolution percentage is less than 100%. If it is equal to 100%, it must be "ACCEPTED" or "DENIED
+assistanceAgent.trackingLog.form.error.indicator-not-equal-to-claim-indicator = The tracking log indicator must be equal to associated claim
+assistanceAgent.trackingLog.form.error.indicator-must-match-claim = The indicator of the exceptional tracking log must match the indicator of its associated claim
+assistanceAgent.trackingLog.form.error.invalid-creation-moment = The resolution percentage cannot be lower than or equals to that of previously created logs nor higher than or equals to that of subsequently created logs. A second 100% log is only allowed if the existing one is already published
+assistanceAgent.trackingLog.form.error.duplicate-creation-moment=There cannot be two tracking logs with the same creation date, in order to maintain consistent percentage progression assistanceAgent.trackingLog.form.error.creation-moment-not-after = The creation moment must be after claim registration moment (Message for subject approval. Although this error would not occur in practice because the current time is dynamic,  it is necessary to include it to prevent potential issues when the tracking log is created simultaneously with the  claim record in the present)
+assistanceAgent.trackingLog.form.error.resolution-not-null =  If indicator is Acepted or Rejected, there must be a resolution. However, must be null if indicator is Pending
+## assistanceAgent.trackingLog.form.error.indicator-pending = Only the indicator is "PENDING" if the resolution percentage is less than 100%. If it is equal to 100%, it must be "ACCEPTED" or "DENIED
 assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage = The resolution percentage must be higher than the percentages of the other created logs
 assistanceAgent.trackingLog.form.error.unpublished-lower-logs = There are existing logs whose percentages are lower to this one. Please, delete them or publish them to maintain an increasing process
 assistanceAgent.trackingLog.form.error.less-than-max-resolution-percentage = The new resolution percentage of this tracking log must be higher than the ones that are uploaded  

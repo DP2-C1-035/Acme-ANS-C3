@@ -57,84 +57,76 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 
 	@Override
 	public void bind(final TrackingLog object) {
+		TrackingLog trackingLog;
+		Date creationMoment;
+		trackingLog = this.repository.findTrackingLogById(object.getId());
+		creationMoment = trackingLog.getCreationMoment();
 		super.bindObject(object, "lastUpdateMoment", "step", "resolutionPercentage", "resolution", "indicator", "creationMoment");
+		object.setLastUpdateMoment(MomentHelper.getCurrentMoment());
+		object.setCreationMoment(creationMoment);
 	}
 
 	@Override
 	public void validate(final TrackingLog object) {
-		{
-			super.state(!object.getClaim().isDraftMode(), "*", "assistanceAgent.trackingLog.form.error.claim-must-be-published");
-			super.state(this.repository.countTrackingLogsForException(object.getClaim().getId()) < 2, "*", "assistanceAgent.trackingLog.form.error.only-two-tracking-logs-100");
+		int claimId = object.getClaim().getId();
+		Claim claim = this.repository.findClaimById(claimId);
+		Collection<TrackingLog> logs = this.repository.findTrackingLogsByClaimId(claimId);
 
-		}
-		if (!super.getBuffer().getErrors().hasErrors("indicator")) {
-			boolean bool1;
-			boolean bool2;
-			if (!super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
-				bool1 = object.getIndicator() == TrackingLogIndicator.PENDING && object.getResolutionPercentage() < 100;
-				bool2 = object.getIndicator() != TrackingLogIndicator.PENDING && object.getResolutionPercentage() == 100;
-				super.state(bool1 || bool2, "indicator", "assistanceAgent.trackingLog.form.error.indicator-pending");
-			}
-			boolean bool3;
-			ClaimStatus indicator = this.repository.findClaimById(object.getClaim().getId()).getIndicator();
-			TrackingLogIndicator logIndicator = object.getIndicator();
-			if (indicator.toString().equals(logIndicator.toString()))
-				bool3 = true;
-			else
-				bool3 = false;
-			super.state(bool3, "indicator", "assistanceAgent.trackingLog.form.error.indicator-not-equal-to-claim-indicator");
-		}
-		if (!super.getBuffer().getErrors().hasErrors("resolutionPercentage")) {
-			Double maxResolutionPercentage;
-			double finalMaxResolutionPercentage;
-			boolean notAnyMore;
+		super.state(!claim.isDraftMode(), "*", "assistanceAgent.trackingLog.form.error.claim-must-be-published");
 
-			notAnyMore = this.repository.countTrackingLogsForException(object.getClaim().getId()) == 1;
-			maxResolutionPercentage = this.repository.findMaxResolutionPercentageByClaimId(object.getId(), object.getClaim().getId());
-			finalMaxResolutionPercentage = maxResolutionPercentage != null ? maxResolutionPercentage : -0.01;
-
-			if (notAnyMore)
-				super.state(object.getResolutionPercentage() == 100, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.must-be-100");
-			else
-				super.state(object.getResolutionPercentage() > finalMaxResolutionPercentage, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.less-than-max-resolution-percentage");
-			Collection<TrackingLog> logs = this.repository.findTrackingLogsByClaimId(object.getClaim().getId());
-
-			Double percentage = object.getResolutionPercentage();
-
-			boolean hasLowerDrafts = logs.stream().filter(log -> log.getId() != object.getId()).filter(log -> log.isDraftMode()).anyMatch(log -> log.getResolutionPercentage() < percentage);
-
-			super.state(!hasLowerDrafts, "*", "assistanceAgent.trackingLog.form.error.unpublished-lower-logs");
-
-			//			Optional<TrackingLog> mostRecentLog = logs.stream().filter(log -> log.getId() != object.getId()).max(Comparator.comparing(TrackingLog::getCreationMoment));
-			//
-			//			boolean isProgressing = mostRecentLog.map(lastLog -> percentage > lastLog.getResolutionPercentage()).orElse(true);
-			//
-			//			super.state(isProgressing, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.non-increasing-resolution-percentage");
-		}
 		if (!super.getBuffer().getErrors().hasErrors("resolution")) {
 			boolean isPending = object.getIndicator() == TrackingLogIndicator.PENDING;
-
-			boolean valid = isPending && !Optional.ofNullable(object.getResolution()).map(String::strip).filter(s -> !s.isEmpty()).isPresent()
+			boolean validResolution = isPending && !Optional.ofNullable(object.getResolution()).map(String::strip).filter(s -> !s.isEmpty()).isPresent()
 				|| !isPending && Optional.ofNullable(object.getResolution()).map(String::strip).filter(s -> !s.isEmpty()).isPresent();
-
-			super.state(valid, "resolution", "assistanceAgent.trackingLog.form.error.resolution-not-null");
+			super.state(validResolution, "resolution", "assistanceAgent.trackingLog.form.error.resolution-not-null");
 		}
-		Claim claim;
-		claim = this.repository.findClaimById(object.getClaim().getId());
-		Collection<TrackingLog> logs;
-		logs = this.repository.findTrackingLogsByClaimId(claim.getId());
+
 		if (!super.getBuffer().getErrors().hasErrors("creationMoment")) {
 			Date creationMoment = object.getCreationMoment();
 			Double percentage = object.getResolutionPercentage();
 
-			boolean hasNoPastInconsistencies = logs.stream().filter(log -> log.getId() != object.getId()).filter(log -> log.getCreationMoment().before(creationMoment)).allMatch(log -> log.getResolutionPercentage() < percentage);
+			boolean percentageNotNull = percentage != null;
+			if (percentageNotNull) {
 
-			boolean hasNoFutureInconsistencies = logs.stream().filter(log -> log.getId() != object.getId()).filter(log -> log.getCreationMoment().after(creationMoment)).allMatch(log -> log.getResolutionPercentage() > percentage);
+				boolean existsPublished100 = this.repository.countTrackingLogsForException(object.getClaim().getId()) > 0;
 
-			boolean isCreationMomentValid = hasNoPastInconsistencies && hasNoFutureInconsistencies;
+				if (!(percentage.equals(100.0) && existsPublished100)) {
 
-			super.state(isCreationMomentValid, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.invalid-creation-moment");
+					final Double currentPercentage = percentage;
+
+					boolean hasNoPastInconsistencies = logs.stream().filter(log -> log.getId() != object.getId()).filter(log -> log.getCreationMoment() != null && log.getCreationMoment().before(creationMoment)).allMatch(log -> {
+						Double otherPercentage = log.getResolutionPercentage();
+						if (otherPercentage == null)
+							return true;
+						return otherPercentage < currentPercentage;
+					});
+
+					boolean hasNoFutureInconsistencies = logs.stream().filter(log -> log.getId() != object.getId()).filter(log -> log.getCreationMoment() != null && log.getCreationMoment().after(creationMoment)).allMatch(log -> {
+						Double otherPercentage = log.getResolutionPercentage();
+						if (otherPercentage == null)
+							return true;
+						return otherPercentage > currentPercentage;
+					});
+
+					boolean isCreationMomentValid = hasNoPastInconsistencies && hasNoFutureInconsistencies;
+					super.state(isCreationMomentValid, "resolutionPercentage", "assistanceAgent.trackingLog.form.error.invalid-creation-moment");
+				}
+			}
+
+			logs = this.repository.findTrackingLogsByClaimId(object.getClaim().getId());
+			percentage = object.getResolutionPercentage();
+
+			if (percentage != null) {
+				final Double currentPercentage = percentage;
+				boolean hasUnpublishedLowerLogs = logs.stream().filter(log -> log.getId() != object.getId()).filter(log -> log.isDraftMode()).filter(log -> {
+					Double otherPercentage = log.getResolutionPercentage();
+					return otherPercentage != null && otherPercentage < currentPercentage;
+				}).findAny().isPresent();
+
+				super.state(!hasUnpublishedLowerLogs, "*", "assistanceAgent.trackingLog.form.error.unpublished-lower-logs");
+			}
 		}
+
 	}
 
 	@Override
@@ -143,13 +135,13 @@ public class AssistanceAgentTrackingLogPublishService extends AbstractGuiService
 		TrackingLogIndicator indicator;
 		indicator = object.getIndicator();
 		claim = this.repository.findClaimById(object.getClaim().getId());
-		if (indicator.equals(TrackingLogIndicator.ACCEPTED))
-			claim.setIndicator(ClaimStatus.ACCEPTED);
-		else if (indicator.equals(TrackingLogIndicator.REJECTED))
-			claim.setIndicator(ClaimStatus.REJECTED);
-		else
-			claim.setIndicator(ClaimStatus.PENDING);
-
+		if (object.getResolutionPercentage() == 100.0)
+			if (indicator.equals(TrackingLogIndicator.ACCEPTED))
+				claim.setIndicator(ClaimStatus.ACCEPTED);
+			else if (indicator.equals(TrackingLogIndicator.REJECTED))
+				claim.setIndicator(ClaimStatus.REJECTED);
+			else
+				claim.setIndicator(ClaimStatus.PENDING);
 		object.setDraftMode(false);
 		object.setLastUpdateMoment(MomentHelper.getCurrentMoment());
 

@@ -2,6 +2,7 @@
 package acme.features.assistanceAgent.claim;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -78,35 +79,45 @@ public class AssistanceAgentClaimPublishService extends AbstractGuiService<Assis
 		assert object != null;
 		int legId;
 		Leg leg;
-
+		TrackingLog trackingLog;
+		ClaimStatus indicator;
+		Claim claim;
 		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
-
+		trackingLog = this.repository.findFinalResolutionByClaimId(object.getId());
+		claim = this.repository.findClaimById(object.getId());
 		super.bindObject(object, "registrationMoment", "passengerEmail", "description", "type", "indicator", "leg");
 		object.setLeg(leg);
+		if (trackingLog != null) {
+			indicator = trackingLog.getIndicator().equals(TrackingLogIndicator.ACCEPTED) ? ClaimStatus.ACCEPTED : ClaimStatus.REJECTED;
+			object.setIndicator(indicator);
+		} else
+			object.setIndicator(claim.getIndicator());
+		object.setRegistrationMoment(claim.getRegistrationMoment());
+
 	}
 
 	@Override
 	public void validate(final Claim object) {
 		assert object != null;
 		boolean isNotWrongLeg = true;
-		Claim claim = this.repository.findClaimById(object.getId());
-
+		Leg leg;
+		Date registrationMoment;
+		Claim claim;
+		claim = this.repository.findClaimById(object.getId());
+		leg = object.getLeg() != null ? this.repository.findLegById(object.getLeg().getId()) : null;
+		registrationMoment = object.getRegistrationMoment();
 		if (!super.getBuffer().getErrors().hasErrors("registrationMoment")) {
-			if (claim.getLeg() != null && claim.getRegistrationMoment() != null)
-				isNotWrongLeg = claim.getRegistrationMoment().after(claim.getLeg().getScheduledArrival());
+			if (leg != null)
+				isNotWrongLeg = registrationMoment.after(leg.getScheduledArrival());
 			super.state(isNotWrongLeg, "registrationMoment", "assistanceAgent.claim.form.error.wrong-leg-date");
 		}
 
-		if (!super.getBuffer().getErrors().hasErrors("indicator"))
-			super.state(object.getIndicator() != ClaimStatus.PENDING, "indicator", "assistanceAgent.claim.form.error.indicator-must-not-be-pending");
-
 		{
-			Collection<TrackingLog> logs;
-			logs = this.repository.findTrackingLogsByClaimId(claim.getId());
-			boolean allLogsPending;
-			allLogsPending = logs.size() == 0 || logs.stream().allMatch(l -> l.getIndicator().equals(TrackingLogIndicator.PENDING)) ? true : false;
-			super.state(allLogsPending, "*", "assistanceAgent.claim.form.error.claim-published-with-pending-status");
+			Collection<TrackingLog> logs = this.repository.findTrackingLogsByClaimId(claim.getId());
+			boolean hasAcceptedOrRejected = logs.stream().anyMatch(l -> l.getIndicator().equals(TrackingLogIndicator.ACCEPTED) || l.getIndicator().equals(TrackingLogIndicator.REJECTED));
+			boolean canPublish = hasAcceptedOrRejected;
+			super.state(canPublish, "*", "assistanceAgent.claim.form.error.claim-published-with-pending-status");
 		}
 	}
 
