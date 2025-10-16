@@ -1,0 +1,113 @@
+<diagram program="umletino" version="15.1"><zoom_level>8</zoom_level><element><id>UMLClass</id><coordinates><x>736</x><y>296</y><w>472</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+Claim 
+--
++ registrationMoment: Date {Temporal(TIMESTAMP), Mandatory, ValidMoment(past = true)}
++ passengerEmail: String {Automapped, Mandatory, ValidEmail}
++ description: String {Automapped, Mandatory, ValidString(min = 1, max = 255)}
++ type: ClaimType {Automapped, Enumerated(EnumType.STRING), Mandatory}
++ indicator: ClaimStatus {Automapped, Enumerated(EnumType.STRING), Mandatory}
++ draftMode: boolean {Automapped, Mandatory}
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>736</x><y>488</y><w>472</w><h>120</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+TrackingLog 
+--
++ lastUpdateMoment: Date {Temporal(TIMESTAMP), Mandatory, ValidMoment(past = true)}
++ creationMoment: Date {Temporal(TIMESTAMP), Mandatory, ValidMoment(past = true)}
++ step: String {Automapped, Mandatory, ValidString(min = 1, max = 50)}
++ resolutionPercentage: Double {Automapped, ValidScore, Mandatory}
++ indicator: TrackingLogIndicator {Automapped, Valid, Mandatory}
++ resolution: String {Automapped, Optional, ValidString(min 0, max = 255)}
++ draftMode: boolean {Automapped, Mandatory}
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>160</x><y>488</y><w>528</w><h>128</h></coordinates><panel_attributes>&lt;&lt;Role&gt;&gt;
+AssistanceAgent 
+--
++ employeeCode: String {Mandatory, ValidString(pattern = "^[A-Z]{2,3}\\d{6}$"), Column(unique = true)}
++ spokenLanguages: String {Automapped, Mandatory, ValidString(min = 1, max = 255)}
++ moment: Date {Temporal(TIMESTAMP), Mandatory, ValidMoment(past = true)}
++ briefBio: String {Automapped, Optional, ValidString(max = 255)}
++ salary: Money {Automapped, Optional, ValidMoney}
++ photo: String {Automapped, Optional, ValidUrl}
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1248</x><y>488</y><w>168</w><h>72</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+Leg
+--
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1352</x><y>160</y><w>352</w><h>192</h></coordinates><panel_attributes>&lt;&lt;Form&gt;&gt;
+AssistanceAgentDashboard
+--
++ ratioOfClaimsStoredSuccessfully: Double
++ ratioOfClaimsRejected: Double
++ topThreeMonthsHighestNumberOfClaims: List&lt;Integer&gt;
++ avgNumberOfLogsClaimsHave: Double
++ minNumberOfLogsClaimsHave: Double
++ maxNumberOfLogsClaimsHave: Double
++ devNumberOfLogsClaimsHave: Double
++ avgNumberOfLogsClaimsAssistedDuringLastMonth: Double
++ minNumberOfLogsClaimsAssistedDuringLastMonth: Double
++ maxNumberOfLogsClaimsAssistedDuringLastMonth: Double
++ devNumberOfLogsClaimsAssistedDuringLastMonth: Double
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>736</x><y>160</y><w>152</w><h>96</h></coordinates><panel_attributes>&lt;&lt;Enum&gt;&gt;
+ClaimType
+--
+FLIGHT_ISSUES
+LUGGAGE_ISSUES
+SECURITY_INCIDENT
+OTHER_ISSUES
+
+bg=green
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>432</x><y>688</y><w>168</w><h>72</h></coordinates><panel_attributes>&lt;&lt;Entity&gt;&gt;
+Airline 
+--
+
+bg=green</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>944</x><y>408</y><w>40</w><h>96</h></coordinates><panel_attributes>lt=&lt;&lt;&lt;&lt;-
+m2=0..n
+m1=1</panel_attributes><additional_attributes>10;10;10;100</additional_attributes></element><element><id>Relation</id><coordinates><x>520</x><y>608</y><w>40</w><h>96</h></coordinates><panel_attributes>lt=&lt;-
+m2=0..n
+m1=1</panel_attributes><additional_attributes>10;100;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>1200</x><y>352</y><w>152</w><h>152</h></coordinates><panel_attributes>lt=&lt;-
+m2=0..n
+m1=1</panel_attributes><additional_attributes>160;170;160;10;10;10</additional_attributes></element><element><id>Relation</id><coordinates><x>432</x><y>352</y><w>320</w><h>152</h></coordinates><panel_attributes>lt=&lt;-
+m2=0..n
+m1=1</panel_attributes><additional_attributes>10;170;10;10;380;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>904</x><y>160</y><w>112</w><h>96</h></coordinates><panel_attributes>&lt;&lt;Enum&gt;&gt;
+ClaimStatus
+--
+ACCEPTED
+DENIED
+PENDING
+
+bg=green
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLNote</id><coordinates><x>1128</x><y>704</y><w>296</w><h>56</h></coordinates><panel_attributes>"resolutionPercentage" tiene que ser incremental. 
+Cuantos más TrackingLogs, más aumenta ese prcentaje
+Cuando llega a 100% puede acetarse esa Claim
+bg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>1096</x><y>600</y><w>96</w><h>120</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>100;130;10;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>680</x><y>704</y><w>216</w><h>72</h></coordinates><panel_attributes>When a claim is accepted or rejected, 
+the system must store its resolution 
+indicating the reason why was rejected 
+or the compensation to offer.
+bg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>768</x><y>600</y><w>120</w><h>120</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;130;130;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>216</x><y>688</y><w>152</w><h>56</h></coordinates><panel_attributes>The first two or three letters 
+correspond to their initials
+in the employeeCode.
+bg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>280</x><y>616</y><w>24</w><h>88</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;90;10;10</additional_attributes></element><element><id>UMLNote</id><coordinates><x>928</x><y>712</y><w>160</w><h>40</h></coordinates><panel_attributes>Debe actualizarse el moment 
+cada vez que se actualice
+bg=gray</panel_attributes><additional_attributes></additional_attributes></element><element><id>Relation</id><coordinates><x>992</x><y>600</y><w>64</w><h>128</h></coordinates><panel_attributes>lt=.</panel_attributes><additional_attributes>10;140;60;10</additional_attributes></element><element><id>UMLClass</id><coordinates><x>1176</x><y>160</y><w>112</w><h>96</h></coordinates><panel_attributes>&lt;&lt;Enum&gt;&gt;
+LegStatus
+--
+ON_TIME
+DELAYED
+CANCELLED
+LANDED
+
+bg=green
+
+</panel_attributes><additional_attributes></additional_attributes></element><element><id>UMLClass</id><coordinates><x>1040</x><y>160</y><w>112</w><h>96</h></coordinates><panel_attributes>&lt;&lt;Enum&gt;&gt;
+TrackingLogIndicator
+--
+ACCEPTED
+REJECTED
+PENDING
+
+bg=green
+
+</panel_attributes><additional_attributes></additional_attributes></element></diagram>
