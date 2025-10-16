@@ -36,14 +36,13 @@ assistanceAgent.claim.form.label.leg = Tramo del Vuelo
 
 # Claim Create:
 assistanceAgent.claim.form.error.indicator-must-be-pending = El estado tiene que estar en pendiente al crear una reclamación
-assistanceAgent.claim.form.error.wrong-leg-date= La fecha de reclamación no puede ser anterior a la fecha del tramo de vuelo
+assistanceAgent.claim.form.error.wrong-leg-date = La fecha de reclamación no puede ser anterior a la fecha del tramo de vuelo
 
 # Claim Delete:
 
 # Claim Lists:
 
 # Claim Publish:
-assistanceAgent.claim.form.error.indicator-must-not-be-pending = El estado tiene que estar en pendiente al publicar una reclamación
 assistanceAgent.claim.form.error.claim-published-with-pending-status = No hay ningún registro de seguimiento con un estado distinto
 a pendiente, por lo que la reclamación no se puede publicar
 

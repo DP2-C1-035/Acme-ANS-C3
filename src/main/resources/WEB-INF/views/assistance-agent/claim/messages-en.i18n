@@ -35,15 +35,14 @@ assistanceAgent.claim.form.label.assistanceAgent = Assistance Agent
 assistanceAgent.claim.form.label.leg = Leg
 
 # Claim Create:
-assistanceAgent.claim.form.error.indicator-must-be-pending= The claim status must be pending when creating
-assistanceAgent.claim.form.error.wrong-leg-date= Claim registration moment cannot be before leg arrival
+assistanceAgent.claim.form.error.indicator-must-be-pending = The claim status must be pending when creating
+assistanceAgent.claim.form.error.wrong-leg-date = Claim registration moment cannot be before leg arrival
 
 # Claim Delete:
 
 # Claim Lists:
 
 #Claim Publish:
-assistanceAgent.claim.form.error.indicator-must-not-be-pending= The claim status cannot be pending when publishing
 assistanceAgent.claim.form.error.claim-published-with-pending-status = There is not any log with a status different to pending, so the claim cannot be published
 
 #Claim Update:

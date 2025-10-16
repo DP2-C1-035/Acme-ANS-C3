@@ -2,6 +2,7 @@
 package acme.features.assistanceAgent.claim;
 
 import java.util.Collection;
+import java.util.Date;
 
 import org.springframework.beans.factory.annotation.Autowired;
 
@@ -84,25 +85,27 @@ public class AssistanceAgentClaimCreateService extends AbstractGuiService<Assist
 		int legId;
 		Leg leg;
 
+		super.bindObject(object, "registrationMoment", "passengerEmail", "description", "type", "indicator", "leg");
+
 		legId = super.getRequest().getData("leg", int.class);
 		leg = this.repository.findLegById(legId);
-
-		super.bindObject(object, "registrationMoment", "passengerEmail", "description", "type", "indicator", "leg");
 		object.setLeg(leg);
+		object.setIndicator(ClaimStatus.PENDING);
+		object.setRegistrationMoment(MomentHelper.getCurrentMoment());
 	}
 
 	@Override
 	public void validate(final Claim object) {
 		assert object != null;
 		boolean isNotWrongLeg = true;
-		Claim claim = this.repository.findClaimById(object.getId());
+		Leg leg;
+		Date registrationMoment;
 
-		if (!super.getBuffer().getErrors().hasErrors("indicator"))
-			super.state(object.getIndicator() == ClaimStatus.PENDING, "indicator", "assistanceAgent.claim.form.error.indicator-must-be-pending");
-
+		leg = object.getLeg() != null ? this.repository.findLegById(object.getLeg().getId()) : null;
+		registrationMoment = object.getRegistrationMoment();
 		if (!super.getBuffer().getErrors().hasErrors("registrationMoment")) {
-			if (claim.getLeg() != null && claim.getRegistrationMoment() != null)
-				isNotWrongLeg = claim.getRegistrationMoment().after(claim.getLeg().getScheduledArrival());
+			if (leg != null)
+				isNotWrongLeg = registrationMoment.after(leg.getScheduledArrival());
 			super.state(isNotWrongLeg, "registrationMoment", "assistanceAgent.claim.form.error.wrong-leg-date");
 		}
 	}
